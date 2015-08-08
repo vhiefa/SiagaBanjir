@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="500px"
+            android:layout_height="500px"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/no_image">
+            <ImageView
+                android:id="@+id/showImg"
+                android:layout_width="500px"
+                android:layout_height="500px"/>
+
+            <Button
+                android:id="@+id/photo"
+                android:layout_width="500px"
+                android:layout_height="500px"
+                android:background="@drawable/add_picture_btn"
+                />
+        </RelativeLayout>
+
+        <EditText android:id="@+id/inputDesc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:textSize="14dp"
+            android:text=""
+            android:gravity="top"/>
+
+
+        <Button android:id="@+id/btnUpload"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Lapor Banjir"/>
+
+    </LinearLayout>
+</ScrollView>
+
