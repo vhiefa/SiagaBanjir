@@ -60,7 +60,6 @@ public class ReportFloodActivity extends ActionBarActivity{
     final static int SELECTED_IMAGE_ACTIVITY_REQUEST_CODE = 2;
     static String Path;
     Uri imageUri                      = null;
-    static TextView imageDetails      = null;
     public  static ImageView showImg  = null;
     ReportFloodActivity CameraActivity = null;
     int serverResponseCode = 0;
@@ -157,21 +156,6 @@ public class ReportFloodActivity extends ActionBarActivity{
     @Override
     public void onResume() {
         super.onResume();
-     /*   if (location != null) {
-            mylistener.onLocationChanged(location);
-            latitude = String.valueOf(mylistener.getLatitude());
-            longitude = String.valueOf(mylistener.getLongitude());
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Lat : "+latitude+
-                            "Long : "+longitude,
-                    Toast.LENGTH_LONG).show();
-        } else {
-            // leads to the settings because there is no last known location
-            showSettingsAlert(provider);
-        }
-        ///location updates: at least 10 meter and 3 minutes change
-        locationManager.requestLocationUpdates(provider, 1000*60*3, 10, mylistener);*/
     }
 
     private void selectImage() {
@@ -260,7 +244,7 @@ public class ReportFloodActivity extends ActionBarActivity{
 
             int size = cursor.getCount();
             if (size == 0) { // If size is 0, there are no images on the SD Card. 
-                imageDetails.setText("No Image");
+               // imageDetails.setText("No Image");
             }
             else
             {
@@ -284,12 +268,12 @@ public class ReportFloodActivity extends ActionBarActivity{
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                 ReportFloodActivity.this);
 
-        alertDialog.setTitle(provider + " SETTINGS");
+        alertDialog.setTitle(provider + " setting");
 
         alertDialog
-                .setMessage(provider + " is not enabled! Want to go to settings menu?");
+                .setMessage(provider + " belum aktif, silahkan aktifkan terlebih dulu.");
 
-        alertDialog.setPositiveButton("Settings",
+        alertDialog.setPositiveButton("Setting",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(
@@ -298,7 +282,7 @@ public class ReportFloodActivity extends ActionBarActivity{
                     }
                 });
 
-        alertDialog.setNegativeButton("Cancel",
+        alertDialog.setNegativeButton("Batal",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -312,7 +296,7 @@ public class ReportFloodActivity extends ActionBarActivity{
         private ProgressDialog Dialog = new ProgressDialog(ReportFloodActivity.this);
         Bitmap mBitmap;
         protected void onPreExecute() {
-            Dialog.setMessage(" Loading image from Sdcard..");
+            Dialog.setMessage(" Loading image...");
             Dialog.show();
         }
         // Call after onPreExecute method
@@ -437,11 +421,6 @@ public class ReportFloodActivity extends ActionBarActivity{
 
             if (!sourceFile.isFile()) {
                 Log.e("uploadPhoto", "Source File not exist :" +Path);
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        //  messageText.setText("Source File not exist :" +Path);
-                    }
-                });
                 return 0;
             }
             else{
@@ -508,29 +487,15 @@ public class ReportFloodActivity extends ActionBarActivity{
                 } catch (MalformedURLException ex) {
                     dialog.dismiss();
                     ex.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            // messageText.setText("MalformedURLException Exception : check script url.");
-                            Toast.makeText(ReportFloodActivity.this, "MalformedURLException", Toast.LENGTH_SHORT).show();
-                        }
-                    });
                     Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
                 } catch (Exception e) {
 
                     dialog.dismiss();
                     e.printStackTrace();
-
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            //   messageText.setText("Got Exception : see logcat ");
-                            Toast.makeText(ReportFloodActivity.this, "Erorr.. Try again :) ",  Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    Log.e("Upload file to server Exception", "Exception : "+ e.getMessage(), e);
+                    Log.e("Upload Exception", "Exception :"+ e.getMessage(), e);
                 }
-                //dialog.dismiss();       
                 return serverResponseCode;
-            } // End else block 
+            }
         }
 
         protected void onPostExecute(String result) {

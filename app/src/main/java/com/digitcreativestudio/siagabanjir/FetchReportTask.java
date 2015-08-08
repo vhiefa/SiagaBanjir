@@ -68,7 +68,7 @@ public class FetchReportTask extends AsyncTask<Void, Void, Void> {
             int success = json.getInt(TAG_SUCCESS);
             if (success == 1) {
                 reportResult = json.getJSONArray(TAG_LAPORAN);
-                // Get and insert the new event information into the database
+                // Get and insert the new report information into the database
                 Vector<ContentValues> cVVector = new Vector<ContentValues>(reportResult.length());
 
                 for (int i = 0; i< reportResult.length(); i++){
