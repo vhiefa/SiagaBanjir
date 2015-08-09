@@ -23,12 +23,14 @@
         </activity>
         <activity
             android:name=".CheckMyLocationActivity"
-            android:label="Cek Status Kerawanan"
-            ></activity>
+            android:label="Cek Status Kerawanan" />
         <activity
             android:name=".ReportFloodActivity"
-            android:label="Laporkan Banjir"
-            ></activity>
+            android:label="Laporkan Banjir" />
+        <activity
+            android:name=".FloodAreaActivity"
+            android:label="@string/title_activity_flood_area" >
+        </activity>
     </application>
 
 </manifest>
