@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity{
 
         Button cek_kerawanan = (Button) findViewById(R.id.cek_kerawanan);
         Button lapor_banjir = (Button) findViewById(R.id.lapor_banjir);
+        Button lokasi_rawan_banjir = (Button) findViewById(R.id.lihat);
 
         cek_kerawanan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,15 @@ public class MainActivity extends ActionBarActivity{
             public void onClick(View v) {
                 Intent i = null;
                 i = new Intent(MainActivity.this, ReportFloodActivity.class);
+                startActivity(i);
+            }
+        });
+
+        lokasi_rawan_banjir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = null;
+                i = new Intent(MainActivity.this, FloodAreaActivity.class);
                 startActivity(i);
             }
         });
