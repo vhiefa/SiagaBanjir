@@ -18,6 +18,16 @@ public class MainActivity extends ActionBarActivity{
 
         Button cek_kerawanan = (Button) findViewById(R.id.cek_kerawanan);
         Button lapor_banjir = (Button) findViewById(R.id.lapor_banjir);
+        Button akun = (Button) findViewById(R.id.akun);
+
+        akun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = null;
+                i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
 
         cek_kerawanan.setOnClickListener(new View.OnClickListener() {
             @Override

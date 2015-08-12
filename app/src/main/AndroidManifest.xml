@@ -22,6 +22,32 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:label="Log In"
+            ></activity>
+        <activity
+            android:name=".EditProfilActivity"
+            android:label="Edit Profil"
+            ></activity>
+        <activity
+            android:name=".UbahPasswordActivity"
+            android:label="Ubah Password"
+            ></activity>
+        <activity
+            android:name=".LupaPasswordAcivity"
+            android:label="Lupa Password"
+            ></activity>
+        <activity
+            android:name=".CreateAccountActivity"
+            android:label="Create Account"
+            >
+        </activity>
+        <activity
+            android:name=".AccountActivity"
+            android:label="Account"
+            >
+        </activity>
+        <activity
             android:name=".CheckMyLocationActivity"
             android:label="Cek Status Kerawanan"
             ></activity>
