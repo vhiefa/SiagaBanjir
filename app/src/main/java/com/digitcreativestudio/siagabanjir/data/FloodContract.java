@@ -28,7 +28,7 @@ public class FloodContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_FLOOD = "flood";
 
-    public static final class MakulEntry implements BaseColumns {
+    public static final class FloodEntry implements BaseColumns {
 
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_FLOOD).build();
