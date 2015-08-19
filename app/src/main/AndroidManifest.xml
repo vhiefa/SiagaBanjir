@@ -55,6 +55,12 @@
             android:name=".ReportFloodActivity"
             android:label="Laporkan Banjir"
             ></activity>
+
+        <provider
+            android:name=".data.FloodProvider"
+            android:authorities="@string/content_authority"
+            android:exported="false"
+            android:syncable="true" />
     </application>
 
 </manifest>

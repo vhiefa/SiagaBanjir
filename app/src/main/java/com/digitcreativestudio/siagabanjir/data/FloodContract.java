@@ -16,6 +16,7 @@
 package com.digitcreativestudio.siagabanjir.data;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -46,7 +47,11 @@ public class FloodContract {
         public static final String COLUMN_LONGITUDE = "longitude";
         public static final String COLUMN_PHOTO = "photo";
 
-        public static Uri buildFloofUri(String lat, String lon) {
+        public static Uri buildUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildFloodUri(String lat, String lon) {
             return CONTENT_URI.buildUpon().appendPath(lat).appendPath(lon).build();
         }
 
