@@ -41,6 +41,7 @@ public class FloodContract {
 
         public static final String TABLE_NAME = "flood";
 
+        public static final String COLUMN_FLOOD_ID ="id_flood";
         public static final String COLUMN_TIME = "time";
         public static final String COLUMN_CAPTION = "caption";
         public static final String COLUMN_LATITUDE = "latitude";
