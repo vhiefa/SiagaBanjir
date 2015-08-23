@@ -47,6 +47,7 @@ public class FloodContract {
         public static final String COLUMN_LATITUDE = "latitude";
         public static final String COLUMN_LONGITUDE = "longitude";
         public static final String COLUMN_PHOTO = "photo";
+        public static final String COLUMN_NEW = "new";
 
         public static Uri buildUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);

@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="content_authority">com.digitcreativestudio.siagabanjir</string>
+    <string name="sync_account_type">siagabanjir.digitcreativestudio.com</string>
 
 </resources>
