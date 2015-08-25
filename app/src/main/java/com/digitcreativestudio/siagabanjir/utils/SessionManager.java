@@ -1,4 +1,4 @@
-package com.digitcreativestudio.siagabanjir;
+package com.digitcreativestudio.siagabanjir.utils;
 
 /**
  * Created by Afifatul on 8/10/2015.
@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.digitcreativestudio.siagabanjir.LoginActivity;
 
 public class SessionManager {
     // Shared Preferences
@@ -46,6 +48,7 @@ public class SessionManager {
     public static final String KEY_ID = "id_user";
 
     public static final String KEY_NOPE = "no_hp";
+
 
     // Constructor
     public SessionManager(Context context){

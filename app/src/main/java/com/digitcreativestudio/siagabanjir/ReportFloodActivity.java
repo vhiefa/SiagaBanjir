@@ -43,11 +43,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
+import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
 public class ReportFloodActivity extends ActionBarActivity{
 
@@ -166,6 +166,13 @@ public class ReportFloodActivity extends ActionBarActivity{
                     Toast.makeText(
                             getApplicationContext(),
                             "Lokasi Anda sedang dicari! Tunggu Sebentar dan Coba lagi!",
+                            Toast.LENGTH_LONG).show();
+                }
+
+                if (id_user==null){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Silahkan login terlebih dulu",
                             Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -385,7 +392,7 @@ public class ReportFloodActivity extends ActionBarActivity{
 
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-
+                params.add(new BasicNameValuePair("id_user", id_user));
                 params.add(new BasicNameValuePair("deskripsi", deskripsi));
                 params.add(new BasicNameValuePair("photo_url", photo_url));
                 params.add(new BasicNameValuePair("latitude", latitude));

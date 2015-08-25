@@ -9,6 +9,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dip">
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -63,21 +65,12 @@
         android:layout_height="wrap_content"
         android:text="Logout"/>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dip"
-        android:text="LAPORAN TERKIRIM"
-        android:layout_marginBottom="10dip"/>
-
-        <ListView
+        <Button android:id="@+id/btnCheckMyReport"
             android:layout_width="fill_parent"
-            android:id="@+id/submited_list"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Lihat Laporan Terkirim"/>
 
-        </ListView>
+
+
 </LinearLayout>
         </ScrollView>

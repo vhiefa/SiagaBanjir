@@ -16,9 +16,14 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String lati=""; //diambil dari preference
+        String longi=""; //diambil dari preference
+        new FetchReportTask(MainActivity.this).execute(lati, longi);
+
         Button cek_kerawanan = (Button) findViewById(R.id.cek_kerawanan);
         Button lapor_banjir = (Button) findViewById(R.id.lapor_banjir);
         Button akun = (Button) findViewById(R.id.akun);
+        Button atur = (Button) findViewById(R.id.atur);
 
         akun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +48,15 @@ public class MainActivity extends ActionBarActivity{
             public void onClick(View v) {
                 Intent i = null;
                 i = new Intent(MainActivity.this, ReportFloodActivity.class);
+                startActivity(i);
+            }
+        });
+
+        atur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = null;
+                i = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(i);
             }
         });

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <SwitchPreference
+        android:title="Notification (Current Location)"
+        android:key="current_notification"
+        android:defaultValue="@string/pref_enable_notifications_default" />
+
+    <SwitchPreference
+        android:title="Notification (Home)"
+        android:key="home_notification"
+        android:summary="Set your home location first to activate it"
+        android:defaultValue="@string/pref_enable_notifications_default" />
+
+    <Preference
+        android:title="Set Home Location"
+        android:key="home_location"
+        android:summary=""
+        />
+
+</PreferenceScreen>

@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
+import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

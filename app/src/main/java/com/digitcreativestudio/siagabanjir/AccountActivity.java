@@ -11,11 +11,13 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
 import java.util.HashMap;
 
 public class AccountActivity extends ActionBarActivity {
+
 
     // Alert Dialog Manager
     AlertDialogManager alert = new AlertDialogManager();
@@ -24,12 +26,13 @@ public class AccountActivity extends ActionBarActivity {
     SessionManager session;
 
     // Button Logout
-    Button btnLogout, btnupdate, ubahPwd;
+    Button btnLogout, btnupdate, ubahPwd, btnCheckMyReport;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
 
         // Session class instance
         session = new SessionManager(getApplicationContext());
@@ -41,6 +44,7 @@ public class AccountActivity extends ActionBarActivity {
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnupdate = (Button) findViewById(R.id.btnEditProfil);
         ubahPwd = (Button) findViewById(R.id.btnUbahPassword);
+        btnCheckMyReport = (Button) findViewById(R.id.btnCheckMyReport);
 
        // Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
@@ -61,27 +65,13 @@ public class AccountActivity extends ActionBarActivity {
         // email
         String email = user.get(SessionManager.KEY_EMAIL);
 
+
+
         // displaying user data
         lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
         lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
 
 
-    /*    update.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(AccountActivity.this, EditProfilActivity.class);
-                startActivity(i);
-            }
-        });
-        ubahPwd.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), UbahPasswordActivity.class);
-                startActivity(i);
-            }
-        }); */
         /**
          * Logout button click event
          * */
@@ -115,6 +105,18 @@ public class AccountActivity extends ActionBarActivity {
             }
         });
 
+        btnCheckMyReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AccountActivity.this, MyFloodReportActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+
     }
+
+
 
 }
