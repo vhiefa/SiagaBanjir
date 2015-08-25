@@ -164,7 +164,7 @@ public class SetHomeActivity extends ActionBarActivity implements GoogleMap.OnMa
                     public void onClick(DialogInterface dialog, int which) {
                         googleMap.clear();
                         googleMap.addMarker(new MarkerOptions().position(point).title(sPoint));
-                        SharedPreferences mPrefs = getSharedPreferences("HomeLocPref", 0);
+                        SharedPreferences mPrefs = getSharedPreferences("HomeLocaPref", 0);
                         SharedPreferences.Editor editor = mPrefs.edit();
                         editor.putString("home_location", sPoint);
                         editor.commit();

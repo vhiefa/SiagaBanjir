@@ -26,7 +26,7 @@ public class SettingActivity extends PreferenceActivity
         Preference home_notification = (Preference) findPreference("home_notification");
         home_location = (Preference) findPreference("home_location");
 
-        SharedPreferences mPrefs = getSharedPreferences("HomeLocPref", 0);
+        SharedPreferences mPrefs = getSharedPreferences("HomeLocaPref", 0);
         String str = mPrefs.getString("home_location", ""); //str merupakan value atau korrdinat home
 
         if (!str.equals("")) {
@@ -65,7 +65,7 @@ public class SettingActivity extends PreferenceActivity
     public void onResume(){
         super.onResume();
 
-        SharedPreferences mPrefs = getSharedPreferences("HomeLocPref",0);
+        SharedPreferences mPrefs = getSharedPreferences("HomeLocaPref",0);
         String str = mPrefs.getString("home_location", "");
         if (!str.equals("")) {
             home_location.setSummary(str);
