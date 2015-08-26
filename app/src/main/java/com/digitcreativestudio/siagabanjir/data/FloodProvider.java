@@ -31,7 +31,7 @@ public class FloodProvider extends ContentProvider {
     private FloodDbHelper mOpenHelper;
 
     static final int FLOOD = 100;
-    static final int FLOOD_BY_LAT_LONG = 101;
+    static final int FLOOD_BY_ID = 101;
 
 
     private static final SQLiteQueryBuilder sFloodSettingQueryBuilder;
@@ -44,11 +44,9 @@ public class FloodProvider extends ContentProvider {
                 FloodContract.FloodEntry.TABLE_NAME);
     }
 
-    private static final String sByLatLong =
+    private static final String sById =
             FloodContract.FloodEntry.TABLE_NAME +
-                    "." + FloodContract.FloodEntry.COLUMN_LATITUDE + " = ? AND " +
-                    FloodContract.FloodEntry.TABLE_NAME +
-                    "." + FloodContract.FloodEntry.COLUMN_LONGITUDE + " = ?";
+                    "." + FloodContract.FloodEntry.COLUMN_FLOOD_ID + " = ?";
 
 
     private Cursor getFlood(Uri uri, String[] projection, String sortOrder){
@@ -63,14 +61,13 @@ public class FloodProvider extends ContentProvider {
         );
     }
 
-    private Cursor getByLatLong(Uri uri, String[] projection, String sortOrder){
-        String lat = FloodContract.FloodEntry.getLatitude(uri);
-        String lon = FloodContract.FloodEntry.getLongitude(uri);
+    private Cursor getById(Uri uri, String[] projection, String sortOrder){
+        String id = FloodContract.FloodEntry.getIdFromUri(uri);
         return mOpenHelper.getReadableDatabase().query(
                 FloodContract.FloodEntry.TABLE_NAME,
                 null,
-                sByLatLong,
-                new String[]{lat, lon},
+                sById,
+                new String[]{id},
                 null,
                 null,
                 sortOrder
@@ -84,7 +81,7 @@ public class FloodProvider extends ContentProvider {
         final String authority = FloodContract.CONTENT_AUTHORITY;
 
         matcher.addURI(authority, FloodContract.PATH_FLOOD, FLOOD);
-        matcher.addURI(authority, FloodContract.PATH_FLOOD + "/*/*", FLOOD_BY_LAT_LONG);
+        matcher.addURI(authority, FloodContract.PATH_FLOOD + "/*", FLOOD_BY_ID);
 
         return matcher;
     }
@@ -104,6 +101,8 @@ public class FloodProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
 
         switch (match) {
+            case FLOOD_BY_ID :
+                return FloodContract.FloodEntry.CONTENT_ITEM_TYPE;
             case FLOOD:
                 return FloodContract.FloodEntry.CONTENT_TYPE;
 
@@ -124,9 +123,9 @@ public class FloodProvider extends ContentProvider {
                 retCursor = getFlood(uri, projection, sortOrder);
                 break;
             }
-            case FLOOD_BY_LAT_LONG:
+            case FLOOD_BY_ID:
             {
-                retCursor = getByLatLong(uri, projection, sortOrder);
+                retCursor = getById(uri, projection, sortOrder);
                 break;
             }
 

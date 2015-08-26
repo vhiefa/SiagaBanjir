@@ -47,23 +47,30 @@ public class FloodContract {
         public static final String COLUMN_LATITUDE = "latitude";
         public static final String COLUMN_LONGITUDE = "longitude";
         public static final String COLUMN_PHOTO = "photo";
-        public static final String COLUMN_NEW = "new";
 
         public static Uri buildUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildFloodUri(String lat, String lon) {
+     /*   public static Uri buildFloodUri(String lat, String lon) {
             return CONTENT_URI.buildUpon().appendPath(lat).appendPath(lon).build();
+        } */
+
+        public static Uri buildFloodById(String id) {
+            return CONTENT_URI.buildUpon().appendPath(null).appendPath(id).build();
         }
 
-        public static String getLatitude(Uri uri){
+        public static String getIdFromUri(Uri uri) {
+            return uri.getPathSegments().get(1);
+        }
+
+      /*  public static String getLatitude(Uri uri){
             return uri.getPathSegments().get(1);
         }
 
         public static String getLongitude(Uri uri){
             return uri.getPathSegments().get(2);
-        }
+        }*/
 
     }
 

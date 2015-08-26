@@ -2,49 +2,74 @@ package com.digitcreativestudio.siagabanjir.sync;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SyncRequest;
 import android.content.SyncResult;
 import android.database.Cursor;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.digitcreativestudio.siagabanjir.MainActivity;
 import com.digitcreativestudio.siagabanjir.R;
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
+import com.digitcreativestudio.siagabanjir.utils.JSONParser;
+import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
 
-import org.json.JSONException;
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 /**
  * Created by faqih_000 on 5/9/2015.
+ * Edited by Fifa 26/8/2015
  */
 public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
-    public static final long SYNC_INTERVAL = 60 * 60;
-    public static final long SYNC_FLEXTIME = SYNC_INTERVAL/4;
-    public static final String SYNC_STATUS = "status";
-    public String status;
+    public static final int SYNC_INTERVAL = 60 * 3;// 60 * 3; //3 jam
+    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
+    private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     final int FLOOD_NOTIFICATION_ID = 3153;
-    final String NOTIFICATION_GROUP = "flood_notification_group";
 
-    Intent isSync;
+    Context context;
+    JSONArray reportResult = null;
+
+
+    private static final String[] NOTIFY_FLOOD_PROJECTION = new String[] {
+            FloodContract.FloodEntry.COLUMN_FLOOD_ID,
+            FloodContract.FloodEntry.COLUMN_CAPTION,
+            FloodContract.FloodEntry.COLUMN_LATITUDE,
+            FloodContract.FloodEntry.COLUMN_LONGITUDE,
+            FloodContract.FloodEntry.COLUMN_PHOTO,
+            FloodContract.FloodEntry.COLUMN_TIME
+    };
+
+    // these indices must match the projection
+    private static final int INDEX_FLOOD_ID = 0;
+    private static final int INDEX_CAPTION = 1;
+    private static final int INDEX_LAT = 2;
+    private static final int INDEX_LONG = 3;
+    private static final int INDEX_PHOTO = 4;
+    private static final int INDEX_TIME = 5;
 
     public FloodSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
@@ -53,81 +78,48 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
 
-        /*
-        *
-        * GETTING USER'S LATITUDE AND LONGITUDE
-        * GETTING DATA FROM SERVER AND SAVE IT IN LOCAL DATABASE
-        * IF THERE'RE NEW RECORD NOTIFY USER,
-        * WHEN NOTIFICATION TOUCHED IT SEND USER TO “activity detail laporan banjir”
-        *
-        * */
+        context = getContext();
 
-        Double latitude = -6.166894, longitude = 106.861803; //hanya untuk default (tes), nanti ini akan keganti dengan current lat long si user
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String displayCurrentNotifKey = context.getString(R.string.pref_enable_current_notifications_key);
+        boolean displayCurrentNotifications = prefs.getBoolean(displayCurrentNotifKey,
+                Boolean.parseBoolean(context.getString(R.string.pref_enable_current_notifications_default)));
 
+        String displayhomeNotifKey = context.getString(R.string.pref_enable_home_notifications_key);
+        boolean displayHomeNotifications = prefs.getBoolean(displayhomeNotifKey,
+                Boolean.parseBoolean(context.getString(R.string.pref_enable_home_notifications_default)));
 
-        HttpURLConnection urlConnection = null;
-        BufferedReader reader = null;
-
-
-        // Will contain the raw JSON response as a string.
-        String floodJsonStr = null;
-
-        try {
-            // URL from google sheet
-            URL url = new URL("...");
-
-            // Create the request to OpenWeatherMap, and open the connection
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            // Read the input stream into a String
-            InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
-            if (inputStream == null) {
-                // Nothing to do.
-                return;
+        if ( displayCurrentNotifications == true ) {
+            LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);   //default
+            criteria.setCostAllowed(false);
+            // get the best provider depending on the criteria
+            String prvider = locationManager.getBestProvider(criteria, false);
+            Location location = locationManager.getLastKnownLocation(prvider);
+            MyLocationListener mylistener = new MyLocationListener(context);
+            if (location != null) {
+                mylistener.onLocationChanged(location);
+                String currlatitude = String.valueOf(mylistener.getLatitude()); //get current latitude of user
+                String currlongitude = String.valueOf(mylistener.getLongitude()); //get current longitude of user
+                fetchFloodReport(currlatitude, currlongitude); //mendapatkan data banjir dari API sekaligus notify
+            } else {
+                // leads to the settings because there is no last known location
+                //showSettingsAlert(provider);
             }
-            reader = new BufferedReader(new InputStreamReader(inputStream));
+            // location updates: at least 10 meter and 3 minutes change
+            //locationManager.requestLocationUpdates(provider, 1000*60*3, 10, mylistener);
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
-                // But it does make debugging a *lot* easier if you print out the completed
-                // buffer for debugging.
-                buffer.append(line + "\n");
-            }
-
-            if (buffer.length() == 0) {
-                // Stream was empty.  No point in parsing.
-                return;
-            }
-            floodJsonStr = buffer.toString();
-
-        } catch (IOException e) {
-            // If the code didn't successfully get the weather data, there's no point in attemping
-            // to parse it.
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (final IOException e) {
-                }
-            }
         }
 
-        try {
-            if(floodJsonStr != null) {
-                getFloodDataFromJson(floodJsonStr);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (displayHomeNotifications == true){
+            SharedPreferences prf = context.getSharedPreferences("HomeLocaPref", 0);
+            String koordinat = prf.getString("home_location", "");
+            String homeLatitude = Utility.getLatitudefromCoordinat(koordinat);
+            String homeLongitude = Utility.getLongitudefromCoordinat(koordinat);
+            fetchFloodReport(homeLatitude, homeLongitude); //mendapatkan data banjir dari API sekaligus notify
         }
 
-        return;
 
     }
 
@@ -180,96 +172,154 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
         getSyncAccount(context);
     }
 
-    private void getFloodDataFromJson(String floodJsonStr)
-            throws JSONException {
-        List<String> makulIds = new ArrayList<>();
 
-        // These are the names of the JSON objects that need to be extracted.
-        /*
-        *
-        * HERE'S PLACE FOR NAMES OF JSON OBJECTS THAT NEED TO BE EXTRACTED
-        *
-        * */
 
-        Vector<ContentValues> cVVector = new Vector<ContentValues>();
+    private void notifyFlood(String id) {
 
-        /*
-        *
-        * HERE'S PLACE FOR PARSING JSON
-        *
-        * */
+        SharedPreferences prefNotif = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (cVVector.size() > 0) {
-            ContentValues[] cvArray = new ContentValues[cVVector.size()];
-            cVVector.toArray(cvArray);
+        String lastNotificationKey = context.getString(R.string.pref_last_notification);
+        long lastSync = prefNotif.getLong(lastNotificationKey, 0);
 
-            getContext().getContentResolver().bulkInsert(FloodContract.FloodEntry.CONTENT_URI, cvArray);
-            notifyFlood();
+        if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
+            // Last sync was more than 1 day ago, let's send a notification with the flood report.
+
+            Uri floodUri = FloodContract.FloodEntry.buildFloodById(id);
+
+            // we'll query our contentProvider, as always
+            Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                String floodId = cursor.getString(INDEX_FLOOD_ID);
+                String longi = cursor.getString(INDEX_LONG);
+                String lati = cursor.getString(INDEX_LAT);
+                String desc = cursor.getString(INDEX_CAPTION);
+                String photo = cursor.getString(INDEX_PHOTO);
+                String time = cursor.getString(INDEX_TIME);
+
+               // int iconId = Utility.getIconResourceForWeatherCondition(weatherId);
+                String title = context.getString(R.string.app_name);
+
+                // Define the text of the forecast.
+                String contentText = time+"\n"+desc;
+
+                // NotificationCompatBuilder is a very convenient way to build backward-compatible
+                // notifications.  Just throw in some data.
+                NotificationCompat.Builder mBuilder =
+                        new NotificationCompat.Builder(getContext())
+                              //  .setSmallIcon(iconId)
+                                .setContentTitle(title)
+                                .setContentText(contentText);
+
+                // Make something interesting happen when the user clicks on the notification.
+                // In this case, opening the app is sufficient.
+                Intent resultIntent = new Intent(context, MainActivity.class);
+
+                // The stack builder object will contain an artificial back stack for the
+                // started Activity.
+                // This ensures that navigating backward from the Activity leads out of
+                // your application to the Home screen.
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                stackBuilder.addNextIntent(resultIntent);
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(
+                                0,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                        );
+                mBuilder.setContentIntent(resultPendingIntent);
+
+                NotificationManager mNotificationManager =
+                        (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                // FLOOD_NOTIFICATION_ID allows you to update the notification later on.
+                mNotificationManager.notify(FLOOD_NOTIFICATION_ID, mBuilder.build());
+
+
+                //refreshing last sync
+                SharedPreferences.Editor editor = prefNotif.edit();
+                editor.putLong(lastNotificationKey, System.currentTimeMillis());
+                editor.commit();
+            }
         }
-
     }
 
 
+    public String fetchFloodReport(String lati, String longi)
+    {
+        final String TAG_SUCCESS = "success";
+        final String TAG_LAPORAN = "laporan";
+        final String TAG_ID = "id_laporan";
+        final String TAG_WAKTU = "waktu_laporan";
+        final String TAG_PHOTO_URL = "photo_url";
+        final String TAG_DESC = "deskripsi";
+        final String TAG_LAT = "latitude";
+        final String TAG_LONG = "longitude";
 
-    private void notifyFlood(){
-        Context context = getContext();
+        List<NameValuePair> parameter = new ArrayList<NameValuePair>();
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        
-        /* CHECKING NOTIFICATION CONFIGURATION */
-        String mNotif = prefs.getString("value", "default");
+        JSONParser jParser = new JSONParser();
 
-        if(mNotif.equals("on")) {
+        try {
+            String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
+            JSONObject json = jParser.makeHttpRequest(url_get_laporan,"POST", parameter);
 
-            Uri floodUri = FloodContract.FloodEntry.CONTENT_URI;
+            int success = json.getInt(TAG_SUCCESS);
+            if (success == 1) {
+                reportResult = json.getJSONArray(TAG_LAPORAN);
+                // Get and insert the new report information into the database
+                Vector<ContentValues> cVVector = new Vector<ContentValues>(reportResult.length());
 
-            Cursor cursor = context.getContentResolver().query(
-                    floodUri,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+                for (int i = 0; i< reportResult.length(); i++){
+                    String id_laporan, waktu_laporan, photo_url, deskripsi, latitude, longitude;
 
-            cursor.moveToFirst();
+                    JSONObject c = reportResult.getJSONObject(i);
 
-            while(!cursor.isAfterLast()){
-                boolean isNew = cursor.getInt(cursor.getColumnIndex(FloodContract.FloodEntry.COLUMN_NEW)) == 0 ? false : true;
+                    id_laporan = c.getString(TAG_ID);
+                    waktu_laporan = c.getString(TAG_WAKTU);
+                    photo_url =c.getString(TAG_PHOTO_URL);
+                    deskripsi = c.getString(TAG_DESC);
+                    latitude = c.getString(TAG_LAT);
+                    longitude = c.getString(TAG_LONG);
 
-                if (isNew) {
-                    /*
-                    *
-                    * HERE'S PLACE FOR NOTIFICATION'S CODE, WILL BE WRITE SOON
-                    *
-                    * */
+                    Uri floodUri = FloodContract.FloodEntry.buildFloodById(id_laporan);
 
-                    //Update "new" column to 0
-                    Uri updateUri = FloodContract.FloodEntry.CONTENT_URI;
+                    // we'll query our contentProvider, as always
+                    Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
 
-                    String floodID = cursor.getString(cursor.getColumnIndex(FloodContract.FloodEntry._ID));
+                    if  (cursor.getCount() <= 0) { //jika di dalam database belum ada flood_report ber-id tersebut maka :
 
-                    ContentValues values = new ContentValues();
+                        ContentValues floodValues = new ContentValues();
 
-                    values.put(FloodContract.FloodEntry.COLUMN_NEW, "0");
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_FLOOD_ID, id_laporan);
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_TIME, waktu_laporan);
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_PHOTO, photo_url);
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_CAPTION, deskripsi);
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_LATITUDE, latitude);
+                        floodValues.put(FloodContract.FloodEntry.COLUMN_LONGITUDE, longitude);
 
-                    String selection = FloodContract.FloodEntry.TABLE_NAME +
-                            "." + FloodContract.FloodEntry._ID + " = ?";
+                        cVVector.add(floodValues); //tambahkan ke database
 
-                    context.getContentResolver().update(
-                            floodUri,
-                            values,
-                            selection,
-                            new String[]{floodID}
-                    );
-
+                        notifyFlood(id_laporan); //notify flood_report ber-id tersebut
+                    }
 
                 }
 
-                cursor.moveToNext();
+                if (cVVector.size() > 0) {
+                    ContentValues[] cvArray = new ContentValues[cVVector.size()];
+                    cVVector.toArray(cvArray);
+                    context.getContentResolver().bulkInsert(FloodContract.FloodEntry.CONTENT_URI, cvArray);
+
+                }
+
+                return "OK";
             }
-
-            cursor.close();
-
+            else {
+                //Tidak Ada Record Data (SUCCESS = 0)
+                return "no results";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Exception Caught";
         }
     }
+
 }

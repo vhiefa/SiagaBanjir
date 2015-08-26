@@ -17,6 +17,16 @@ public class Utility {
     }
 }
 
+    public final static String getLatitudefromCoordinat (String koordinat){
+        String[] koordintChar = koordinat.split(",");
+        return koordintChar[1];
+    }
+
+    public final static String getLongitudefromCoordinat (String koordinat){
+        String[] koordintChar = koordinat.split(",");
+        return koordintChar[2];
+    }
+
    /* public static String getShorterVenue(String venue) {
         String[] titleChar = venue.split("");
         int maxTitleChar = 30;
