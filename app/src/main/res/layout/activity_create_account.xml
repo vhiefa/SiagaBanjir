@@ -1,0 +1,151 @@
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dip">
+
+
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:layout_marginBottom="5dip"/>
+
+    <!-- Password input text -->
+    <EditText android:id="@+id/txtNama"
+        android:layout_width="fill_parent"
+         
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip" />
+
+      <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Lahir"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtTglLahir"
+            android:layout_width="fill_parent"
+             
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Kelamin"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtJenKel"
+             
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+        <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="No Handphone"
+        android:layout_marginBottom="5dip"/>
+
+    <!-- Password input text -->
+    <EditText android:id="@+id/txtNope"
+        android:layout_width="fill_parent"
+         
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Alamat"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtAlamat"
+            android:layout_width="fill_parent"
+             
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+
+        <!-- Email Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:singleLine="true"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Email input text -->
+        <EditText android:id="@+id/txtEmail"
+            android:layout_width="fill_parent"
+             
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+             
+            android:textColor="#ff0000"
+            android:textSize="10dp"
+            android:id="@+id/emailwarning"
+            android:layout_marginBottom="10dip"/>
+
+        <!-- Password Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:layout_marginBottom="5dip"/>
+
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:password="true"
+             
+            android:singleLine="true"/>
+
+
+        <!-- Password Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Re-type Password"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtPassword2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dip"
+             
+            android:password="true"
+            android:singleLine="true"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+             
+            android:textColor="#ff0000"
+            android:textSize="10dp"
+            android:id="@+id/pwdwarning"
+            android:layout_marginBottom="10dip"/>
+
+    <Button android:id="@+id/btnCreateAccount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Account"/>
+
+</LinearLayout>
+</ScrollView>

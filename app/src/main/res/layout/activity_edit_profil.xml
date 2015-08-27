@@ -1,0 +1,85 @@
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dip">
+
+
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtNama"
+            android:layout_width="fill_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Lahir"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtTglLahir"
+            android:layout_width="fill_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Kelamin"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtJenKel"
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="No Handphone"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtNope"
+            android:layout_width="fill_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Alamat"
+            android:layout_marginBottom="5dip"/>
+
+        <!-- Password input text -->
+        <EditText android:id="@+id/txtAlamat"
+            android:layout_width="fill_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"/>
+
+
+        <Button android:id="@+id/btnUpdateProfil"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Profil"/>
+    </LinearLayout>
+</ScrollView>

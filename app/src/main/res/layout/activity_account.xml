@@ -1,0 +1,76 @@
+
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dip">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_account"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Name Label -->
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="tes"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"/>
+
+            <!-- Email Label -->
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="tes"
+                android:layout_marginBottom="10dip"/>
+            </LinearLayout>
+
+    </LinearLayout>
+
+    <Button android:id="@+id/btnEditProfil"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Profil"/>
+
+    <Button android:id="@+id/btnUbahPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah Password"/>
+
+    <!-- Button to show session data -->
+    <Button android:id="@+id/btnLogout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
+
+        <Button android:id="@+id/btnCheckMyReport"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Lihat Laporan Terkirim"/>
+
+
+
+</LinearLayout>
+        </ScrollView>

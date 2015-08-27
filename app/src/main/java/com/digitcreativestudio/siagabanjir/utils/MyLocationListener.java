@@ -21,7 +21,7 @@ public class MyLocationListener implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         // Initialize the location fields
-        Toast.makeText(context, "Lokasi Tersedia", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(context, "Lokasi Tersedia", Toast.LENGTH_SHORT).show();
         setLatitude(location.getLatitude());
         setLongitude(location.getLongitude());
     }

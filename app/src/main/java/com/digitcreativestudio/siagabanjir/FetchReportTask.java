@@ -2,6 +2,7 @@ package com.digitcreativestudio.siagabanjir;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -10,33 +11,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import com.digitcreativestudio.siagabanjir.data.FloodContract;
+import com.digitcreativestudio.siagabanjir.data.FloodContract.FloodEntry;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 
 /**
  * Created by Afifatul on 8/7/2015.
  */
-public class FetchReportTask extends AsyncTask<Void, Void, Void> {
+public class FetchReportTask extends AsyncTask<String, Void, Void> {
 
     private final String LOG_TAG = FetchReportTask.class.getSimpleName();
     private final Context mContext;
-    String latitude = "", longitude =""; //ini nanti current lat dan long si user
+   // String latitude = "", longitude =""; //ini nanti current lat dan long si user
 
     JSONArray reportResult = null;
 
     public FetchReportTask(Context context) {
         mContext = context;
     }
-/*
+
     // brings our database to an empty state
     public void deleteAllRecords() {
         mContext.getContentResolver().delete(
-                EventContract.ReportEntry.CONTENT_URI,
+                FloodContract.FloodEntry.CONTENT_URI,
                 null,
                 null
         );
 
         Cursor cursor = mContext.getContentResolver().query(
-                EventContract.ReportEntry.CONTENT_URI,
+                FloodContract.FloodEntry.CONTENT_URI,
                 null,
                 null,
                 null,
@@ -44,9 +47,8 @@ public class FetchReportTask extends AsyncTask<Void, Void, Void> {
         );
         cursor.close();
     }
-*/
 
-    public String getReportList()
+    public String getReportList(String lati, String longi)
     {
         final String TAG_SUCCESS = "success";
         final String TAG_LAPORAN = "laporan";
@@ -62,7 +64,7 @@ public class FetchReportTask extends AsyncTask<Void, Void, Void> {
         JSONParser jParser = new JSONParser();
 
         try {
-            String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+latitude+"&long="+longitude;
+            String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
             JSONObject json = jParser.makeHttpRequest(url_get_laporan,"POST", parameter);
 
             int success = json.getInt(TAG_SUCCESS);
@@ -83,28 +85,25 @@ public class FetchReportTask extends AsyncTask<Void, Void, Void> {
                     latitude = c.getString(TAG_LAT);
                     longitude = c.getString(TAG_LONG);
 
-              /*      ContentValues eventValues = new ContentValues();
+                    ContentValues floodValues = new ContentValues();
 
+                    floodValues.put(FloodEntry.COLUMN_FLOOD_ID, id_laporan);
+                    floodValues.put(FloodEntry.COLUMN_TIME,waktu_laporan);
+                    floodValues.put(FloodEntry.COLUMN_PHOTO, photo_url);
+                    floodValues.put(FloodEntry.COLUMN_CAPTION, deskripsi);
+                    floodValues.put(FloodEntry.COLUMN_LATITUDE, latitude);
+                    floodValues.put(FloodEntry.COLUMN_LONGITUDE, longitude);
 
-                    eventValues.put(ReportEntry.COLUMN_EVENT_ID, id_laporan);
-                    eventValues.put(ReportEntry.COLUMN_TITLE, title);
-                    eventValues.put(ReportEntry.COLUMN_DATE,EventContract.getDbDateString(tanggal));
-                    eventValues.put(ReportEntry.COLUMN_VENUE, venue);
-                    eventValues.put(ReportEntry.COLUMN_DESCRIPTION, description);
-                    eventValues.put(ReportEntry.COLUMN_CATEGORY, category);
-                    eventValues.put(ReportEntry.COLUMN_ORGANIZER, organizer);
-
-
-                    cVVector.add(eventValues);*/
+                    cVVector.add(floodValues);
 
                 }
 
-            /*    if (cVVector.size() > 0) {
+                if (cVVector.size() > 0) {
                     ContentValues[] cvArray = new ContentValues[cVVector.size()];
                     cVVector.toArray(cvArray);
-                    mContext.getContentResolver().bulkInsert(ReportEntry.CONTENT_URI, cvArray);
+                    mContext.getContentResolver().bulkInsert(FloodEntry.CONTENT_URI, cvArray);
 
-                } */
+                }
 
                 return "OK";
             }
@@ -119,8 +118,15 @@ public class FetchReportTask extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
-            getReportList();
+    protected Void doInBackground(String... params) {
+        // If there's NO COORDINAT, there's nothing to look up.  Verify size of params.
+        if (params.length == 0) {
             return null;
+        }
+        String latitude = params[0];
+        String longitude = params[1];
+
+        getReportList(latitude, longitude);
+        return null;
     }
 }

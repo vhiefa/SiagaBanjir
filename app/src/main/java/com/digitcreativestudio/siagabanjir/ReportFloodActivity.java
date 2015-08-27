@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -42,11 +43,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
+import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
 public class ReportFloodActivity extends ActionBarActivity{
 
@@ -65,7 +66,7 @@ public class ReportFloodActivity extends ActionBarActivity{
     int serverResponseCode = 0;
     ProgressDialog dialog = null;
     String upLoadServerUri = "http://api.vhiefa.net76.net/siagabanjir/upload_photos.php";
-    String photo_url;
+    String photo_url, id_user;
     int status_upload_img;
     String deskripsi, latitude="", longitude="";
     JSONParser jsonParser = new JSONParser();
@@ -74,6 +75,8 @@ public class ReportFloodActivity extends ActionBarActivity{
     private static String url_lapor_banjir = "http://api.vhiefa.net76.net/siagabanjir/lapor_banjir.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+    SessionManager session;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,26 @@ public class ReportFloodActivity extends ActionBarActivity{
         photo = (Button) findViewById(R.id.photo);
         inputDesc = (EditText) findViewById(R.id.inputDesc);
         btnLaporBanjir = (Button) findViewById(R.id.btnUpload);
+
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        session = new SessionManager(getApplicationContext());
+
+
+        if (session.isLoggedIn() == true){
+
+            HashMap<String, String> user = session.getUserDetails();
+            id_user = user.get(SessionManager.KEY_ID);
+            String nama = user.get(SessionManager.KEY_NAME);
+            btnLogin.setText(nama);
+        }
+
+        btnLogin.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
 
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -145,6 +168,13 @@ public class ReportFloodActivity extends ActionBarActivity{
                             "Lokasi Anda sedang dicari! Tunggu Sebentar dan Coba lagi!",
                             Toast.LENGTH_LONG).show();
                 }
+
+                if (id_user==null){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Silahkan login terlebih dulu",
+                            Toast.LENGTH_LONG).show();
+                }
                 else{
                     new ReportFloodActivityAsyncTask().execute();
                 }
@@ -153,10 +183,6 @@ public class ReportFloodActivity extends ActionBarActivity{
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Gallery", "Cancel" };
@@ -366,7 +392,7 @@ public class ReportFloodActivity extends ActionBarActivity{
 
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-
+                params.add(new BasicNameValuePair("id_user", id_user));
                 params.add(new BasicNameValuePair("deskripsi", deskripsi));
                 params.add(new BasicNameValuePair("photo_url", photo_url));
                 params.add(new BasicNameValuePair("latitude", latitude));
@@ -513,6 +539,18 @@ public class ReportFloodActivity extends ActionBarActivity{
             else if (result.equalsIgnoreCase("sukses")){
                 Toast.makeText(ReportFloodActivity.this, "Sukses!",  Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (session.isLoggedIn() == true){
+
+            HashMap<String, String> user = session.getUserDetails();
+            id_user = user.get(SessionManager.KEY_ID);
+            String nama = user.get(SessionManager.KEY_NAME);
+            btnLogin.setText(nama);
         }
     }
 }
