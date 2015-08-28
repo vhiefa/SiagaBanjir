@@ -46,9 +46,9 @@ public class FloodDbHelper extends SQLiteOpenHelper {
                 FloodEntry.COLUMN_FLOOD_ID + " TEXT NOT NULL, " + //id dari database server
                 FloodEntry.COLUMN_TIME + " TEXT NOT NULL, " +
                 FloodEntry.COLUMN_CAPTION + " TEXT NOT NUll, " +
-                FloodEntry.COLUMN_LATITUDE + " REAL NOT NULL, " +
-                FloodEntry.COLUMN_LONGITUDE + " REAL NOT NULL, " +
-                FloodEntry.COLUMN_PHOTO + " TEXT NOT NULL ) " +
+                FloodEntry.COLUMN_LATITUDE + " TEXT NOT NULL, " +
+                FloodEntry.COLUMN_LONGITUDE + " TEXT NOT NULL, " +
+                FloodEntry.COLUMN_PHOTO + " TEXT NOT NULL , " +
                 
                 "UNIQUE (" + FloodEntry.COLUMN_FLOOD_ID + ") ON CONFLICT REPLACE);"; //agar data dengan id dr server yang sama tidak menduplikat di database lokal
 

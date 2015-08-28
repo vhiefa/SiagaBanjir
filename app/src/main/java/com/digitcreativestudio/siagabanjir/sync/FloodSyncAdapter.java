@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.digitcreativestudio.siagabanjir.MainActivity;
 import com.digitcreativestudio.siagabanjir.R;
@@ -33,6 +34,7 @@ import com.digitcreativestudio.siagabanjir.utils.Utility;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,13 +47,15 @@ import java.util.Vector;
  */
 public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
-    public static final int SYNC_INTERVAL = 60 * 3;// 60 * 3; //3 jam
+    private final String LOG_TAG = FloodSyncAdapter.class.getSimpleName();
+    public static final int SYNC_INTERVAL = 60;// * 3;// 60 * 3; //3 jam
     public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
-    private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+   //private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     final int FLOOD_NOTIFICATION_ID = 3153;
 
     Context context;
     JSONArray reportResult = null;
+    JSONParser jParser;// = new JSONParser();
 
 
     private static final String[] NOTIFY_FLOOD_PROJECTION = new String[] {
@@ -77,8 +81,9 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-
+        Log.d(LOG_TAG, "Starting sync");
         context = getContext();
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String displayCurrentNotifKey = context.getString(R.string.pref_enable_current_notifications_key);
@@ -102,7 +107,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                 mylistener.onLocationChanged(location);
                 String currlatitude = String.valueOf(mylistener.getLatitude()); //get current latitude of user
                 String currlongitude = String.valueOf(mylistener.getLongitude()); //get current longitude of user
-                fetchFloodReport(currlatitude, currlongitude); //mendapatkan data banjir dari API sekaligus notify
+                try {
+                    fetchFloodReport(currlatitude, currlongitude); //mendapatkan data banjir dari API sekaligus notify
+                } catch (JSONException e) {
+                    Log.e(LOG_TAG, e.getMessage(), e);
+                    e.printStackTrace();
+                }
             } else {
                 // leads to the settings because there is no last known location
                 //showSettingsAlert(provider);
@@ -117,7 +127,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
             String koordinat = prf.getString("home_location", "");
             String homeLatitude = Utility.getLatitudefromCoordinat(koordinat);
             String homeLongitude = Utility.getLongitudefromCoordinat(koordinat);
-            fetchFloodReport(homeLatitude, homeLongitude); //mendapatkan data banjir dari API sekaligus notify
+            try {
+                fetchFloodReport(homeLatitude, homeLongitude); //mendapatkan data banjir dari API sekaligus notify
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, e.getMessage(), e);
+                e.printStackTrace();
+            }
         }
 
 
@@ -176,12 +191,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
     private void notifyFlood(String id) {
 
-        SharedPreferences prefNotif = PreferenceManager.getDefaultSharedPreferences(context);
+      //  SharedPreferences prefNotif = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String lastNotificationKey = context.getString(R.string.pref_last_notification);
-        long lastSync = prefNotif.getLong(lastNotificationKey, 0);
+      //  String lastNotificationKey = context.getString(R.string.pref_last_notification);
+      //  long lastSync = prefNotif.getLong(lastNotificationKey, 0);
 
-        if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
+       // if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
             // Last sync was more than 1 day ago, let's send a notification with the flood report.
 
             Uri floodUri = FloodContract.FloodEntry.buildFloodById(id);
@@ -196,6 +211,8 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                 String desc = cursor.getString(INDEX_CAPTION);
                 String photo = cursor.getString(INDEX_PHOTO);
                 String time = cursor.getString(INDEX_TIME);
+
+
 
                // int iconId = Utility.getIconResourceForWeatherCondition(weatherId);
                 String title = context.getString(R.string.app_name);
@@ -235,15 +252,15 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
 
                 //refreshing last sync
-                SharedPreferences.Editor editor = prefNotif.edit();
-                editor.putLong(lastNotificationKey, System.currentTimeMillis());
-                editor.commit();
-            }
+              //  SharedPreferences.Editor editor = prefNotif.edit();
+              //  editor.putLong(lastNotificationKey, System.currentTimeMillis());
+             //   editor.commit();
+           // }
         }
     }
 
 
-    public String fetchFloodReport(String lati, String longi)
+    public String fetchFloodReport(String lati, String longi) throws JSONException
     {
         final String TAG_SUCCESS = "success";
         final String TAG_LAPORAN = "laporan";
@@ -254,13 +271,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
         final String TAG_LAT = "latitude";
         final String TAG_LONG = "longitude";
 
-        List<NameValuePair> parameter = new ArrayList<NameValuePair>();
-
-        JSONParser jParser = new JSONParser();
+        jParser = new JSONParser();
 
         try {
+            List<NameValuePair> parameter = new ArrayList<NameValuePair>();
             String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
-            JSONObject json = jParser.makeHttpRequest(url_get_laporan,"POST", parameter);
+            JSONObject json = jParser.makeHttpRequest(url_get_laporan,"GET", parameter);
 
             int success = json.getInt(TAG_SUCCESS);
             if (success == 1) {
@@ -279,6 +295,8 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                     deskripsi = c.getString(TAG_DESC);
                     latitude = c.getString(TAG_LAT);
                     longitude = c.getString(TAG_LONG);
+
+                    Log.v("Data dari json", "desc " + deskripsi);
 
                     Uri floodUri = FloodContract.FloodEntry.buildFloodById(id_laporan);
 

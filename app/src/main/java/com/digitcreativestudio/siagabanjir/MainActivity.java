@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity{
         Button lapor_banjir = (Button) findViewById(R.id.lapor_banjir);
         Button akun = (Button) findViewById(R.id.akun);
         Button atur = (Button) findViewById(R.id.atur);
+        Button lihat = (Button) findViewById(R.id.berita);
 
         akun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,13 @@ public class MainActivity extends ActionBarActivity{
                 Intent i = null;
                 i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
+            }
+        });
+
+        lihat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new FetchReportTask(getApplicationContext()).execute("0", "110");
             }
         });
 
