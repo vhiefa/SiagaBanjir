@@ -189,7 +189,8 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
 
 
-    private void notifyFlood(String id) {
+    private void notifyFlood(List<String> newRecords) {
+        Log.v(LOG_TAG, "inside notification");
 
       //  SharedPreferences prefNotif = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -199,56 +200,61 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
        // if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
             // Last sync was more than 1 day ago, let's send a notification with the flood report.
 
-            Uri floodUri = FloodContract.FloodEntry.buildFloodById(id);
+            for(String id : newRecords){
+                Uri floodUri = FloodContract.FloodEntry.buildFloodById(id);
 
-            // we'll query our contentProvider, as always
-            Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
+                // we'll query our contentProvider, as always
+                Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
 
-            if (cursor.moveToFirst()) {
-                String floodId = cursor.getString(INDEX_FLOOD_ID);
-                String longi = cursor.getString(INDEX_LONG);
-                String lati = cursor.getString(INDEX_LAT);
-                String desc = cursor.getString(INDEX_CAPTION);
-                String photo = cursor.getString(INDEX_PHOTO);
-                String time = cursor.getString(INDEX_TIME);
+                if (cursor.moveToFirst()) {
+                    String floodId = cursor.getString(INDEX_FLOOD_ID);
+                    Log.v("floodId", floodId);
+                    String longi = cursor.getString(INDEX_LONG);
+                    String lati = cursor.getString(INDEX_LAT);
+                    String desc = cursor.getString(INDEX_CAPTION);
+                    String photo = cursor.getString(INDEX_PHOTO);
+                    String time = cursor.getString(INDEX_TIME);
 
 
 
-               // int iconId = Utility.getIconResourceForWeatherCondition(weatherId);
-                String title = context.getString(R.string.app_name);
+                    // int iconId = Utility.getIconResourceForWeatherCondition(weatherId);
+                    String title = context.getString(R.string.app_name);
 
-                // Define the text of the forecast.
-                String contentText = time+"\n"+desc;
+                    // Define the text of the forecast.
+                    String contentText = time+"\n"+desc;
 
-                // NotificationCompatBuilder is a very convenient way to build backward-compatible
-                // notifications.  Just throw in some data.
-                NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(getContext())
-                              //  .setSmallIcon(iconId)
-                                .setContentTitle(title)
-                                .setContentText(contentText);
+                    // NotificationCompatBuilder is a very convenient way to build backward-compatible
+                    // notifications.  Just throw in some data.
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getContext())
+                                    .setSmallIcon(R.drawable.ic_launcher) //notification won't show unless this line used
+                                    .setContentTitle(title)
+                                    .setContentText(contentText);
 
-                // Make something interesting happen when the user clicks on the notification.
-                // In this case, opening the app is sufficient.
-                Intent resultIntent = new Intent(context, MainActivity.class);
+                    // Make something interesting happen when the user clicks on the notification.
+                    // In this case, opening the app is sufficient.
+                    Intent resultIntent = new Intent(context, MainActivity.class);
 
-                // The stack builder object will contain an artificial back stack for the
-                // started Activity.
-                // This ensures that navigating backward from the Activity leads out of
-                // your application to the Home screen.
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                stackBuilder.addNextIntent(resultIntent);
-                PendingIntent resultPendingIntent =
-                        stackBuilder.getPendingIntent(
-                                0,
-                                PendingIntent.FLAG_UPDATE_CURRENT
-                        );
-                mBuilder.setContentIntent(resultPendingIntent);
+                    // The stack builder object will contain an artificial back stack for the
+                    // started Activity.
+                    // This ensures that navigating backward from the Activity leads out of
+                    // your application to the Home screen.
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                    stackBuilder.addNextIntent(resultIntent);
+                    PendingIntent resultPendingIntent =
+                            stackBuilder.getPendingIntent(
+                                    0,
+                                    PendingIntent.FLAG_UPDATE_CURRENT
+                            );
+                    mBuilder.setContentIntent(resultPendingIntent);
 
-                NotificationManager mNotificationManager =
-                        (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-                // FLOOD_NOTIFICATION_ID allows you to update the notification later on.
-                mNotificationManager.notify(FLOOD_NOTIFICATION_ID, mBuilder.build());
+                    NotificationManager mNotificationManager =
+                            (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                    // FLOOD_NOTIFICATION_ID allows you to update the notification later on.
+                    mNotificationManager.notify(FLOOD_NOTIFICATION_ID, mBuilder.build());
+            }
+
+
 
 
                 //refreshing last sync
@@ -283,6 +289,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                 reportResult = json.getJSONArray(TAG_LAPORAN);
                 // Get and insert the new report information into the database
                 Vector<ContentValues> cVVector = new Vector<ContentValues>(reportResult.length());
+                List<String> newRecords = new ArrayList<>();
 
                 for (int i = 0; i< reportResult.length(); i++){
                     String id_laporan, waktu_laporan, photo_url, deskripsi, latitude, longitude;
@@ -316,7 +323,8 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
                         cVVector.add(floodValues); //tambahkan ke database
 
-                        notifyFlood(id_laporan); //notify flood_report ber-id tersebut
+                        newRecords.add(id_laporan); //save new record's id
+
                     }
 
                 }
@@ -326,6 +334,8 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                     cVVector.toArray(cvArray);
                     context.getContentResolver().bulkInsert(FloodContract.FloodEntry.CONTENT_URI, cvArray);
 
+
+                    notifyFlood(newRecords); //notify flood_report ber-id tersebut
                 }
 
                 return "OK";
