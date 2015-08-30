@@ -57,7 +57,7 @@ public class FloodContract {
         } */
 
         public static Uri buildFloodById(String id) {
-            return CONTENT_URI.buildUpon().appendPath(null).appendPath(id).build();
+            return CONTENT_URI.buildUpon().appendPath(id).build();
         }
 
         public static String getIdFromUri(Uri uri) {
