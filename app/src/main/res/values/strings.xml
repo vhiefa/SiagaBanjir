@@ -12,7 +12,6 @@
     <string name="content_authority">com.digitcreativestudio.siagabanjir</string>
     <string name="sync_account_type">digitcreativestudio.com</string>
 
-
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
 
@@ -20,11 +19,11 @@
     <string name="pref_enable_current_notifications_key" translatable="false">current_notification</string>
     <string name="pref_enable_home_notifications_key" translatable="false">home_notification</string>
     <string name="pref_enable_notifications_label">Flood Notifications</string>
-
     <string name="pref_enable_notifications_true">Enabled</string>
     <string name="pref_enable_notifications_false">Not Enabled</string>
-
     <string name="pref_enable_current_notifications_default" translatable="false">true</string>
     <string name="pref_enable_home_notifications_default" translatable="false">false</string>
+
+    <string name="title_activity_about">AboutActivity</string>
 
 </resources>
