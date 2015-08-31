@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +51,7 @@ public class FetchReportTask extends AsyncTask<String, Void, Void> {
         cursor.close();
     }
 
-    public String getReportList(String lati, String longi)
+    public String getReportList(String lati, String longi) throws JSONException
     {
         final String TAG_SUCCESS = "success";
         final String TAG_LAPORAN = "laporan";
@@ -59,13 +62,14 @@ public class FetchReportTask extends AsyncTask<String, Void, Void> {
         final String TAG_LAT = "latitude";
         final String TAG_LONG = "longitude";
 
-        List<NameValuePair> parameter = new ArrayList<NameValuePair>();
+
 
         JSONParser jParser = new JSONParser();
 
         try {
+            List<NameValuePair> parameter = new ArrayList<NameValuePair>();
             String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
-            JSONObject json = jParser.makeHttpRequest(url_get_laporan,"POST", parameter);
+            JSONObject json = jParser.makeHttpRequest(url_get_laporan,"GET", parameter);
 
             int success = json.getInt(TAG_SUCCESS);
             if (success == 1) {
@@ -85,6 +89,8 @@ public class FetchReportTask extends AsyncTask<String, Void, Void> {
                     latitude = c.getString(TAG_LAT);
                     longitude = c.getString(TAG_LONG);
 
+                    Log.v("Data dr json", "desc " + deskripsi);
+
                     ContentValues floodValues = new ContentValues();
 
                     floodValues.put(FloodEntry.COLUMN_FLOOD_ID, id_laporan);
@@ -96,12 +102,14 @@ public class FetchReportTask extends AsyncTask<String, Void, Void> {
 
                     cVVector.add(floodValues);
 
+
                 }
 
                 if (cVVector.size() > 0) {
                     ContentValues[] cvArray = new ContentValues[cVVector.size()];
                     cVVector.toArray(cvArray);
                     mContext.getContentResolver().bulkInsert(FloodEntry.CONTENT_URI, cvArray);
+                    Log.v("Penambahan", "data ");
 
                 }
 
@@ -126,7 +134,12 @@ public class FetchReportTask extends AsyncTask<String, Void, Void> {
         String latitude = params[0];
         String longitude = params[1];
 
-        getReportList(latitude, longitude);
+        try {
+            getReportList(latitude, longitude);
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, e.getMessage(), e);
+            e.printStackTrace();
+        }
         return null;
     }
 }
