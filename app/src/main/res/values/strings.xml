@@ -25,5 +25,17 @@
     <string name="pref_enable_home_notifications_default" translatable="false">false</string>
 
     <string name="title_activity_about">AboutActivity</string>
+    <string name="title_section1">Akun</string>
+    <string name="title_section2">Lapor Banjir</string>
+    <string name="title_section3">Status Lokasi Saya</string>
+    <string name="title_section4">Wilayah Rawan</string>
+    <string name="title_section5">Info Tanggap</string>
+    <string name="title_section6">Berita</string>
+    <string name="title_section7">Telp. Penting</string>
+    <string name="title_section8">Pengaturan</string>
+    <string name="title_section9">Tentang</string>
+    <string name="navigation_drawer_open">Siaga Banjir</string>
+    <string name="navigation_drawer_close">Siaga Banjir</string>
+
 
 </resources>
