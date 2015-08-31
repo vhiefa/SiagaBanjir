@@ -122,7 +122,9 @@ public class EditProfilActivity extends ActionBarActivity {
             parameter.add(new BasicNameValuePair("alamat", sAlamat));
 
             try {
-                String url_all_posts = "http://api.vhiefa.net76.net/whatson/update_profil.php" ;
+                //String url_all_posts = "http://api.vhiefa.net76.net/whatson/update_profil.php" ;
+
+                String url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/update_profil.php" ;
 
                 JSONObject json = jParser.makeHttpRequest(url_all_posts,"POST", parameter);
 

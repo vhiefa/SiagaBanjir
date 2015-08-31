@@ -65,14 +65,16 @@ public class ReportFloodActivity extends ActionBarActivity{
     ReportFloodActivity CameraActivity = null;
     int serverResponseCode = 0;
     ProgressDialog dialog = null;
-    String upLoadServerUri = "http://api.vhiefa.net76.net/siagabanjir/upload_photos.php";
+  //  String upLoadServerUri = "http://api.vhiefa.net76.net/siagabanjir/upload_photos.php";
+    String upLoadServerUri = "http://api.digitcreativestudio.com/siagabanjir/upload_photos.php";
     String photo_url, id_user;
     int status_upload_img;
     String deskripsi, latitude="", longitude="";
     JSONParser jsonParser = new JSONParser();
     EditText inputDesc;
     Button photo, btnLaporBanjir;
-    private static String url_lapor_banjir = "http://api.vhiefa.net76.net/siagabanjir/lapor_banjir.php";
+    //private static String url_lapor_banjir = "http://api.vhiefa.net76.net/siagabanjir/lapor_banjir.php";
+    private static String url_lapor_banjir = "http://api.digitcreativestudio.com/siagabanjir/lapor_banjir.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     SessionManager session;
@@ -94,7 +96,6 @@ public class ReportFloodActivity extends ActionBarActivity{
 
 
         if (session.isLoggedIn() == true){
-
             HashMap<String, String> user = session.getUserDetails();
             id_user = user.get(SessionManager.KEY_ID);
             String nama = user.get(SessionManager.KEY_NAME);
@@ -388,7 +389,8 @@ public class ReportFloodActivity extends ActionBarActivity{
             if (status_upload_img ==1) {
 
                 String namaFile_img = Path.substring(Path.lastIndexOf("/")+1);
-                photo_url = "http://api.vhiefa.net76.net/siagabanjir/photos/"+namaFile_img;
+                //photo_url = "http://api.vhiefa.net76.net/siagabanjir/photos/"+namaFile_img;
+                photo_url = "http://api.digitcreativestudio.com/siagabanjir/photos/"+namaFile_img;
 
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
