@@ -65,22 +65,6 @@
             android:label="@string/title_activity_flood_area" >
         </activity>
 
-        <provider
-            android:enabled="true"
-            android:exported="false"
-            android:syncable="true"
-            android:authorities="@string/content_authority"
-            android:name=".data1.FloodProvider"
-            android:permission="dcs.beritauniversitas.LICENSE_TO_KILL"/>
-
-        <provider
-            android:enabled="true"
-            android:exported="false"
-            android:syncable="true"
-            android:authorities="@string/content_authority"
-            android:name=".data.FloodProvider"
-            android:permission="dcs.beritauniversitas.LICENSE_TO_KILL"/>
-
         <activity
             android:name=".MyFloodReportActivity"
             android:label="Laporan Terkirim" />
