@@ -5,23 +5,20 @@
     <permission
         android:name="com.digitcreativestudio.siagabanjir.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true"/>
-    <uses-permission android:name="com.digitcreativestudio.siagabanjir.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+        android:required="true" />
 
+    <uses-permission android:name="com.digitcreativestudio.siagabanjir.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission
-        android:name="android.permission.READ_SYNC_SETTINGS"/>
-    <uses-permission
-        android:name="android.permission.WRITE_SYNC_SETTINGS"/>
-    <uses-permission
-        android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -39,74 +36,80 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="Log In"
-            ></activity>
+            android:label="Log In" />
         <activity
             android:name=".EditProfilActivity"
-            android:label="Edit Profil"
-            ></activity>
+            android:label="Edit Profil" />
         <activity
             android:name=".UbahPasswordActivity"
-            android:label="Ubah Password"
-            ></activity>
+            android:label="Ubah Password" />
         <activity
             android:name=".LupaPasswordAcivity"
-            android:label="Lupa Password"
-            ></activity>
+            android:label="Lupa Password" />
         <activity
             android:name=".CreateAccountActivity"
-            android:label="Create Account"
-            >
+            android:label="Create Account" >
         </activity>
         <activity
             android:name=".AccountActivity"
-            android:label="Account"
-            >
+            android:label="Account" >
         </activity>
         <activity
             android:name=".CheckMyLocationActivity"
-            android:label="Cek Status Kerawanan"
-            ></activity>
+            android:label="Cek Status Kerawanan" />
         <activity
             android:name=".ReportFloodActivity"
-            android:label="Laporkan Banjir"
-            ></activity>
+            android:label="Laporkan Banjir" />
+        <activity
+            android:name=".FloodAreaActivity"
+            android:label="@string/title_activity_flood_area" >
+        </activity>
+
+        <provider
+            android:enabled="true"
+            android:exported="false"
+            android:syncable="true"
+            android:authorities="@string/content_authority"
+            android:name=".data1.FloodProvider"
+            android:permission="dcs.beritauniversitas.LICENSE_TO_KILL"/>
+
+        <provider
+            android:enabled="true"
+            android:exported="false"
+            android:syncable="true"
+            android:authorities="@string/content_authority"
+            android:name=".data.FloodProvider"
+            android:permission="dcs.beritauniversitas.LICENSE_TO_KILL"/>
 
         <activity
             android:name=".MyFloodReportActivity"
-            android:label="Laporan Terkirim"
-            ></activity>
-
+            android:label="Laporan Terkirim" />
         <activity
             android:name=".SetHomeActivity"
-            android:label="Set Home Location"
-            ></activity>
-
+            android:label="Set Home Location" />
         <activity
             android:name=".SettingActivity"
-            android:label="Setting"
-            ></activity>
+            android:label="Setting" />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCv8dol1-F8Ka5AGheJXOCCd-QKWofrvgg" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <provider
-            android:exported="false"
-            android:syncable="true"
+            android:name=".data.FloodProvider"
             android:authorities="@string/content_authority"
-            android:name=".data.FloodProvider" />
+            android:exported="false"
+            android:syncable="true" />
 
         <!-- SyncAdapter's dummy authentication service -->
-        <service
-            android:name=".sync.FloodAuthenticatorService"
-            >
+        <service android:name=".sync.FloodAuthenticatorService" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
@@ -115,15 +118,23 @@
         <!-- The SyncAdapter service -->
         <service
             android:name=".sync.FloodSyncService"
-            android:exported="true"
-            >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
+
             <meta-data
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>
