@@ -1,8 +1,11 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -76,6 +79,9 @@ public class UbahPasswordActivity extends ActionBarActivity {
 
             }
         });
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
     
     }
 

@@ -1,8 +1,11 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ListAdapter;
@@ -59,6 +62,9 @@ ListAdapter adapter;
         list = (ListView) findViewById(R.id.submited_list);
         id_user = user.get(SessionManager.KEY_ID);
         LoadMySentReport m = (LoadMySentReport) new LoadMySentReport().execute();
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
 
 
     }
