@@ -1,6 +1,12 @@
 package com.digitcreativestudio.siagabanjir.utils;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.digitcreativestudio.siagabanjir.R;
+
 /**
  * Created by Afifatul Mukaroh
  */
@@ -43,6 +49,12 @@ public class Utility {
         return venue;
     } */
 
+    public static Boolean getPreferredNotification(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
+        Boolean notif = prefs.getBoolean(context.getString(R.string.pref_enable_current_notifications_key), Boolean.valueOf(context.getString(R.string.pref_enable_current_notifications_default)));
+
+        return notif;
+    }
 
 }

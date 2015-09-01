@@ -97,7 +97,7 @@ ListAdapter adapter;
             parameter.add(new BasicNameValuePair("id_user", id_user));
             try {
               //  url_all_posts = "http://api.vhiefa.net76.net/siagabanjir/lihat_laporan_terkirim.php";
-                url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/lihat_laporan_terkirim.php";
+                url_all_posts = "http://demo.edusarana.com/sis/ws/lihat_laporan_terkirim.php";
                 JSONObject json = jParser.makeHttpRequest(url_all_posts,"POST", parameter);
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {

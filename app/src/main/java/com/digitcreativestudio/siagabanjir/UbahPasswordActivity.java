@@ -117,7 +117,7 @@ public class UbahPasswordActivity extends ActionBarActivity {
 
             try {
                 //String url_all_posts = "http://api.vhiefa.net76.net/whatson/ubah_password.php";
-                String url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/ubah_password.php";
+                String url_all_posts = "http://demo.edusarana.com/sis/ws/ubah_password.php";
 
                 JSONObject json = jParser.makeHttpRequest(url_all_posts, "POST", parameter);
 

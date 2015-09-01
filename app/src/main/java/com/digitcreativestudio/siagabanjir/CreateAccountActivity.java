@@ -125,7 +125,7 @@ public class CreateAccountActivity extends ActionBarActivity {
 
             try {
                // String url_all_posts = "http://api.vhiefa.net76.net/whatson/create_account.php" ;
-                String url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/create_account.php" ;
+                String url_all_posts = "http://demo.edusarana.com/sis/ws/create_account.php" ;
 
                 JSONObject json = jParser.makeHttpRequest(url_all_posts,"POST", parameter);
 

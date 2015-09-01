@@ -1,6 +1,7 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -20,6 +21,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -51,7 +55,13 @@ public class Main2Activity extends ActionBarActivity
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
 
+        Boolean notif = Utility.getPreferredNotification(this);
 
+        if(notif){
+            ContentResolver.setMasterSyncAutomatically(notif); // Turn on auto-sync master setting depend on notification setting
+        }
+
+        FloodSyncAdapter.initializeSyncAdapter(this);
     }
 
 
