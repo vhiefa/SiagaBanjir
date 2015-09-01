@@ -4,28 +4,28 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="com.digitcreativestudio.siagabanjir.Main2Activity">
 
+
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
-    <RelativeLayout android:id="@+id/container" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:orientation="vertical">
+    <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp" />
 
         <WebView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/news_feed"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:id="@+id/news_feed"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:focusable="false"
-            android:paddingTop="500dp"
-            android:visibility="gone"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+    </FrameLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
