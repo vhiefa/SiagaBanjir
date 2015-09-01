@@ -39,7 +39,7 @@
             android:label="Log In" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main2Activity" />
+                android:value=".AccountActivity" />
         </activity>
 
         <activity
@@ -47,7 +47,7 @@
             android:label="Edit Profil" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main2Activity" />
+                android:value=".AccountActivity" />
         </activity>
 
         <activity
@@ -55,7 +55,7 @@
             android:label="Ubah Password" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main2Activity" />
+                android:value=".AccountActivity" />
         </activity>
 
         <activity
@@ -63,7 +63,7 @@
             android:label="Lupa Password">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main2Activity" />
+                android:value=".AccountActivity" />
         </activity>
 
         <activity
@@ -71,7 +71,7 @@
             android:label="Create Account" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main2Activity" />
+                android:value=".AccountActivity" />
         </activity>
 
         <activity
