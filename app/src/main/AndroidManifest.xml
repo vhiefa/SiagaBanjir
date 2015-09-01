@@ -39,7 +39,11 @@
             android:label="Log In" />
         <activity
             android:name=".EditProfilActivity"
-            android:label="Edit Profil" />
+            android:label="Edit Profil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AccountActivity" />
+        </activity>
         <activity
             android:name=".UbahPasswordActivity"
             android:label="Ubah Password" />
@@ -62,7 +66,7 @@
             android:label="Laporkan Banjir" />
         <activity
             android:name=".FloodAreaActivity"
-            android:label="@string/title_activity_flood_area" >
+            android:label="Wilayah Rawan" >
         </activity>
 
         <activity

@@ -1,6 +1,7 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,8 @@ import android.view.ViewGroup;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private static final String LOG_TAG = Main2Activity.class.getSimpleName();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -28,6 +32,7 @@ public class Main2Activity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,8 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 4:
                 mTitle = getString(R.string.app_name);
+                Intent intent3 = new Intent (this,FloodAreaActivity.class);
+                startActivity(intent3);
                 break;
             case 5:
                 mTitle = getString(R.string.app_name);
@@ -112,7 +119,7 @@ public class Main2Activity extends ActionBarActivity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main2, menu);
+            getMenuInflater().inflate(R.menu.menu_flood_area, menu);
             restoreActionBar();
             return true;
         }
@@ -125,12 +132,13 @@ public class Main2Activity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if (id == R.id.action_refresh) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+            FetchFloodAreaTask fetchFloodAreaTask = new FetchFloodAreaTask(mContext);
+            fetchFloodAreaTask.execute();
+            Log.v(LOG_TAG, "Update flood area :-)");
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

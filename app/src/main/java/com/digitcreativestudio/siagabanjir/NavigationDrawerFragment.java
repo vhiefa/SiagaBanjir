@@ -113,6 +113,7 @@ public class NavigationDrawerFragment extends Fragment {
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
+
     }
 
     public boolean isDrawerOpen() {

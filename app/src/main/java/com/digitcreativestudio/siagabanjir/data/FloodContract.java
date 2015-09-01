@@ -27,7 +27,49 @@ public class FloodContract {
 
     public static final String CONTENT_AUTHORITY = "com.digitcreativestudio.siagabanjir";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+
     public static final String PATH_FLOOD = "flood";
+    public static final String PATH_FLOOD_AREA = "floodarea";
+
+    /* Inner class that defines the table contents of the news table */
+    public static final class FloodAreaEntry implements BaseColumns {
+
+
+        private static final String LOG_TAG = FloodAreaEntry.class.getSimpleName();
+
+        public static final Uri CONTENT_URI_2 =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FLOOD_AREA).build();
+        public static final String CONTENT_TYPE =
+                "vnd.android.cursor.dir/" + CONTENT_AUTHORITY + "/" + PATH_FLOOD_AREA;
+        public static final String CONTENT_ITEM_TYPE =
+                "vnd.android.cursor.item/" + CONTENT_AUTHORITY + "/" + PATH_FLOOD_AREA;
+
+        public static final String TABLE_NAME = "floodarea";
+        public static final String COLUMN_FLOOD_AREA_ID = "id_floodarea";
+        public static final String COLUMN_WIL = "wilayah";
+        public static final String COLUMN_KEC = "kecamatan";
+        public static final String COLUMN_KEL = "kelurahan";
+        public static final String COLUMN_RW = "rw";
+        public static final String COLUMN_LONGITUDE = "longitude";
+        public static final String COLUMN_LATITUDE = "latitude";
+
+        public static Uri buildNewsUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI_2, id);
+        }
+
+        public static Uri buildFloodArea() {
+            return CONTENT_URI_2.buildUpon().build();
+        }
+
+        public static String getIdFromUri2(Uri uri) {
+            return uri.getPathSegments().get(1);
+        }
+
+        public static Uri buildFloodAreaWithID(String id) {
+            return CONTENT_URI_2.buildUpon().appendPath(id).build();
+        }
+
+    }
 
     public static final class FloodEntry implements BaseColumns {
 

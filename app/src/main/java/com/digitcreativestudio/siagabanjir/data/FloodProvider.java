@@ -27,11 +27,15 @@ import android.net.Uri;
 public class FloodProvider extends ContentProvider {
     private final String LOG_TAG = FloodProvider.class.getSimpleName();
     // The URI Matcher used by this content provider.
+
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private FloodDbHelper mOpenHelper;
 
     static final int FLOOD = 100;
     static final int FLOOD_BY_ID = 101;
+    static final int FLOOD_AREA = 300;
+    static final int FLOOD_AREA_BY_ID = 301;
 
 
     private static final SQLiteQueryBuilder sFloodSettingQueryBuilder;
@@ -42,16 +46,35 @@ public class FloodProvider extends ContentProvider {
         // Table = flood
         sFloodSettingQueryBuilder.setTables(
                 FloodContract.FloodEntry.TABLE_NAME);
+        // Table = floodarea
+        sFloodSettingQueryBuilder.setTables(
+                FloodContract.FloodAreaEntry.TABLE_NAME);
     }
 
     private static final String sById =
             FloodContract.FloodEntry.TABLE_NAME +
                     "." + FloodContract.FloodEntry.COLUMN_FLOOD_ID + " = ?";
 
+    private static final String sById2 =
+            FloodContract.FloodAreaEntry.TABLE_NAME +
+                    "." + FloodContract.FloodAreaEntry.COLUMN_FLOOD_AREA_ID + " = ?";
+
 
     private Cursor getFlood(Uri uri, String[] projection, String sortOrder){
         return mOpenHelper.getReadableDatabase().query(
                 FloodContract.FloodEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+    }
+
+    private Cursor getFloodArea(Uri uri, String[] projection, String sortOrder){
+        return mOpenHelper.getReadableDatabase().query(
+                FloodContract.FloodAreaEntry.TABLE_NAME,
                 projection,
                 null,
                 null,
@@ -74,14 +97,29 @@ public class FloodProvider extends ContentProvider {
         );
     }
 
-
+    private Cursor getById2(Uri uri, String[] projection, String sortOrder){
+        String id = FloodContract.FloodAreaEntry.getIdFromUri2(uri);
+        return mOpenHelper.getReadableDatabase().query(
+                FloodContract.FloodAreaEntry.TABLE_NAME,
+                null,
+                sById,
+                new String[]{id},
+                null,
+                null,
+                sortOrder
+        );
+    }
 
     static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = FloodContract.CONTENT_AUTHORITY;
 
+        // path for each content provider
         matcher.addURI(authority, FloodContract.PATH_FLOOD, FLOOD);
         matcher.addURI(authority, FloodContract.PATH_FLOOD + "/*", FLOOD_BY_ID);
+
+        matcher.addURI(authority, FloodContract.PATH_FLOOD_AREA, FLOOD_AREA);
+        matcher.addURI(authority, FloodContract.PATH_FLOOD_AREA + "/*", FLOOD_AREA_BY_ID);
 
         return matcher;
     }
@@ -105,6 +143,10 @@ public class FloodProvider extends ContentProvider {
                 return FloodContract.FloodEntry.CONTENT_ITEM_TYPE;
             case FLOOD:
                 return FloodContract.FloodEntry.CONTENT_TYPE;
+            case FLOOD_AREA_BY_ID :
+                return FloodContract.FloodAreaEntry.CONTENT_ITEM_TYPE;
+            case FLOOD_AREA:
+                return FloodContract.FloodAreaEntry.CONTENT_TYPE;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -118,14 +160,20 @@ public class FloodProvider extends ContentProvider {
         // and query the database accordingly.
         Cursor retCursor;
         switch (sUriMatcher.match(uri)) {
-            case FLOOD:
-            {
+            case FLOOD:{
                 retCursor = getFlood(uri, projection, sortOrder);
                 break;
             }
-            case FLOOD_BY_ID:
-            {
+            case FLOOD_BY_ID:{
                 retCursor = getById(uri, projection, sortOrder);
+                break;
+            }
+            case FLOOD_AREA:{
+                retCursor = getFloodArea(uri, projection, sortOrder);
+                break;
+            }
+            case FLOOD_AREA_BY_ID:{
+                retCursor = getById2(uri, projection, sortOrder);
                 break;
             }
 
@@ -154,6 +202,14 @@ public class FloodProvider extends ContentProvider {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
             }
+            case FLOOD_AREA: {
+                long _id = db.insert(FloodContract.FloodAreaEntry.TABLE_NAME, null, values);
+                if ( _id > 0 )
+                    returnUri = FloodContract.FloodAreaEntry.buildFloodArea();
+                else
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -174,6 +230,10 @@ public class FloodProvider extends ContentProvider {
             case FLOOD:
                 rowsDeleted = db.delete(
                         FloodContract.FloodEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case FLOOD_AREA:
+                rowsDeleted = db.delete(
+                        FloodContract.FloodAreaEntry.TABLE_NAME, selection, selectionArgs);
                 break;
 
             default:
@@ -199,6 +259,10 @@ public class FloodProvider extends ContentProvider {
                 rowsUpdated = db.update(FloodContract.FloodEntry.TABLE_NAME, values, selection,
                         selectionArgs);
                 break;
+            case FLOOD_AREA:
+                rowsUpdated = db.update(FloodContract.FloodAreaEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
+                break;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -221,6 +285,26 @@ public class FloodProvider extends ContentProvider {
                 try {
                     for (ContentValues value : values) {
                         long _id = db.insert(FloodContract.FloodEntry.TABLE_NAME, null, value);
+
+                        if (_id != -1) {
+                            returnCount++;
+                        }
+
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                getContext().getContentResolver().notifyChange(uri, null);
+                return returnCount;
+            }
+
+            case FLOOD_AREA: {
+                db.beginTransaction();
+                int returnCount = 0;
+                try {
+                    for (ContentValues value : values) {
+                        long _id = db.insert(FloodContract.FloodAreaEntry.TABLE_NAME, null, value);
 
                         if (_id != -1) {
                             returnCount++;
