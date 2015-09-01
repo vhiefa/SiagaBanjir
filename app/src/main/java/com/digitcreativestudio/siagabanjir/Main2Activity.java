@@ -69,45 +69,56 @@ public class Main2Activity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        Class<?> classTarget = null;
         switch (number) {
             case 1:
-                classTarget = LoginActivity.class;
+                mTitle = getString(R.string.app_name);
                 break;
             case 2:
-                classTarget = ReportFloodActivity.class;
+                mTitle = getString(R.string.app_name);
+                Intent intent = new Intent (this,LoginActivity.class);
+                startActivity(intent);
                 break;
             case 3:
-                classTarget = CheckMyLocationActivity.class;
+                mTitle = getString(R.string.app_name);
+                Intent intent1 = new Intent (this,ReportFloodActivity.class);
+                startActivity(intent1);
                 break;
             case 4:
+                mTitle = getString(R.string.app_name);
+                Intent intent2 = new Intent (this,CheckMyLocationActivity.class);
+                startActivity(intent2);
                 break;
             case 5:
-                classTarget = InfoTanggapActivity.class;
+                mTitle = getString(R.string.app_name);
+                Intent intent5 = new Intent (this,FloodAreaActivity.class);
+                startActivity(intent5);
                 break;
             case 6:
+                mTitle = getString(R.string.app_name);
+                Intent intent6 = new Intent (this,InfoTanggapActivity.class);
+                startActivity(intent6);
                 break;
             case 7:
-                classTarget = TelephoneActivity.class;
+                mTitle = getString(R.string.app_name);
                 break;
             case 8:
-                classTarget = SettingActivity.class;
+                mTitle = getString(R.string.app_name);
+                Intent intent8 = new Intent (this,TelephoneActivity.class);
+                startActivity(intent8);
                 break;
             case 9:
-                classTarget = AboutActivity.class;
+                mTitle = getString(R.string.app_name);
+                Intent intent9 = new Intent (this,SettingActivity.class);
+                startActivity(intent9);
+                break;
+            case 10:
+                mTitle = getString(R.string.app_name);
+                Intent intent10 = new Intent (this,AboutActivity.class);
+                startActivity(intent10);
                 break;
         }
-
-        if(classTarget != null){
-            gotoActivity(classTarget);
-        }
     }
 
-    private void gotoActivity(Class<?> cls){
-        mTitle = getString(R.string.app_name);
-        Intent i = new Intent(this, cls);
-        startActivity(i);
-    }
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
