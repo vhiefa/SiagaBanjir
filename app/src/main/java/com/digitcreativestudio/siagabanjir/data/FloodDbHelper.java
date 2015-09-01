@@ -20,6 +20,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract.FloodEntry;
+import com.digitcreativestudio.siagabanjir.data.FloodContract.FloodAreaEntry;
 
 /**
  * Manages a local database for weather data.
@@ -39,20 +40,29 @@ public class FloodDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
 
+        final String SQL_CREATE_FLOOD_AREA_TABLE = "CREATE TABLE " + FloodAreaEntry.TABLE_NAME + " (" +
+                FloodAreaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                FloodAreaEntry.COLUMN_FLOOD_AREA_ID + " TEXT NOT NULL, " + //id dari database server
+                FloodAreaEntry.COLUMN_WIL + " TEXT NOT NULL, " +
+                FloodAreaEntry.COLUMN_KEC + " TEXT NOT NULL, " +
+                FloodAreaEntry.COLUMN_KEL + " TEXT NOT NULL, " +
+                FloodAreaEntry.COLUMN_RW + " TEXT NOT NULL, " +
+                FloodAreaEntry.COLUMN_LONGITUDE + " TEXT NOT NULL, " +
+                FloodAreaEntry.COLUMN_LATITUDE + " TEXT NOT NULL, " +
+                "UNIQUE (" + FloodAreaEntry.COLUMN_FLOOD_AREA_ID + ") ON CONFLICT REPLACE);";
+
         final String SQL_CREATE_FLOOD_TABLE = "CREATE TABLE " + FloodEntry.TABLE_NAME + " (" +
-
-                FloodEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + //id untuk database lokal
-
+                FloodEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + //id untuk database lokal
                 FloodEntry.COLUMN_FLOOD_ID + " TEXT NOT NULL, " + //id dari database server
                 FloodEntry.COLUMN_TIME + " TEXT NOT NULL, " +
                 FloodEntry.COLUMN_CAPTION + " TEXT NOT NUll, " +
                 FloodEntry.COLUMN_LATITUDE + " TEXT NOT NULL, " +
                 FloodEntry.COLUMN_LONGITUDE + " TEXT NOT NULL, " +
-                FloodEntry.COLUMN_PHOTO + " TEXT NOT NULL , " +
-                
+                FloodEntry.COLUMN_PHOTO + " TEXT NOT NULL, " +
                 "UNIQUE (" + FloodEntry.COLUMN_FLOOD_ID + ") ON CONFLICT REPLACE);"; //agar data dengan id dr server yang sama tidak menduplikat di database lokal
 
         sqLiteDatabase.execSQL(SQL_CREATE_FLOOD_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_FLOOD_AREA_TABLE);
     }
 
     @Override
@@ -64,6 +74,7 @@ public class FloodDbHelper extends SQLiteOpenHelper {
         // If you want to update the schema without wiping data, commenting out the next 2 lines
         // should be your top priority before modifying this method.
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FloodEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FloodAreaEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }

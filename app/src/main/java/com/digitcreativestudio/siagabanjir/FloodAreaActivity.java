@@ -8,21 +8,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FloodAreaActivity extends ActionBarActivity {
+public class FloodAreaActivity extends ActionBarActivity{
 
     //private static final String LOG_TAG = FloodAreaActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+
         setContentView(R.layout.activity_flood_area);
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new FloodAreaActivityFragment()).commit();
         }
 
-        ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+
     }
 
 
