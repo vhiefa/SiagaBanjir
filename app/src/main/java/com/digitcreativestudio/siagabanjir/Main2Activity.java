@@ -53,7 +53,7 @@ public class Main2Activity extends ActionBarActivity
         Boolean notif = Utility.getPreferredNotification(this);
 
         if(notif){
-            ContentResolver.setMasterSyncAutomatically(notif);
+            ContentResolver.setMasterSyncAutomatically(notif); // Turn on auto-sync master setting depend on notification setting
         }
 
         FloodSyncAdapter.initializeSyncAdapter(this);
