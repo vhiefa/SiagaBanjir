@@ -1,7 +1,7 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,17 +11,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
+
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
-    private static final String LOG_TAG = Main2Activity.class.getSimpleName();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -32,7 +32,6 @@ public class Main2Activity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,13 @@ public class Main2Activity extends ActionBarActivity
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
 
+        Boolean notif = Utility.getPreferredNotification(this);
 
+        if(notif){
+            ContentResolver.setMasterSyncAutomatically(notif); // Turn on auto-sync master setting depend on notification setting
+        }
+
+        FloodSyncAdapter.initializeSyncAdapter(this);
     }
 
     @Override
@@ -67,40 +72,49 @@ public class Main2Activity extends ActionBarActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.app_name);
+                break;
+            case 2:
+                mTitle = getString(R.string.app_name);
                 Intent intent = new Intent (this,LoginActivity.class);
                 startActivity(intent);
                 break;
-            case 2:
+            case 3:
                 mTitle = getString(R.string.app_name);
                 Intent intent1 = new Intent (this,ReportFloodActivity.class);
                 startActivity(intent1);
                 break;
-            case 3:
+            case 4:
                 mTitle = getString(R.string.app_name);
                 Intent intent2 = new Intent (this,CheckMyLocationActivity.class);
                 startActivity(intent2);
                 break;
-            case 4:
-                mTitle = getString(R.string.app_name);
-                Intent intent3 = new Intent (this,FloodAreaActivity.class);
-                startActivity(intent3);
-                break;
             case 5:
                 mTitle = getString(R.string.app_name);
+                Intent intent5 = new Intent (this,FloodAreaActivity.class);
+                startActivity(intent5);
                 break;
             case 6:
                 mTitle = getString(R.string.app_name);
+                Intent intent6 = new Intent (this,InfoTanggapActivity.class);
+                startActivity(intent6);
                 break;
             case 7:
                 mTitle = getString(R.string.app_name);
                 break;
             case 8:
                 mTitle = getString(R.string.app_name);
-                Intent intent8 = new Intent (this,SettingActivity.class);
+                Intent intent8 = new Intent (this,TelephoneActivity.class);
                 startActivity(intent8);
                 break;
             case 9:
                 mTitle = getString(R.string.app_name);
+                Intent intent9 = new Intent (this,SettingActivity.class);
+                startActivity(intent9);
+                break;
+            case 10:
+                mTitle = getString(R.string.app_name);
+                Intent intent10 = new Intent (this,AboutActivity.class);
+                startActivity(intent10);
                 break;
         }
     }
@@ -119,7 +133,7 @@ public class Main2Activity extends ActionBarActivity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.menu_flood_area, menu);
+            getMenuInflater().inflate(R.menu.main2, menu);
             restoreActionBar();
             return true;
         }
@@ -132,13 +146,12 @@ public class Main2Activity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_refresh) {
 
-            FetchFloodAreaTask fetchFloodAreaTask = new FetchFloodAreaTask(mContext);
-            fetchFloodAreaTask.execute();
-            Log.v(LOG_TAG, "Update flood area :-)");
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

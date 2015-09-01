@@ -1,0 +1,987 @@
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:padding="16dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&lt; Prev"
+                android:id="@+id/prev"
+                android:enabled="false" />
+
+            <ViewFlipper
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleFlipper"
+                android:layout_weight="1"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Sebelum Banjir"
+                    android:id="@+id/textView9"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center|center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Waspada Banjir"
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center|center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Bersiap Evakuasi"
+                    android:id="@+id/textView6"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center|center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Saat Banjir Terjadi"
+                    android:id="@+id/textView"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center|center_vertical|center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Setelah Banjir Reda"
+                    android:id="@+id/textView34"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center|center_vertical|center_horizontal" />
+
+            </ViewFlipper>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next >"
+                android:id="@+id/next"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/viewFlipper"
+                android:layout_toEndOf="@+id/viewFlipper"
+                android:layout_gravity="right"
+                android:enabled="true" />
+        </TableRow>
+    </TableLayout>
+
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewFlipper" >
+
+        // SEBELUM BANJIR
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView4" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Perhatikan ketinggian rumah Anda dari bangunan yang rawan banjir."
+                        android:id="@+id/textView10"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Tinggikan panel listrik."
+                        android:id="@+id/textView14"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Hubungi pihak berwenang apabila akan dibangun dinding penghalang di sekitar wilayah Anda."
+                        android:id="@+id/textView15"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Periksa lubang saluran pembuangan air, juga kloset Anda."
+                        android:id="@+id/textView16"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Bersihkan dari segala penghalang dan pastikan saluran tertutup rapat supaya air banjir tidak melimpah masuk melalui lubang saluran air tersebut."
+                        android:id="@+id/textView17"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Pastikan bahwa Anda tahu benar dimana POSKO banjir terdekat dari rumah Anda."
+                        android:id="@+id/textView18"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Buat perencanaan dengan keluarga, kalau perlu latihan evakuasi keluarga, sebagai persiapan jika banjir benar-benar datang."
+                        android:id="@+id/textView19"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Sediakan Perlengkapan P3K dan alat-alat standard penyelamatan."
+                        android:id="@+id/textView20"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Pastikan seluruh anggota keluarga Anda mengetahui langkah darurat jika banjir tiba."
+                        android:id="@+id/textView21"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        //WASPADA BANJIR
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Simak informasi dari radio atau televisi Anda, juga via RT/RW lingkungan Anda mengenai informasi banjir"
+                        android:id="@+id/textView3"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Penuhi tong, bak mandi, ember dan segala wadah air lainnya dengan air bersih. Karena saat banjir, air mungkin menjadi kotor dan sulit mendapatkan air bersih."
+                        android:id="@+id/textView22"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Bawalah masuk perabot atau perkakas di luar rumah."
+                        android:id="@+id/textView23"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Letakkan dokumen penting di tempat yang aman atau masukkan pada wadah yang kedap/tahan air, agar tidak rusak."
+                        android:id="@+id/textView24"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Tutuplah dengan aman stop kontak listrik, jika perlu padamkan listrik dan saluran gas rumah Anda."
+                        android:id="@+id/textView25"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Beritahu anggota keluarga Anda dan bersiaplah untuk mengungsi."
+                        android:id="@+id/textView26"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Waspada terhadap banjir yang akan melanda. Apabila terjadi banjir bandang, beranjak segera ke tempat yang lebih tinggi; jangan menunggu instruksi terkait arahan beranjak."
+                        android:id="@+id/textView4"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Waspada terhadap arus bawah, saluran air, kubangan, dan tempat-tempat lain yang tergenang air. Banjir bandang dapat terjadi di tempat ini dengan atau tanpa peringatan pada saat hujan biasa atau deras."
+                        android:id="@+id/textView5"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Radio kecil dg baterei – utk mendapatkan informasi tentang banjir"
+                        android:id="@+id/textView7"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Handphone dengan baterei full – untuk berkomunikasi"
+                        android:id="@+id/textView8"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Pelampung renang – untuk anak-anak &amp; mereka yang tidak bisa berenang"
+                        android:id="@+id/textView27"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Senter – alat penerang, tanda bahaya, dan minta pertolongan"
+                        android:id="@+id/textView28"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Peluit – tanda bahaya, dan minta pertolongan"
+                        android:id="@+id/textView29"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Obat-obatan sederhana (diare, masuk angin, flu, demam)"
+                        android:id="@+id/textView30"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="P3K – Pertolongan Pertama jika terjadi Kecelakaan"
+                        android:id="@+id/textView31"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Air bersih dalam wadah yang mudah dibawa (bisa dengan gula untuk menambah energi)"
+                        android:id="@+id/textView32"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Tali – menghidari dari tarikan arus"
+                        android:id="@+id/textView33"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="16dp" >
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&lt; Prev"
+                        android:id="@+id/banjirPrev"
+                        android:enabled="false" />
+
+                    <ViewFlipper
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/titleBanjirFlipper"
+                        android:layout_weight="1"
+                        android:layout_gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Posisi Dalam Rumah"
+                            android:id="@+id/textView35"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Posisi Luar Rumah"
+                            android:id="@+id/textView36"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Posisi Dalam Kendaraan"
+                            android:id="@+id/textView37"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Evakuasi"
+                            android:id="@+id/textView38"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+                    </ViewFlipper>
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next >"
+                        android:id="@+id/banjirNext"
+                        android:enabled="true" />
+                </TableRow>
+            </TableLayout>
+
+            <ViewFlipper
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/viewBanjirFlipper" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView3" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Siap sedialah dengan semua peralatan darurat standard."
+                                android:id="@+id/textView11"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jika diarahkan oleh POSKO dan/atau RT/RW untuk keluar dan mengungsi, segera lakukan."
+                                android:id="@+id/textView12"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView5" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Pergilah ke tempat yang tinggi dan aman."
+                                android:id="@+id/textView45"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Hindari melalui kawasan banjir, arus yang deras dapat menghanyutkan Anda dan keluarga Anda."
+                                android:id="@+id/textView46"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jangan berjalan-jalan/melihat-lihat/berenang-renang di kawasan banjir, baik dengan rakit maupun berjalan kaki, berbahaya!"
+                                android:id="@+id/textView47"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jangan sampai menyentuh kabel-kabel yang jatuh atau tiang listrik."
+                                android:id="@+id/textView48"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Awasi anak-anak, jangan biarkan mereka bermain-main di saluran air, sungai atau kawasan banjir dan arus deras lainnya."
+                                android:id="@+id/textView49"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jangan minum dan memasak dengan air banjir."
+                                android:id="@+id/textView50"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView6" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jangan terus mengarungi/melalui kawasan banjir, segeralah berbalik arah."
+                                android:id="@+id/textView54"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jika kendaraan Anda terhenti (mogok atau terjebak dalam kemacetan), segera kunci kendaraan Anda dan tinggalkanlah."
+                                android:id="@+id/textView55"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Segeralah pergi ke tempat yang aman. Nyawa Anda jauh lebih berharga."
+                                android:id="@+id/textView56"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView7" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Apabila menerima pengarahan untuk evakuasi/mengungsi, segeralah mengungsi."
+                                android:id="@+id/textView63"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Segeralah mengungsi lebih awal, jauh sebelum air banjir meningkat atau saat hari masih siang, karena lebih mudah dan aman bagi Anda dan keluarga Anda."
+                                android:id="@+id/textView64"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Hubungi pihak berwenang apabila akan dibangun dinding penghalang di sekitar wilayah Anda."
+                                android:id="@+id/textView65"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Ikuti pengarahan yang diberikan POSKO dan/atau RT/RW."
+                                android:id="@+id/textView66"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+            </ViewFlipper>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="16dp" >
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&lt; Prev"
+                        android:id="@+id/redaPrev"
+                        android:enabled="false" />
+
+                    <ViewFlipper
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/titleRedaFlipper"
+                        android:layout_weight="1"
+                        android:layout_gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/textView13"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Saat Memasuki Ruangan"
+                            android:id="@+id/textView39"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Periksa Ancaman Biaya"
+                            android:id="@+id/textView41"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:gravity="center|center_vertical|center_horizontal" />
+                    </ViewFlipper>
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next >"
+                        android:id="@+id/redaNext"
+                        android:enabled="true" />
+                </TableRow>
+            </TableLayout>
+
+            <ViewFlipper
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/viewRedaFlipper" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView8" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Dengar pengumuman radio atau tunggu pengarahan dari POSKO dan/atau RT/RW, jangan kembali ke rumah sebelum diperbolehkan atau sebelum keadaan benar-benar aman."
+                                android:id="@+id/textView42"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Beri bantuan kepada anggota keluarga Anda yang lemah (Orang tua, anak-anak, orang-orang sakit atau cacat)."
+                                android:id="@+id/textView43"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa rumah Anda, lihat jika ada tanda-tanda retakan di dinding atau kerusakan-kerusakan lainnya, mungkin berbahaya."
+                                android:id="@+id/textView40"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Jangan memasuki rumah yang masih dibanjiri air, berhati-hatilah dengan berbagai bahaya-bahaya yang tersembunyi."
+                                android:id="@+id/textView62"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView9" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Pakai sepatu bot karet."
+                                android:id="@+id/textView44"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa kerusakan dinding, lantai, pintu dan atap."
+                                android:id="@+id/textView51"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa kemungkinan binatang atau serangga beracun dan berbahaya di dalam rumah (ular, kalajengking, kelabang dll)."
+                                android:id="@+id/textView52"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Gunakan batang kayu (kering) untuk memindahkan berbagai kotoran/timbunan barang yang berserak dilantai rumah Anda, untuk menghindari segala resiko seperti tersengat listrik atau digigit binatang beracun."
+                                android:id="@+id/textView53"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Perhatian atap/enternit dan plaster dinding yang mungkin retak, rusak dan jatuh, agar tidak menimpa anggota keluarga."
+                                android:id="@+id/textView57"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/scrollView10" >
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa pipa saluran gas yang mungkin pecah atau bocor."
+                                android:id="@+id/textView59"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa kabel-kabel listrik yang terendam dalam air."
+                                android:id="@+id/textView60"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa peralatan listrik yang tenggelam/terendam air."
+                                android:id="@+id/textView61"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa bahan-bahan yang mudah terbakar yang mungkin mengalir masuk saat banjir (Minyak tanah, bensin, solar dan sebagainya)."
+                                android:id="@+id/textView58"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Buang bahan-bahan makanan yang terendam atau terkena air banjir, termasuk makanan dalam kaleng."
+                                android:id="@+id/textView67"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Periksa kerusakan tangki sepiteng/WC Anda, karena dapat mengakibatkan bahaya biologi/keracunan/diare."
+                                android:id="@+id/textView68"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Laporkan kerusakan-kerusakan pada POSKO dan/atau RT/RW terdekat."
+                                android:id="@+id/textView69"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+            </ViewFlipper>
+        </LinearLayout>
+
+    </ViewFlipper>
+
+</LinearLayout>
+

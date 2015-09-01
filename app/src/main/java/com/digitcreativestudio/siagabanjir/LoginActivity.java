@@ -150,7 +150,7 @@ public class LoginActivity extends ActionBarActivity{
 
             try {
                // String url_all_posts = "http://api.vhiefa.net76.net/whatson/get_user.php" ;
-                String url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/get_user.php" ;
+                String url_all_posts = "http://demo.edusarana.com/sis/ws/get_user.php" ;
 
                 JSONObject json = jParser.makeHttpRequest(url_all_posts,"POST", parameter);
 

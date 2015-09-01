@@ -8,7 +8,6 @@
 
     <!-- eko -->
     <string name="action_refresh" translatable="false">Refresh</string>
-
     <string name="content_authority">com.digitcreativestudio.siagabanjir</string>
     <string name="sync_account_type">digitcreativestudio.com</string>
 
@@ -23,19 +22,20 @@
     <string name="pref_enable_notifications_false">Not Enabled</string>
     <string name="pref_enable_current_notifications_default" translatable="false">true</string>
     <string name="pref_enable_home_notifications_default" translatable="false">false</string>
-
     <string name="title_activity_about">AboutActivity</string>
-    <string name="title_section1">Akun</string>
-    <string name="title_section2">Lapor Banjir</string>
-    <string name="title_section3">Status Lokasi Saya</string>
-    <string name="title_section4">Wilayah Rawan</string>
-    <string name="title_section5">Info Tanggap</string>
-    <string name="title_section6">Berita</string>
-    <string name="title_section7">Telp. Penting</string>
-    <string name="title_section8">Pengaturan</string>
-    <string name="title_section9">Tentang</string>
+    <string name="title_section1">Home</string>
+    <string name="title_section2">Akun</string>
+    <string name="title_section3">Lapor Banjir</string>
+    <string name="title_section4">Status Lokasi Saya</string>
+    <string name="title_section5">Wilayah Rawan</string>
+    <string name="title_section6">Info Tanggap</string>
+    <string name="title_section7">Berita</string>
+    <string name="title_section8">Telp. Penting</string>
+    <string name="title_section9">Pengaturan</string>
+    <string name="title_section10">Tentang</string>
     <string name="navigation_drawer_open">Siaga Banjir</string>
     <string name="navigation_drawer_close">Siaga Banjir</string>
-
+    <string name="title_activity_telephone">Nomor Telephone Penting</string>
+    <string name="title_activity_info_tanggap">Info Tanggap Banjir</string>
 
 </resources>

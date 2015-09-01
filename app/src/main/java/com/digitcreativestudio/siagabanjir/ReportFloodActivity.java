@@ -71,7 +71,7 @@ public class ReportFloodActivity extends ActionBarActivity{
     int serverResponseCode = 0;
     ProgressDialog dialog = null;
   //  String upLoadServerUri = "http://api.vhiefa.net76.net/siagabanjir/upload_photos.php";
-    String upLoadServerUri = "http://api.digitcreativestudio.com/siagabanjir/upload_photos.php";
+    String upLoadServerUri = "http://demo.edusarana.com/sis/ws/upload_photos.php";
     String photo_url, id_user;
     int status_upload_img;
     String deskripsi, latitude="", longitude="";
@@ -79,7 +79,7 @@ public class ReportFloodActivity extends ActionBarActivity{
     EditText inputDesc;
     Button photo, btnLaporBanjir;
     //private static String url_lapor_banjir = "http://api.vhiefa.net76.net/siagabanjir/lapor_banjir.php";
-    private static String url_lapor_banjir = "http://api.digitcreativestudio.com/siagabanjir/lapor_banjir.php";
+    private static String url_lapor_banjir = "http://demo.edusarana.com/sis/ws/lapor_banjir.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     SessionManager session;
@@ -398,7 +398,7 @@ public class ReportFloodActivity extends ActionBarActivity{
 
                 String namaFile_img = Path.substring(Path.lastIndexOf("/")+1);
                 //photo_url = "http://api.vhiefa.net76.net/siagabanjir/photos/"+namaFile_img;
-                photo_url = "http://api.digitcreativestudio.com/siagabanjir/photos/"+namaFile_img;
+                photo_url = "http://demo.edusarana.com/sis/ws/photos/"+namaFile_img;
 
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();

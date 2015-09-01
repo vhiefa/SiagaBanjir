@@ -87,7 +87,7 @@ public class LupaPasswordAcivity extends ActionBarActivity {
 
             try {
                // String url_all_posts = "http://api.vhiefa.net76.net/whatson/lupa_password.php" ;
-                String url_all_posts = "http://api.digitcreativestudio.com/siagabanjir/lupa_password.php" ;
+                String url_all_posts = "http://demo.edusarana.com/sis/ws/lupa_password.php" ;
 
                 JSONObject json = jParser.makeHttpRequest(url_all_posts,"POST", parameter);
 

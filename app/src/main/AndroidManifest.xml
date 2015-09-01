@@ -68,7 +68,6 @@
             android:name=".FloodAreaActivity"
             android:label="Wilayah Rawan" >
         </activity>
-
         <activity
             android:name=".MyFloodReportActivity"
             android:label="Laporan Terkirim" />
@@ -119,13 +118,18 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".TelephoneActivity"
+            android:label="@string/title_activity_telephone" >
+        </activity>
+        <activity
+            android:name=".InfoTanggapActivity"
+            android:label="@string/title_activity_info_tanggap">
         </activity>
     </application>
 
