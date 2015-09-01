@@ -184,8 +184,8 @@ public class Main2Activity extends ActionBarActivity
             fragment.setArguments(args);
             return fragment;
         }
-        private WebView webView;
-        private ProgressBar progress;
+        private static WebView webView;
+        private static ProgressBar progress;
 
         private class MyWebViewClient extends WebViewClient {
             @Override
@@ -216,13 +216,13 @@ public class Main2Activity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
             //munculin berita
-            webView = new (WebView) findViewById(R.id.news_feed);
+            webView =  (WebView) findViewById(R.id.news_feed);
             webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
             webView.setWebViewClient(new MyWebViewClient());
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
 
-            progress = new (ProgressBar) findViewById(R.id.progressBar);
+            progress = (ProgressBar) findViewById(R.id.progressBar);
             progress.setVisibility(View.GONE);
             return rootView;
         }
