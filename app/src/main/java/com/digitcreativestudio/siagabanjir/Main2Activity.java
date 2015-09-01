@@ -2,6 +2,7 @@ package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -48,6 +53,7 @@ public class Main2Activity extends ActionBarActivity
 
 
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -90,6 +96,8 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 7:
                 mTitle = getString(R.string.app_name);
+                Intent intent7 = new Intent (this,NewsFeedActivity.class);
+                startActivity(intent7);
                 break;
             case 8:
                 mTitle = getString(R.string.app_name);
@@ -166,7 +174,30 @@ public class Main2Activity extends ActionBarActivity
             fragment.setArguments(args);
             return fragment;
         }
+        private WebView webView;
+        private ProgressBar progress;
 
+        private class MyWebViewClient extends WebViewClient {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                progress.setVisibility(View.GONE);
+                PlaceholderFragment.this.progress.setProgress(100);
+                super.onPageFinished(view, url);
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                progress.setVisibility(View.VISIBLE);
+                PlaceholderFragment.this.progress.setProgress(0);
+                super.onPageStarted(view, url, favicon);
+            }
+        }
         public PlaceholderFragment() {
         }
 
@@ -174,6 +205,15 @@ public class Main2Activity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
+            //munculin berita
+            webView = new (WebView) findViewById(R.id.news_feed);
+            webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
+            webView.setWebViewClient(new MyWebViewClient());
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+
+            progress = new (ProgressBar) findViewById(R.id.progressBar);
+            progress.setVisibility(View.GONE);
             return rootView;
         }
 

@@ -37,5 +37,6 @@
     <string name="navigation_drawer_close">Siaga Banjir</string>
     <string name="title_activity_telephone">Nomor Telephone Penting</string>
     <string name="title_activity_info_tanggap">Info Tanggap Banjir</string>
+    <string name="title_activity_news_feed">Berita</string>
 
 </resources>

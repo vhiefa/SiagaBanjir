@@ -30,10 +30,10 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:label="Log In" >
@@ -41,7 +41,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AccountActivity" />
         </activity>
-
         <activity
             android:name=".EditProfilActivity"
             android:label="Edit Profil" >
@@ -49,7 +48,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AccountActivity" />
         </activity>
-
         <activity
             android:name=".UbahPasswordActivity"
             android:label="Ubah Password" >
@@ -57,15 +55,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AccountActivity" />
         </activity>
-
         <activity
             android:name=".LupaPasswordAcivity"
-            android:label="Lupa Password">
+            android:label="Lupa Password" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AccountActivity" />
         </activity>
-
         <activity
             android:name=".CreateAccountActivity"
             android:label="Create Account" >
@@ -73,7 +69,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AccountActivity" />
         </activity>
-
         <activity
             android:name=".AccountActivity"
             android:label="Account" >
@@ -81,23 +76,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
-
         <activity
             android:name=".CheckMyLocationActivity"
-            android:label="Cek Status Kerawanan">
+            android:label="Cek Status Kerawanan" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
-
         <activity
             android:name=".ReportFloodActivity"
-            android:label="Laporkan Banjir">
+            android:label="Laporkan Banjir" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
-
         <activity
             android:name=".FloodAreaActivity"
             android:label="@string/title_activity_flood_area" >
@@ -112,7 +104,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
-
         <activity
             android:name=".SetHomeActivity"
             android:label="Set Home Location" >
@@ -120,7 +111,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
-
         <activity
             android:name=".SettingActivity"
             android:label="Setting" >
@@ -191,6 +181,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.digitcreativestudio.siagabanjir.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NewsFeedActivity"
+            android:label="@string/title_activity_news_feed" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
     </application>
 
