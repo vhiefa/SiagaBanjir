@@ -53,7 +53,7 @@ public class FloodContract {
         public static final String COLUMN_LONGITUDE = "longitude";
         public static final String COLUMN_LATITUDE = "latitude";
 
-        public static Uri buildNewsUri(long id) {
+        public static Uri buildFloodAreaUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI_2, id);
         }
 
