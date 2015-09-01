@@ -31,6 +31,8 @@ public class MainActivity extends ActionBarActivity{
         Button atur = (Button) findViewById(R.id.atur);
         Button lihat = (Button) findViewById(R.id.berita);
         Button tentang = (Button) findViewById(R.id.tentang);
+        Button telephone = (Button) findViewById(R.id.telpon_penting);
+        Button infoTanggap = (Button) findViewById(R.id.info);
 
         akun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,22 @@ public class MainActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(i);
+            }
+        });
+
+        telephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TelephoneActivity.class);
+                startActivity(i);
+            }
+        });
+
+        infoTanggap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, InfoTanggapActivity.class);
                 startActivity(i);
             }
         });

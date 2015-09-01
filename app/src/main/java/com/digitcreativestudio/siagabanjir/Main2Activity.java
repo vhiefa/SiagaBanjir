@@ -62,9 +62,6 @@ public class Main2Activity extends ActionBarActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.app_name);
-                break;
-            case 2:
-                mTitle = getString(R.string.app_name);
                 Intent intent = new Intent (this,LoginActivity.class);
                 startActivity(intent);
                 break;
@@ -73,10 +70,13 @@ public class Main2Activity extends ActionBarActivity
                 Intent intent1 = new Intent (this,ReportFloodActivity.class);
                 startActivity(intent1);
                 break;
-            case 4:
+            case 3:
                 mTitle = getString(R.string.app_name);
                 Intent intent2 = new Intent (this,CheckMyLocationActivity.class);
                 startActivity(intent2);
+                break;
+            case 4:
+                mTitle = getString(R.string.app_name);
                 break;
             case 5:
                 mTitle = getString(R.string.app_name);
@@ -89,16 +89,11 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 8:
                 mTitle = getString(R.string.app_name);
+                Intent intent8 = new Intent (this,SettingActivity.class);
+                startActivity(intent8);
                 break;
             case 9:
                 mTitle = getString(R.string.app_name);
-                Intent intent9 = new Intent (this,SettingActivity.class);
-                startActivity(intent9);
-                break;
-            case 10:
-                mTitle = getString(R.string.app_name);
-                Intent intent10 = new Intent (this,AboutActivity.class);
-                startActivity(intent10);
                 break;
         }
     }
