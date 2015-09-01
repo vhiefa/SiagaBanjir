@@ -64,7 +64,6 @@
             android:name=".FloodAreaActivity"
             android:label="@string/title_activity_flood_area" >
         </activity>
-
         <activity
             android:name=".MyFloodReportActivity"
             android:label="Laporan Terkirim" />
@@ -122,6 +121,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".TelephoneActivity"
+            android:label="@string/title_activity_telephone" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".InfoTanggapActivity"
+            android:label="@string/title_activity_info_tanggap"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.digitcreativestudio.siagabanjir.MainActivity" />
         </activity>
     </application>
 
