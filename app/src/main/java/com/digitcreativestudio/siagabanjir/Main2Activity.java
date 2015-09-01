@@ -80,23 +80,31 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 5:
                 mTitle = getString(R.string.app_name);
+                Intent intent5 = new Intent (this,FloodAreaActivity.class);
+                startActivity(intent5);
                 break;
             case 6:
                 mTitle = getString(R.string.app_name);
+                Intent intent6 = new Intent (this,InfoTanggapActivity.class);
+                startActivity(intent6);
                 break;
             case 7:
                 mTitle = getString(R.string.app_name);
                 break;
             case 8:
                 mTitle = getString(R.string.app_name);
+                Intent intent8 = new Intent (this,TelephoneActivity.class);
+                startActivity(intent8);
                 break;
             case 9:
                 mTitle = getString(R.string.app_name);
-                Intent intent8 = new Intent (this,SettingActivity.class);
-                startActivity(intent8);
+                Intent intent9 = new Intent (this,SettingActivity.class);
+                startActivity(intent9);
                 break;
             case 10:
                 mTitle = getString(R.string.app_name);
+                Intent intent10 = new Intent (this,AboutActivity.class);
+                startActivity(intent10);
                 break;
         }
     }
