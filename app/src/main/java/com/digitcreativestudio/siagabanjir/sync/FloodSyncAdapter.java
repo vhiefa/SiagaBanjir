@@ -281,7 +281,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
         try {
             List<NameValuePair> parameter = new ArrayList<NameValuePair>();
            // String url_get_laporan = "http://api.vhiefa.net76.net/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
-            String url_get_laporan = "http://api.digitcreativestudio.com/siagabanjir/dapatkan_laporan.php?lat="+lati+"&long="+longi;
+            String url_get_laporan = "http://demo.edusarana.com/sis/ws/dapatkan_laporan.php?lat="+lati+"&long="+longi;
             JSONObject json = jParser.makeHttpRequest(url_get_laporan,"GET", parameter);
 
             int success = json.getInt(TAG_SUCCESS);
