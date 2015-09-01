@@ -37,6 +37,8 @@ public class Main2Activity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private  WebView webView;
+    private  ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,38 @@ public class Main2Activity extends ActionBarActivity
         }
 
         FloodSyncAdapter.initializeSyncAdapter(this);
+
+        webView = (WebView) findViewById(R.id.news_feed);
+        webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
+        webView.setWebViewClient(new MyWebViewClient());
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        progress = (ProgressBar) findViewById(R.id.progressBar);
+        progress.setVisibility(View.GONE);
     }
 
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
 
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            progress.setVisibility(View.GONE);
+            Main2Activity.this.progress.setProgress(100);
+            super.onPageFinished(view, url);
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            progress.setVisibility(View.VISIBLE);
+            Main2Activity.this.progress.setProgress(0);
+            super.onPageStarted(view, url, favicon);
+        }
+    }
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
@@ -184,30 +215,9 @@ public class Main2Activity extends ActionBarActivity
             fragment.setArguments(args);
             return fragment;
         }
-        private static WebView webView;
-        private static ProgressBar progress;
 
-        private class MyWebViewClient extends WebViewClient {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                progress.setVisibility(View.GONE);
-                PlaceholderFragment.this.progress.setProgress(100);
-                super.onPageFinished(view, url);
-            }
 
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progress.setVisibility(View.VISIBLE);
-                PlaceholderFragment.this.progress.setProgress(0);
-                super.onPageStarted(view, url, favicon);
-            }
-        }
         public PlaceholderFragment() {
         }
 
@@ -216,14 +226,7 @@ public class Main2Activity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
             //munculin berita
-            webView =  (WebView) findViewById(R.id.news_feed);
-            webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
-            webView.setWebViewClient(new MyWebViewClient());
-            WebSettings webSettings = webView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
 
-            progress = (ProgressBar) findViewById(R.id.progressBar);
-            progress.setVisibility(View.GONE);
             return rootView;
         }
 
