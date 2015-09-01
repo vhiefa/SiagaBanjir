@@ -96,7 +96,7 @@ public class FetchFloodAreaTask extends AsyncTask<Void, Void, Void> {
 
             Log.v(LOG_TAG, "ISI JSONArray ke "+i+" =" +listNews);
 
-            id = i;
+            id = i+1;
             wilayah = listNews.getString(FM_WIL);
             kecamatan = listNews.getString(FM_KEC);
             keluarahan = listNews.getString(FM_KEL);
