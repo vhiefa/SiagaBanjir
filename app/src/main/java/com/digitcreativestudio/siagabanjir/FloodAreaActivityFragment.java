@@ -49,14 +49,15 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
     public static final int COL_KEL = 4;
     public static final int COL_RW = 5;
 
-
+    /**
+     * DetailFragmentCallback for when an item has been selected.
+     */
+    /*
     public interface Callback {
-        /**
-         * DetailFragmentCallback for when an item has been selected.
-         */
+
         public void onItemSelected(String id);
     }
-
+    */
     public FloodAreaActivityFragment() {
     }
 
@@ -132,10 +133,12 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
                 String floodArea = (String) mFloodAreaAdapter.getItem(position);
                 Toast.makeText(getActivity(), floodArea, Toast.LENGTH_SHORT).show();
                 Cursor cursor = mFloodAreaAdapter.getCursor();
+                /*
                 if(cursor != null && cursor.moveToPosition(position)){
                     ((Callback)getActivity())
                             .onItemSelected(cursor.getString(COL_FLOOD_AREA_ID));
                 }
+                */
                 mPosition = position;
                 Log.v(LOG_TAG,"position :" + position);
 
