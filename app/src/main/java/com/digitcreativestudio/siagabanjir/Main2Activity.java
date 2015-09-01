@@ -1,6 +1,7 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -46,7 +50,13 @@ public class Main2Activity extends ActionBarActivity
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
 
+        Boolean notif = Utility.getPreferredNotification(this);
 
+        if(notif){
+            ContentResolver.setMasterSyncAutomatically(notif);
+        }
+
+        FloodSyncAdapter.initializeSyncAdapter(this);
     }
 
     @Override

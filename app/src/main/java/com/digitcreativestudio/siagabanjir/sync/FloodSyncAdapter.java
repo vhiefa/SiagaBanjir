@@ -190,7 +190,6 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
 
     private void notifyFlood(List<String> newRecords) {
-        Log.v(LOG_TAG, "inside notification");
 
       //  SharedPreferences prefNotif = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -208,7 +207,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
                 if (cursor.moveToFirst()) {
                     String floodId = cursor.getString(INDEX_FLOOD_ID);
-                    Log.v("floodId", floodId);
+
                     String longi = cursor.getString(INDEX_LONG);
                     String lati = cursor.getString(INDEX_LAT);
                     String desc = cursor.getString(INDEX_CAPTION);
