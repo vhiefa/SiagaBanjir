@@ -59,21 +59,25 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
 
     private static final String[] NOTIFY_FLOOD_PROJECTION = new String[] {
+            FloodContract.FloodEntry._ID,
             FloodContract.FloodEntry.COLUMN_FLOOD_ID,
+            FloodContract.FloodEntry.COLUMN_TIME,
             FloodContract.FloodEntry.COLUMN_CAPTION,
             FloodContract.FloodEntry.COLUMN_LATITUDE,
             FloodContract.FloodEntry.COLUMN_LONGITUDE,
-            FloodContract.FloodEntry.COLUMN_PHOTO,
-            FloodContract.FloodEntry.COLUMN_TIME
+            FloodContract.FloodEntry.COLUMN_PHOTO
+
     };
 
     // these indices must match the projection
-    private static final int INDEX_FLOOD_ID = 0;
-    private static final int INDEX_CAPTION = 1;
-    private static final int INDEX_LAT = 2;
-    private static final int INDEX_LONG = 3;
-    private static final int INDEX_PHOTO = 4;
-    private static final int INDEX_TIME = 5;
+    private static final int INDEX_ID = 0;
+    private static final int INDEX_FLOOD_ID = 1;
+    private static final int INDEX_TIME = 2;
+    private static final int INDEX_CAPTION = 3;
+    private static final int INDEX_LAT = 4;
+    private static final int INDEX_LONG = 5;
+    private static final int INDEX_PHOTO = 6;
+
 
     public FloodSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
@@ -226,7 +230,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                     // notifications.  Just throw in some data.
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getContext())
-                                    .setSmallIcon(R.drawable.ic_launcher) //notification won't show unless this line used
+                                    .setSmallIcon(R.mipmap.ic_launcher) //notification won't show unless this line used
                                     .setContentTitle(title)
                                     .setContentText(contentText);
 

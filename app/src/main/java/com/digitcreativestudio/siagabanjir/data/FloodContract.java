@@ -61,12 +61,28 @@ public class FloodContract {
             return CONTENT_URI_2.buildUpon().build();
         }
 
-        public static String getIdFromUri2(Uri uri) {
+    /*    public static String getIdFromUri2(Uri uri) {
             return uri.getPathSegments().get(1);
         }
 
         public static Uri buildFloodAreaWithID(String id) {
             return CONTENT_URI_2.buildUpon().appendPath(id).build();
+        } */
+
+        public static String getKelurahanFromUri(Uri uri) {
+            return uri.getPathSegments().get(1);
+        }
+
+        public static Uri buildFloodAreaWithKelurahan(String kelurahan) {
+            return CONTENT_URI_2.buildUpon().appendPath(kelurahan).build();
+        }
+
+        public static String getKelurahan (Uri uri) {
+            return uri.getQueryParameter(COLUMN_KEL);
+        }
+
+        public static Uri buildFloodAreaWithKelurahan2 (String kelurahan ) {
+            return CONTENT_URI_2.buildUpon().appendQueryParameter(COLUMN_KEL, kelurahan).build();
         }
 
     }

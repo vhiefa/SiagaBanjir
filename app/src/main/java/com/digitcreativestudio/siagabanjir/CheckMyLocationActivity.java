@@ -2,9 +2,11 @@ package com.digitcreativestudio.siagabanjir;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
@@ -12,6 +14,7 @@ import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -23,6 +26,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digitcreativestudio.siagabanjir.data.FloodContract;
 import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,9 +53,26 @@ public class CheckMyLocationActivity extends ActionBarActivity {
     Location location;
     TextView lokasisaya;
     private GoogleMap googleMap;
+    String kelurahan;
 
     Context context;
     Double latitude = -6.166894, longitude = 106.861803; //hanya untuk default (tes), nanti ini akan keganti dengan current lat long si user
+
+    private static final String[] FLOOD_AREA_COLUMNS = {
+
+            FloodContract.FloodAreaEntry.TABLE_NAME + "." + FloodContract.FloodAreaEntry._ID,
+            FloodContract.FloodAreaEntry.COLUMN_FLOOD_AREA_ID,
+            FloodContract.FloodAreaEntry.COLUMN_WIL,
+            FloodContract.FloodAreaEntry.COLUMN_KEC,
+            FloodContract.FloodAreaEntry.COLUMN_KEL,
+            FloodContract.FloodAreaEntry.COLUMN_RW
+    };
+
+    public static final int COL_FLOOD_AREA_ID = 1;
+    public static final int COL_WIL = 2;
+    public static final int COL_KEC = 3;
+    public static final int COL_KEL = 4;
+    public static final int COL_RW = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +195,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(String... urls) {
             address=getAddress(context, latitude, longitude);
+            //address=getAddress(context, -6.166894, 106.861803); // ini berada di lokasi rawan banjir
             return address;
         }
 
@@ -193,7 +215,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                     String country_code=address.getCountryCode();
                     String zipcode=address.getPostalCode();*/
 
-                    String kelurahan = address.getSubLocality();
+                    kelurahan = address.getSubLocality();
                     String kecamatan = address.getLocality();
                     String wilayah = address.getSubAdminArea();
 
@@ -226,6 +248,26 @@ public class CheckMyLocationActivity extends ActionBarActivity {
             }
             else if (flag==0){
                 lokasisaya.setText(address);
+                //PUT CODE TO FECTH FLOAD AREA FROM DATABASE HERE
+
+                Uri floodUri = FloodContract.FloodAreaEntry.buildFloodAreaWithKelurahan(kelurahan);
+
+                // we'll query our contentProvider, as always
+                Cursor cursor = context.getContentResolver().query(floodUri, FLOOD_AREA_COLUMNS, null, null, null);
+
+                if  (cursor.getCount() <= 0) { //jika di dalam database tidak ada kelurahan tsb maka
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Anda tidak berada di lokasi rawan banjir",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Anda berada di lokasi rawan banjir!",
+                            Toast.LENGTH_LONG).show();
+                   // mFloodAreaAdapter.swapCursor((Cursor) cursor);
+                }
             }
         }
     }

@@ -155,6 +155,7 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
     @Override
     public void onStart() {
         super.onStart();
+        updateFloodArea();
     }
 
 

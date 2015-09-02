@@ -35,7 +35,8 @@ public class FloodProvider extends ContentProvider {
     static final int FLOOD = 100;
     static final int FLOOD_BY_ID = 101;
     static final int FLOOD_AREA = 300;
-    static final int FLOOD_AREA_BY_ID = 301;
+   // static final int FLOOD_AREA_BY_ID = 301;
+    static final int FLOOD_AREA_BY_KELURAHAN = 301;
 
 
     private static final SQLiteQueryBuilder sFloodSettingQueryBuilder;
@@ -55,9 +56,13 @@ public class FloodProvider extends ContentProvider {
             FloodContract.FloodEntry.TABLE_NAME +
                     "." + FloodContract.FloodEntry.COLUMN_FLOOD_ID + " = ?";
 
-    private static final String sById2 =
+  /*  private static final String sById2 =
             FloodContract.FloodAreaEntry.TABLE_NAME +
-                    "." + FloodContract.FloodAreaEntry.COLUMN_FLOOD_AREA_ID + " = ?";
+                    "." + FloodContract.FloodAreaEntry.COLUMN_FLOOD_AREA_ID + " = ?"; */
+
+    private static final String sByKelurahan =
+            FloodContract.FloodAreaEntry.TABLE_NAME +
+                    "." + FloodContract.FloodAreaEntry.COLUMN_KEL + " = ?";
 
 
     private Cursor getFlood(Uri uri, String[] projection, String sortOrder){
@@ -97,13 +102,27 @@ public class FloodProvider extends ContentProvider {
         );
     }
 
-    private Cursor getById2(Uri uri, String[] projection, String sortOrder){
+ /*   private Cursor getById2(Uri uri, String[] projection, String sortOrder){
         String id = FloodContract.FloodAreaEntry.getIdFromUri2(uri);
         return mOpenHelper.getReadableDatabase().query(
                 FloodContract.FloodAreaEntry.TABLE_NAME,
                 null,
                 sById,
                 new String[]{id},
+                null,
+                null,
+                sortOrder
+        );
+    } */
+
+
+    private Cursor getFloodAreaByKelurahan (Uri uri, String[] projection, String sortOrder){
+        String kel = FloodContract.FloodAreaEntry.getKelurahanFromUri(uri);
+        return mOpenHelper.getReadableDatabase().query(
+                FloodContract.FloodAreaEntry.TABLE_NAME,
+                null,
+                sByKelurahan,
+                new String[]{kel},
                 null,
                 null,
                 sortOrder
@@ -119,7 +138,7 @@ public class FloodProvider extends ContentProvider {
         matcher.addURI(authority, FloodContract.PATH_FLOOD + "/*", FLOOD_BY_ID);
 
         matcher.addURI(authority, FloodContract.PATH_FLOOD_AREA, FLOOD_AREA);
-        matcher.addURI(authority, FloodContract.PATH_FLOOD_AREA + "/*", FLOOD_AREA_BY_ID);
+        matcher.addURI(authority, FloodContract.PATH_FLOOD_AREA + "/*", FLOOD_AREA_BY_KELURAHAN);
 
         return matcher;
     }
@@ -143,8 +162,9 @@ public class FloodProvider extends ContentProvider {
                 return FloodContract.FloodEntry.CONTENT_ITEM_TYPE;
             case FLOOD:
                 return FloodContract.FloodEntry.CONTENT_TYPE;
-            case FLOOD_AREA_BY_ID :
-                return FloodContract.FloodAreaEntry.CONTENT_ITEM_TYPE;
+            case FLOOD_AREA_BY_KELURAHAN :
+              //  return FloodContract.FloodAreaEntry.CONTENT_ITEM_TYPE;
+                return FloodContract.FloodAreaEntry.CONTENT_TYPE;
             case FLOOD_AREA:
                 return FloodContract.FloodAreaEntry.CONTENT_TYPE;
 
@@ -172,8 +192,8 @@ public class FloodProvider extends ContentProvider {
                 retCursor = getFloodArea(uri, projection, sortOrder);
                 break;
             }
-            case FLOOD_AREA_BY_ID:{
-                retCursor = getById2(uri, projection, sortOrder);
+            case FLOOD_AREA_BY_KELURAHAN:{
+                retCursor = getFloodAreaByKelurahan(uri, projection, sortOrder);
                 break;
             }
 
