@@ -8,8 +8,6 @@ import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,9 +21,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
-import com.digitcreativestudio.siagabanjir.MainActivity;
+import com.digitcreativestudio.siagabanjir.Main2Activity;
 import com.digitcreativestudio.siagabanjir.R;
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
@@ -232,7 +232,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
                     // Make something interesting happen when the user clicks on the notification.
                     // In this case, opening the app is sufficient.
-                    Intent resultIntent = new Intent(context, MainActivity.class);
+                    Intent resultIntent = new Intent(context, Main2Activity.class);
 
                     // The stack builder object will contain an artificial back stack for the
                     // started Activity.
