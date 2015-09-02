@@ -134,11 +134,11 @@ public class ReportFloodActivity extends ActionBarActivity{
             mylistener.onLocationChanged(location);
             latitude = String.valueOf(mylistener.getLatitude());
             longitude = String.valueOf(mylistener.getLongitude());
-            Toast.makeText(
+        /*    Toast.makeText(
                     getApplicationContext(),
                     "Lat : "+latitude+
                             "Long : "+longitude,
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show(); */
         } else {
             // leads to the settings because there is no last known location
             showSettingsAlert(provider);

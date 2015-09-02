@@ -94,6 +94,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main2Activity" />
         </activity>
+
+
+        <activity
+            android:name=".NotifDetailActivity"
+            android:label="Detail Notifikasi" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
+        </activity>
         <activity
             android:name=".MyFloodReportActivity"
             android:label="Laporan Terkirim" >
