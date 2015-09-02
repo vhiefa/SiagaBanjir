@@ -1,23 +1,16 @@
-
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        tools:context="com.digitcreativestudio.siagabanjir.TelephoneActivity">
-
         <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scrollView2" >
+            android:id="@+id/scrollView2"
+            tools:context="com.digitcreativestudio.siagabanjir.TelephoneActivity">
 
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TableLayout
                     android:layout_width="fill_parent"
@@ -34,7 +27,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="POLDA METRO JAYA (Emergency)"
-                            android:id="@+id/textView7"
                             android:layout_weight="1"
                             android:layout_column="0"
                             android:gravity="center_vertical" />
@@ -44,10 +36,10 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="112"
-                            android:id="@+id/textView8"
                             android:layout_weight="1"
                             android:layout_column="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp" />
 
                     </TableRow>
                     <TableRow
@@ -60,7 +52,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Badan SAR Jakarta"
-                            android:id="@+id/textView9"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -70,10 +61,10 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="550-1111"
-                            android:id="@+id/textView9"
                             android:layout_column="1"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"/>
 
                     </TableRow>
                     <TableRow
@@ -86,7 +77,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Bencana Alam"
-                            android:id="@+id/textView10"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -96,10 +86,10 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="129"
-                            android:id="@+id/textView11"
                             android:layout_column="1"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"/>
 
                     </TableRow>
                     <TableRow
@@ -112,7 +102,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Ambulans"
-                            android:id="@+id/textView12"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -122,10 +111,10 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="118"
-                            android:id="@+id/textView13"
                             android:layout_column="1"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"/>
 
                     </TableRow>
                     <TableRow
@@ -138,24 +127,23 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko SATKORLAK &amp; SATLAK BANJIR"
-                            android:id="@+id/textView12"
                             android:layout_column="0"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"/>
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="382-2212 /"
-                                android:id="@+id/textView13"
                                 android:layout_column="1" />
 
                             <TextView
@@ -163,7 +151,6 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="081-192-0203"
-                                android:id="@+id/textView16"
                                 android:layout_column="1" />
                         </LinearLayout>
 
@@ -188,14 +175,14 @@
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="439-30152 /"
-                                android:id="@+id/textView13"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
@@ -204,7 +191,6 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="439-34751"
-                                android:id="@+id/textView17"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
                         </LinearLayout>
@@ -221,7 +207,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Banjir Jakarta Selatan"
-                            android:id="@+id/textView14"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -231,14 +216,14 @@
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="727-86646 /"
-                                android:id="@+id/textView15"
                                 android:layout_column="1" />
 
                             <TextView
@@ -246,7 +231,6 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="727-86657"
-                                android:id="@+id/textView18"
                                 android:layout_column="1" />
                         </LinearLayout>
 
@@ -262,7 +246,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Banjir Jakarta Barat"
-                            android:id="@+id/textView14"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -272,14 +255,14 @@
                             android:layout_width="fill_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="582-1765 /"
-                                android:id="@+id/textView15"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
@@ -288,7 +271,6 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="582-1725"
-                                android:id="@+id/textView19"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
                         </LinearLayout>
@@ -304,7 +286,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Banjir Jakarta Timur"
-                            android:id="@+id/textView14"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -314,10 +295,10 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="487-02443"
-                            android:id="@+id/textView15"
                             android:layout_column="1"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"/>
 
                     </TableRow>
                     <TableRow
@@ -330,7 +311,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Banjir Jakarta Pusat"
-                            android:id="@+id/textView14"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -340,10 +320,10 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="384-3066"
-                            android:id="@+id/textView15"
                             android:layout_column="1"
                             android:layout_weight="1"
-                            android:gravity="center_vertical" />
+                            android:gravity="center_vertical"
+                            android:paddingLeft="15dp"/>
 
                     </TableRow>
                     <TableRow
@@ -356,7 +336,6 @@
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Posko Peduli Banjir Radio Suara Metro"
-                            android:id="@+id/textView14"
                             android:layout_column="0"
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
@@ -365,14 +344,14 @@
                             android:orientation="vertical"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:paddingLeft="15dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="570-8037 / "
-                                android:id="@+id/textView20"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
@@ -381,7 +360,6 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="0812-1111-911"
-                                android:id="@+id/textView21"
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
@@ -390,7 +368,6 @@
                                 android:layout_height="0dp"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="570-8037 / 0812-1111-911"
-                                android:id="@+id/textView23"
                                 android:layout_column="1"
                                 android:visibility="invisible" />
                         </LinearLayout>
@@ -402,7 +379,8 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:gravity="right">
 
                     <TextView
@@ -410,7 +388,6 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="Sumber: "
-                        android:id="@+id/textView22"
                         android:padding="16dp"
                         android:textStyle="bold|italic" />
 
@@ -419,7 +396,6 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="http://www.metro.polri.go.id"
-                        android:id="@+id/textView24"
                         android:padding="16dp"
                         android:textStyle="bold|italic"
                         android:autoLink="web" />
@@ -427,5 +403,4 @@
             </LinearLayout>
         </ScrollView>
 
-    </LinearLayout>
 
