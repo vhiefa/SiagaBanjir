@@ -6,8 +6,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:context="com.digitcreativestudio.siagabanjir.AboutActivity"
-        android:background="#ffff3640">
+        tools:context="com.digitcreativestudio.siagabanjir.AboutActivity">
 
         <FrameLayout
             android:layout_width="fill_parent"
@@ -70,6 +69,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Siaga banjir adalah aplikasi yang digunakan untuk mengetahui wilayah DKI Jakarta yang rawan banjir. \nPengguna akan mendapatkan pemberitahuan jika terjadi bencana banjir di tempat mereka berada."
                             android:id="@+id/textView4"
+                            android:textSize="16sp"
                             android:gravity="center|center_vertical" />
                     </FrameLayout>
 
@@ -85,6 +85,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Pengembang: DCS TEAM\nAfifatul Mukaroh\nEko Wahyudi\nAdik Istanto\nFaqih Arifian A"
                             android:id="@+id/textView2"
+                            android:textSize="16dp"
                             android:gravity="center"
                             android:textStyle="bold" />
                     </FrameLayout>

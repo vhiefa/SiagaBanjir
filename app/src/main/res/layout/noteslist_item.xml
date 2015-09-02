@@ -10,4 +10,4 @@
     android:text="section name"
     android:paddingTop="12dip"
     android:paddingBottom="12dip"
-    android:textSize="15sp" />
+    android:textSize="16sp" />
