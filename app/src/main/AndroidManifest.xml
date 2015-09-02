@@ -46,38 +46,74 @@
         </activity>
         <activity
             android:name=".UbahPasswordActivity"
-            android:label="Ubah Password" />
+            android:label="Ubah Password">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AccountActivity" />
+        </activity>
         <activity
             android:name=".LupaPasswordAcivity"
-            android:label="Lupa Password" />
+            android:label="Lupa Password">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
         <activity
             android:name=".CreateAccountActivity"
             android:label="Create Account" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
         </activity>
         <activity
             android:name=".AccountActivity"
-            android:label="Account" >
+            android:label="Account">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
         <activity
             android:name=".CheckMyLocationActivity"
-            android:label="Cek Status Kerawanan" />
+            android:label="Cek Status Kerawanan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
+        </activity>
         <activity
             android:name=".ReportFloodActivity"
-            android:label="Laporkan Banjir" />
+            android:label="Laporkan Banjir">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
+        </activity>
         <activity
             android:name=".FloodAreaActivity"
             android:label="Wilayah Rawan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
         <activity
             android:name=".MyFloodReportActivity"
-            android:label="Laporan Terkirim" />
+            android:label="Laporan Terkirim" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AccountActivity" />
+        </activity>
         <activity
             android:name=".SetHomeActivity"
-            android:label="Set Home Location" />
+            android:label="Set Home Location" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SettingActivity" />
+        </activity>
         <activity
             android:name=".SettingActivity"
-            android:label="Setting" />
-
+            android:label="Setting" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
+        </activity>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCv8dol1-F8Ka5AGheJXOCCd-QKWofrvgg" />
@@ -118,6 +154,9 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
         <activity
             android:name=".MainActivity"
@@ -126,10 +165,16 @@
         <activity
             android:name=".TelephoneActivity"
             android:label="@string/title_activity_telephone" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
         <activity
             android:name=".InfoTanggapActivity"
             android:label="@string/title_activity_info_tanggap">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main2Activity" />
         </activity>
     </application>
 

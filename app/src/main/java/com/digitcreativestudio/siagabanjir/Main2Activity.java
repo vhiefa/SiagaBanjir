@@ -137,20 +137,15 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 7:
                 mTitle = getString(R.string.app_name);
-                Intent intent7 = new Intent (this,NewsFeedActivity.class);
-                startActivity(intent7);
-                break;
-            case 8:
-                mTitle = getString(R.string.app_name);
                 Intent intent8 = new Intent (this,TelephoneActivity.class);
                 startActivity(intent8);
                 break;
-            case 9:
+            case 8:
                 mTitle = getString(R.string.app_name);
                 Intent intent9 = new Intent (this,SettingActivity.class);
                 startActivity(intent9);
                 break;
-            case 10:
+            case 9:
                 mTitle = getString(R.string.app_name);
                 Intent intent10 = new Intent (this,AboutActivity.class);
                 startActivity(intent10);

@@ -29,13 +29,12 @@
     <string name="title_section4">Status Lokasi Saya</string>
     <string name="title_section5">Wilayah Rawan</string>
     <string name="title_section6">Info Tanggap</string>
-    <string name="title_section7">Berita</string>
-    <string name="title_section8">Telp. Penting</string>
-    <string name="title_section9">Pengaturan</string>
-    <string name="title_section10">Tentang</string>
+    <string name="title_section7">Nomor Penting</string>
+    <string name="title_section8">Pengaturan</string>
+    <string name="title_section9">Tentang</string>
     <string name="navigation_drawer_open">Siaga Banjir</string>
     <string name="navigation_drawer_close">Siaga Banjir</string>
-    <string name="title_activity_telephone">Nomor Telephone Penting</string>
+    <string name="title_activity_telephone">Nomor Penting</string>
     <string name="title_activity_info_tanggap">Info Tanggap Banjir</string>
     <string name="title_activity_news_feed">Berita</string>
 
