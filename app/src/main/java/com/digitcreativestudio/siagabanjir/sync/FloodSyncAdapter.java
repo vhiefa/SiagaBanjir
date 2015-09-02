@@ -26,6 +26,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.digitcreativestudio.siagabanjir.Main2Activity;
+import com.digitcreativestudio.siagabanjir.NotifDetailActivity;
 import com.digitcreativestudio.siagabanjir.R;
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
@@ -48,9 +49,8 @@ import java.util.Vector;
 public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
     private final String LOG_TAG = FloodSyncAdapter.class.getSimpleName();
-    public static final int SYNC_INTERVAL = 60;// * 3;// 60 * 3; //3 jam
+    public static final int SYNC_INTERVAL = 60* 60 * 1 / 2; //0.5 jam
     public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
-   //private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     final int FLOOD_NOTIFICATION_ID = 3153;
 
     Context context;
@@ -236,7 +236,16 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
                     // Make something interesting happen when the user clicks on the notification.
                     // In this case, opening the app is sufficient.
-                    Intent resultIntent = new Intent(context, Main2Activity.class);
+                    Intent resultIntent = new Intent(context, NotifDetailActivity.class);
+
+                    Bundle b = new Bundle();
+                    b.putString("floodId", floodId);
+                    b.putString("longi", longi);
+                    b.putString("lati", lati);
+                    b.putString("time", time);
+                    b.putString("desc", desc);
+                    b.putString("photo", photo);
+                    resultIntent.putExtras(b);
 
                     // The stack builder object will contain an artificial back stack for the
                     // started Activity.

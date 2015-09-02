@@ -3,6 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTime"
+        android:layout_gravity="center_horizontal" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,10 +17,10 @@
 
 
     <fragment
-        android:id="@+id/map1"
+        android:id="@+id/mapNotif"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="518dp" />
+        android:layout_height="300dp" />
 
     <TextView
         android:layout_width="wrap_content"

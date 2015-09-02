@@ -26,21 +26,24 @@ public class PetaPersebaranActivity extends Activity {
     private GoogleMap googleMap;
 
 	private static final String[] NOTIFY_FLOOD_PROJECTION = new String[] {
+			FloodContract.FloodEntry._ID,
 			FloodContract.FloodEntry.COLUMN_FLOOD_ID,
+			FloodContract.FloodEntry.COLUMN_TIME,
 			FloodContract.FloodEntry.COLUMN_CAPTION,
 			FloodContract.FloodEntry.COLUMN_LATITUDE,
 			FloodContract.FloodEntry.COLUMN_LONGITUDE,
-			FloodContract.FloodEntry.COLUMN_PHOTO,
-			FloodContract.FloodEntry.COLUMN_TIME
+			FloodContract.FloodEntry.COLUMN_PHOTO
+
 	};
 
 	// these indices must match the projection
-	private static final int INDEX_FLOOD_ID = 0;
-	private static final int INDEX_CAPTION = 1;
-	private static final int INDEX_LAT = 2;
-	private static final int INDEX_LONG = 3;
-	private static final int INDEX_PHOTO = 4;
-	private static final int INDEX_TIME = 5;
+	private static final int INDEX_ID = 0;
+	private static final int INDEX_FLOOD_ID = 1;
+	private static final int INDEX_TIME = 2;
+	private static final int INDEX_CAPTION = 3;
+	private static final int INDEX_LAT = 4;
+	private static final int INDEX_LONG = 5;
+	private static final int INDEX_PHOTO = 6;
 
 
 	@Override
@@ -78,10 +81,10 @@ public class PetaPersebaranActivity extends Activity {
             googleMap.getUiSettings().setZoomGesturesEnabled(true);
 
 
-		/*	Uri floodUri = FloodContract.FloodEntry.buildUri(null); //dapatkan semua notifikasi laporan
+			Uri floodUri = FloodContract.FloodEntry.CONTENT_URI; //dapatkan semua notifikasi laporan
 
 			// we'll query our contentProvider, as always
-			Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
+			Cursor cursor = getApplicationContext().getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
 
 			if  (cursor.getCount() <= 0) { //jika belum pernah mendapat notifikasi sama sekali
 
@@ -89,7 +92,7 @@ public class PetaPersebaranActivity extends Activity {
 
 			else {
 
-				for (int i = 0; i < cursor.getCount(); i++) {
+				/*for (int i = 0; i < cursor.getCount(); i++) {
 					if (cursor.moveToFirst()) {
 						double[] koordinat =[INDEX_LAT,INDEX_LONG];
 						// Adding a marker
@@ -103,8 +106,9 @@ public class PetaPersebaranActivity extends Activity {
 						googleMap.animateCamera(CameraUpdateFactory
 								.newCameraPosition(cameraPosition));
 					}
-				}
-			}*/
+				}*/
+
+			}
 
 			/*
 			double latitude = 17.385044;
