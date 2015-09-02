@@ -3,9 +3,12 @@ package com.digitcreativestudio.siagabanjir;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,9 +24,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
 import com.digitcreativestudio.siagabanjir.utils.Utility;
+
+import java.net.InetAddress;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -65,14 +71,30 @@ public class Main2Activity extends ActionBarActivity
 
         FloodSyncAdapter.initializeSyncAdapter(this);
 
-        webView = (WebView) findViewById(R.id.news_feed);
-        webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
-        webView.setWebViewClient(new MyWebViewClient());
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        if(isNetworkConnected()){
+            webView = (WebView) findViewById(R.id.news_feed);
+            webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
+            webView.setWebViewClient(new MyWebViewClient());
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
 
-        progress = (ProgressBar) findViewById(R.id.progressBar);
-        progress.setVisibility(View.GONE);
+            progress = (ProgressBar) findViewById(R.id.progressBar);
+            progress.setVisibility(View.GONE);
+        }else{
+            TextView text_info = (TextView) findViewById(R.id.connection_message);
+            text_info.setText("Anda tidak terhubung internet !");
+        }
+
+
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) {
+            // There are no active networks.
+            return false;
+        } else
+            return true;
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -235,4 +257,6 @@ public class Main2Activity extends ActionBarActivity
         }
     }
 
+    private class Context {
+    }
 }
