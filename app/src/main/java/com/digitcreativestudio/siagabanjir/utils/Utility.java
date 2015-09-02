@@ -25,12 +25,12 @@ public class Utility {
 
     public final static String getLatitudefromCoordinat (String koordinat){
         String[] koordintChar = koordinat.split(",");
-        return koordintChar[1];
+        return koordintChar[0];
     }
 
     public final static String getLongitudefromCoordinat (String koordinat){
         String[] koordintChar = koordinat.split(",");
-        return koordintChar[2];
+        return koordintChar[1];
     }
 
    /* public static String getShorterVenue(String venue) {
