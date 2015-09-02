@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -70,6 +71,7 @@ public class Main2Activity extends ActionBarActivity
         }
 
         FloodSyncAdapter.initializeSyncAdapter(this);
+
 
         if(isNetworkConnected()){
             webView = (WebView) findViewById(R.id.news_feed);
