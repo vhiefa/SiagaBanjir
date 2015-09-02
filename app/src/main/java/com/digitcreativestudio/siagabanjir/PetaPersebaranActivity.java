@@ -92,86 +92,22 @@ public class PetaPersebaranActivity extends Activity {
 
 			else {
 
-				/*for (int i = 0; i < cursor.getCount(); i++) {
+
+/*
+				for (int i = 0; i < cursor.getCount(); i++) {
 					if (cursor.moveToFirst()) {
-						double[] koordinat =[INDEX_LAT,INDEX_LONG];
-						// Adding a marker
-						MarkerOptions marker = new MarkerOptions().position(
-								new LatLng(koordinat[0], koordinat[1]))
-								.title(INDEX_CAPTION);
-						googleMap.addMarker(marker);
+						LatLng point = new LatLng(new Double(INDEX_LAT), new Double(INDEX_LONG));
+						googleMap.addMarker(new MarkerOptions().position(point).title(INDEX_CAPTION));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(new LatLng(koordinat[0],
-										koordinat[1])).zoom(15).build();
+								.target(point).zoom(13).build();
 						googleMap.animateCamera(CameraUpdateFactory
 								.newCameraPosition(cameraPosition));
+
 					}
 				}*/
 
 			}
 
-			/*
-			double latitude = 17.385044;
-			double longitude = 78.486671;
-
-			// lets place some 10 random markers
-			for (int i = 0; i < 10; i++) {
-				// random latitude and logitude
-				double[] koordinat = createRandLocation(latitude,
-						longitude);
-
-				// Adding a marker
-				MarkerOptions marker = new MarkerOptions().position(
-						new LatLng(koordinat[0], koordinat[1]))
-						.title("Hello Maps " + i);
-
-				Log.e("Random", "> " + koordinat[0] + ", "
-						+ koordinat[1]);
-
-				// changing marker color
-				if (i == 0)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-				if (i == 1)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-				if (i == 2)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-				if (i == 3)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-				if (i == 4)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-				if (i == 5)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-				if (i == 6)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-				if (i == 7)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-				if (i == 8)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-				if (i == 9)
-					marker.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-
-				googleMap.addMarker(marker);
-
-				// Move the camera to last position with a zoom level
-				if (i == 9) {
-					CameraPosition cameraPosition = new CameraPosition.Builder()
-							.target(new LatLng(koordinat[0],
-									koordinat[1])).zoom(15).build();
-
-					googleMap.animateCamera(CameraUpdateFactory
-							.newCameraPosition(cameraPosition));
-				}
-			}*/
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,7 +127,7 @@ public class PetaPersebaranActivity extends Activity {
     private void initilizeMap() {
         if (googleMap == null) {
             googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-                    R.id.map)).getMap();
+                    R.id.mapPersebaran)).getMap();
 
             // check if map is created successfully or not
             if (googleMap == null) {
