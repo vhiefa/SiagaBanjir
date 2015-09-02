@@ -14,9 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract.FloodAreaEntry;
 
@@ -126,6 +124,8 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listview_flood_area);
         listView.setAdapter(mFloodAreaAdapter);
+
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -133,17 +133,17 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
                 String floodArea = (String) mFloodAreaAdapter.getItem(position);
                 Toast.makeText(getActivity(), floodArea, Toast.LENGTH_SHORT).show();
                 Cursor cursor = mFloodAreaAdapter.getCursor();
-                /*
+
                 if(cursor != null && cursor.moveToPosition(position)){
                     ((Callback)getActivity())
                             .onItemSelected(cursor.getString(COL_FLOOD_AREA_ID));
                 }
-                */
+
                 mPosition = position;
                 Log.v(LOG_TAG,"position :" + position);
 
             }
-        });
+        });*/
 
         if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY)) {
             mPosition = savedInstanceState.getInt(SELECTED_KEY);
