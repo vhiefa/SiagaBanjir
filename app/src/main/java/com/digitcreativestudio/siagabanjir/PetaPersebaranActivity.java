@@ -1,18 +1,15 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -92,19 +89,19 @@ public class PetaPersebaranActivity extends Activity {
 
 			else {
 
+                cursor.moveToFirst();
 
-/*
-				for (int i = 0; i < cursor.getCount(); i++) {
-					if (cursor.moveToFirst()) {
-						LatLng point = new LatLng(new Double(INDEX_LAT), new Double(INDEX_LONG));
-						googleMap.addMarker(new MarkerOptions().position(point).title(INDEX_CAPTION));
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(point).zoom(13).build();
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
+                while(!cursor.isAfterLast()){
+                    LatLng point = new LatLng(new Double(cursor.getDouble(INDEX_LAT)), new Double(cursor.getDouble(INDEX_LONG)));
+                    googleMap.addMarker(new MarkerOptions().position(point).title(cursor.getString(INDEX_CAPTION)));
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(point).zoom(13).build();
+                    googleMap.animateCamera(CameraUpdateFactory
+                            .newCameraPosition(cameraPosition));
+                    cursor.moveToNext();
+                }
+                cursor.close();
 
-					}
-				}*/
 
 			}
 
