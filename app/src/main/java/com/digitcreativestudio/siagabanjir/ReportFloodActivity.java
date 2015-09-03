@@ -162,20 +162,20 @@ public class ReportFloodActivity extends ActionBarActivity{
                             "Harap masukan gambar!",
                             Toast.LENGTH_LONG).show();
                 }
-                if (deskripsi.equals("")){
+                else if (deskripsi.isEmpty()){
                     Toast.makeText(
                             getApplicationContext(),
                             "Harap masukan deskripsi gambar!",
                             Toast.LENGTH_LONG).show();
                 }
-                if ((latitude.equals(""))||(longitude.equals(""))){
+                else if ((latitude.equals(""))||(longitude.equals(""))){
                     Toast.makeText(
                             getApplicationContext(),
                             "Lokasi Anda sedang dicari! Tunggu Sebentar dan Coba lagi!",
                             Toast.LENGTH_LONG).show();
                 }
 
-                if (id_user==null){
+                else if (id_user==null){
                     Toast.makeText(
                             getApplicationContext(),
                             "Silahkan login terlebih dulu",

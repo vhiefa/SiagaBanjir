@@ -57,7 +57,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
     String kelurahan2;
 
     Context context;
-    Double latitude = -6.166894, longitude = 106.861803; //hanya untuk default (tes), nanti ini akan keganti dengan current lat long si user
+    Double latitude = null, longitude = null; //hanya untuk default (tes), nanti ini akan keganti dengan current lat long si user
 
     private static final String[] FLOOD_AREA_COLUMNS = {
             FloodContract.FloodAreaEntry.TABLE_NAME + "." + FloodContract.FloodAreaEntry._ID,
@@ -99,9 +99,15 @@ public class CheckMyLocationActivity extends ActionBarActivity {
         checkMyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetCurrentAddressAsyncTask currentadd = new GetCurrentAddressAsyncTask();
-                currentadd.execute();
-
+                if (latitude==null && longitude==null){
+                    Toast.makeText(getApplicationContext(),
+                            "Sedang mencoba mendapatkan lokasi Anda! Coba sebentar lagi!", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+                    GetCurrentAddressAsyncTask currentadd = new GetCurrentAddressAsyncTask();
+                    currentadd.execute();
+                }
             }
         });
 
@@ -131,7 +137,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                     Toast.LENGTH_LONG).show();*/
 
             CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(latitude, longitude)).zoom(13).build();
+                    .target(new LatLng(latitude, longitude)).zoom(16).build();
 
             googleMap.animateCamera(CameraUpdateFactory
                     .newCameraPosition(cameraPosition));
@@ -240,13 +246,13 @@ public class CheckMyLocationActivity extends ActionBarActivity {
             if (flag==1){
                 Toast.makeText(
                         getApplicationContext(),
-                        "No Address returned! Try Again",
+                        "Alamat tidak bisa didapatkan, cek koneksi internet Anda",
                         Toast.LENGTH_LONG).show();
             }
             else if (flag==2){
                 Toast.makeText(
                         getApplicationContext(),
-                        "Canont get Address! Could not get Geocoder data. Try Again",
+                        "Alamat tidak bisa didapatkan, cek koneksi internet Anda",
                         Toast.LENGTH_LONG).show();
             }
             else if (flag==0){
