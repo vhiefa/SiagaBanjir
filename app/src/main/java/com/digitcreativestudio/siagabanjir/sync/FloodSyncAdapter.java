@@ -17,15 +17,14 @@ import android.database.Cursor;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
-import com.digitcreativestudio.siagabanjir.Main2Activity;
 import com.digitcreativestudio.siagabanjir.NotifDetailActivity;
 import com.digitcreativestudio.siagabanjir.R;
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
@@ -202,12 +201,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
        // if (System.currentTimeMillis() - lastSync >= DAY_IN_MILLIS) {
             // Last sync was more than 1 day ago, let's send a notification with the flood report.
-
+        Cursor cursor;
             for(String id : newRecords){
                 Uri floodUri = FloodContract.FloodEntry.buildFloodById(id);
 
                 // we'll query our contentProvider, as always
-                Cursor cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
+                cursor = context.getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
 
                 if (cursor.moveToFirst()) {
                     String floodId = cursor.getString(INDEX_FLOOD_ID);
@@ -232,7 +231,9 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                             new NotificationCompat.Builder(getContext())
                                     .setSmallIcon(R.mipmap.ic_launcher) //notification won't show unless this line used
                                     .setContentTitle(title)
-                                    .setContentText(contentText);
+                                    .setContentText(contentText)
+                                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                                    .setAutoCancel(true);
 
                     // Make something interesting happen when the user clicks on the notification.
                     // In this case, opening the app is sufficient.
@@ -247,11 +248,17 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                     b.putString("photo", photo);
                     resultIntent.putExtras(b);
 
+                    PendingIntent contentIntent = PendingIntent.getActivity(context, (FLOOD_NOTIFICATION_ID + Integer.valueOf(floodId)), resultIntent, PendingIntent.FLAG_ONE_SHOT);
+                    mBuilder.setContentIntent(contentIntent);
+                    NotificationManager mNotificationManager =
+                            (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+                    mNotificationManager.notify((FLOOD_NOTIFICATION_ID + Integer.valueOf(floodId)), mBuilder.build());
                     // The stack builder object will contain an artificial back stack for the
                     // started Activity.
                     // This ensures that navigating backward from the Activity leads out of
                     // your application to the Home screen.
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                    /*TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
                     stackBuilder.addNextIntent(resultIntent);
                     PendingIntent resultPendingIntent =
                             stackBuilder.getPendingIntent(
@@ -263,12 +270,12 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                     NotificationManager mNotificationManager =
                             (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
                     // FLOOD_NOTIFICATION_ID allows you to update the notification later on.
-                    mNotificationManager.notify(FLOOD_NOTIFICATION_ID, mBuilder.build());
+                    mNotificationManager.notify(FLOOD_NOTIFICATION_ID, mBuilder.build());*/
             }
 
 
 
-
+            cursor.close();
                 //refreshing last sync
               //  SharedPreferences.Editor editor = prefNotif.edit();
               //  editor.putLong(lastNotificationKey, System.currentTimeMillis());
@@ -339,7 +346,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
                         newRecords.add(id_laporan); //save new record's id
 
                     }
-
+                    cursor.close();
                 }
 
                 if (cVVector.size() > 0) {
