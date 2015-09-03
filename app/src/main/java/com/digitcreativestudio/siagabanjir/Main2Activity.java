@@ -120,7 +120,7 @@ public class Main2Activity extends ActionBarActivity
         findViewById(R.id.telp_but).setOnClickListener(new View.OnClickListener() {
                                                              @Override
                                                              public void onClick(View view) {
-                                                                 Intent i1 = new Intent(Main2Activity.this, TelephoneActivity.class);
+                                                                 Intent i1 = new Intent(Main2Activity.this, InfoTanggapActivity.class);
                                                                  startActivity(i1);
                                                              }
                                                          }
