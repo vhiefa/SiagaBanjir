@@ -67,7 +67,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -80,7 +79,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
-
     }
 
     @Override
@@ -89,78 +87,12 @@ public class NavigationDrawerFragment extends Fragment {
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
     }
-    public class CustomListAdapter extends ArrayAdapter<String> {
 
-        private final Activity context;
-        private final String[] itemname;
-        private final Integer[] imgid;
-
-        public CustomListAdapter(Activity context, String[] itemname, Integer[] imgid) {
-            super(context, R.layout.fragment_navigation_drawer, itemname);
-            // TODO Auto-generated constructor stub
-
-            this.context=context;
-            this.itemname=itemname;
-            this.imgid=imgid;
-        }
-
-        public View getView(int position,View view,ViewGroup parent) {
-            LayoutInflater inflater=context.getLayoutInflater();
-            View rowView=inflater.inflate(R.layout.noteslist_item, null,true);
-
-
-            TextView txtTitle = (TextView) rowView.findViewById(R.id.textView);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-            txtTitle.setText(itemname[position]);
-            imageView.setImageResource(imgid[position]);
-            return rowView;
-
-        };
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
-
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-        ListView list;
-        String[] itemname ={
-                "Beranda",
-                "Akun",
-                "Lapor banjir",
-                "Cek status ",
-                "Wilayah rawan",
-                "Info tanggap banjir",
-                "Nomor penting",
-                "Pengaturan",
-                "Tentang"
-        };
-
-        Integer[] imgid={
-                R.drawable.ic_cungalow,
-                R.drawable.ic_user50,
-                R.drawable.ic_chart,
-                R.drawable.ic_glasses,
-                R.drawable.ic_hydroelectric,
-                R.drawable.ic_biking,
-                R.drawable.ic_phone,
-                R.drawable.ic_engineering,
-                R.drawable.ic_medal
-        };
-        CustomListAdapter adapter=new CustomListAdapter( this.getActivity(), itemname, imgid);
-       // View rowView=inflater.inflate(R.layout.noteslist_item, null,true);
-        list=(ListView) mDrawerListView.findViewById(R.id.list);
-        list.setAdapter(adapter);
-
-
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+        View rootView = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        return rootView;
 
     }
 

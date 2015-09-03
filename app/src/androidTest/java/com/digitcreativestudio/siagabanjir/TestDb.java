@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
-import com.digitcreativestudio.siagabanjir.data1.FloodContract.FloodAreaEntry;
-import com.digitcreativestudio.siagabanjir.data1.FloodDbHelper;
+import com.digitcreativestudio.siagabanjir.data.FloodContract.FloodAreaEntry;
+import com.digitcreativestudio.siagabanjir.data.FloodDbHelper;
 
 import java.util.Map;
 import java.util.Set;
