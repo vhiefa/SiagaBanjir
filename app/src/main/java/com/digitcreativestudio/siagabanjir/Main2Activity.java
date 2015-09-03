@@ -3,7 +3,6 @@ package com.digitcreativestudio.siagabanjir;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,14 +22,11 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
 import com.digitcreativestudio.siagabanjir.utils.Utility;
-
-import java.net.InetAddress;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -130,51 +126,44 @@ public class Main2Activity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
+        Class<?> classTarget = null;
         switch (number) {
             case 1:
-                mTitle = getString(R.string.app_name);
                 break;
             case 2:
-                mTitle = getString(R.string.app_name);
-                Intent intent = new Intent (this,LoginActivity.class);
-                startActivity(intent);
+                classTarget = LoginActivity.class;
                 break;
             case 3:
-                mTitle = getString(R.string.app_name);
-                Intent intent1 = new Intent (this,ReportFloodActivity.class);
-                startActivity(intent1);
+                classTarget = ReportFloodActivity.class;
                 break;
             case 4:
-                mTitle = getString(R.string.app_name);
-                Intent intent2 = new Intent (this,CheckMyLocationActivity.class);
-                startActivity(intent2);
+                classTarget = CheckMyLocationActivity.class;
                 break;
             case 5:
-                mTitle = getString(R.string.app_name);
-                Intent intent5 = new Intent (this,FloodAreaActivity.class);
-                startActivity(intent5);
+                classTarget = FloodAreaActivity.class;
                 break;
             case 6:
-                mTitle = getString(R.string.app_name);
-                Intent intent6 = new Intent (this,InfoTanggapActivity.class);
-                startActivity(intent6);
+                classTarget = InfoTanggapActivity.class;
                 break;
             case 7:
-                mTitle = getString(R.string.app_name);
-                Intent intent8 = new Intent (this,TelephoneActivity.class);
-                startActivity(intent8);
+                classTarget = TelephoneActivity.class;
                 break;
             case 8:
-                mTitle = getString(R.string.app_name);
-                Intent intent9 = new Intent (this,SettingActivity.class);
-                startActivity(intent9);
+                classTarget = SettingActivity.class;
                 break;
             case 9:
-                mTitle = getString(R.string.app_name);
-                Intent intent10 = new Intent (this,AboutActivity.class);
-                startActivity(intent10);
+                classTarget = AboutActivity.class;
                 break;
+            case 10:
+                classTarget = PetaPersebaranActivity.class;
         }
+
+        mTitle = getString(R.string.app_name);
+        if(classTarget != null){
+            Intent i = new Intent(Main2Activity.this, classTarget);
+            startActivity(i);
+        }
+
     }
 
     public void restoreActionBar() {

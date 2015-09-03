@@ -139,7 +139,8 @@ public class NavigationDrawerFragment extends Fragment {
                 "Info tanggap banjir",
                 "Nomor penting",
                 "Pengaturan",
-                "Tentang"
+                "Tentang",
+                "Peta Persebaran"
         };
 
         Integer[] imgid={
@@ -151,6 +152,7 @@ public class NavigationDrawerFragment extends Fragment {
                 R.drawable.ic_biking,
                 R.drawable.ic_phone,
                 R.drawable.ic_engineering,
+                R.drawable.ic_medal,
                 R.drawable.ic_medal
         };
         CustomListAdapter adapter=new CustomListAdapter( this.getActivity(), itemname, imgid);
