@@ -47,6 +47,31 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/wilayah_rawan_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/icon_wilayah_rawan"
+            android:src="@drawable/ic_hydroelectric"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/ic_wilayah_rawan"
+            android:paddingLeft="15dp"
+            android:text="Wilayah Rawan"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:id="@+id/cek_lokasi_but"
         android:clickable="true"
         android:focusable="true"
@@ -173,7 +198,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:id="@+id/ic_persebaran"
-            android:src="@drawable/ic_hydroelectric"
+            android:src="@drawable/icon_map"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp" />
         <TextView

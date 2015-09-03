@@ -1,9 +1,7 @@
 package com.digitcreativestudio.siagabanjir;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,14 +21,11 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
 import com.digitcreativestudio.siagabanjir.utils.Utility;
-
-import java.net.InetAddress;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -63,8 +58,6 @@ public class Main2Activity extends ActionBarActivity
 
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-        bar.setDisplayShowHomeEnabled(true);
-        bar.setIcon(R.mipmap.ic_launcher);
 
         Boolean notif = Utility.getPreferredNotification(this);
 
@@ -99,6 +92,15 @@ public class Main2Activity extends ActionBarActivity
                                                                  }
 
                 );
+        findViewById(R.id.wilayah_rawan_but).setOnClickListener(new View.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(View view) {
+                                                                     Intent i1 = new Intent(Main2Activity.this, FloodAreaActivity.class);
+                                                                     startActivity(i1);
+                                                                 }
+                                                             }
+
+        );
         findViewById(R.id.cek_lokasi_but).setOnClickListener(new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View view) {

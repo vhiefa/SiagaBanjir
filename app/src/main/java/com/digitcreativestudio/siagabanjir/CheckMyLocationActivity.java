@@ -267,7 +267,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                     // Gets the value from the column.
                     hasil = cursor.getString(cursor.getColumnIndex(FloodContract.FloodAreaEntry.COLUMN_KEL));
                     //hasil = cursor.getColumnName(index);
-                    if (hasil.equals(kelurahan)) {
+                    if (hasil.equals(kelurahan.toUpperCase())) {
                         rawan = true;
                     }
 
