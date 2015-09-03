@@ -235,6 +235,8 @@ public class CheckMyLocationActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(String resultString) {
             dialog.dismiss();
+
+
             if (flag==1){
                 Toast.makeText(
                         getApplicationContext(),
@@ -273,19 +275,26 @@ public class CheckMyLocationActivity extends ActionBarActivity {
 
                     Log.v(LOG_TAG,"Isi "+cursor.getString(index)+": " + hasil);
                 }
-
-                if(rawan){
-                    pesan = "Anda berada di lokasi RAWAN BANJIR!";
+                if (cursor.getCount() == 0){
+                    pesan = "Lokasi RAWAN belum tersedia! Silahkan masuk ke menu Wilayah Rawan untuk mengupdate lokasi RAWAN.";
                     Toast.makeText(
                             getApplicationContext(),pesan
                             ,
                             Toast.LENGTH_LONG).show();
                 }else{
-                    pesan = "Anda TIDAK berada di lokasi rawan banjir";
-                    Toast.makeText(
-                            getApplicationContext(),
-                            pesan,
-                            Toast.LENGTH_LONG).show();
+                    if(rawan){
+                        pesan = "Anda berada di lokasi RAWAN BANJIR!";
+                        Toast.makeText(
+                                getApplicationContext(),pesan
+                                ,
+                                Toast.LENGTH_LONG).show();
+                    }else{
+                        pesan = "Anda TIDAK berada di lokasi rawan banjir";
+                        Toast.makeText(
+                                getApplicationContext(),
+                                pesan,
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
                 Log.v(LOG_TAG, "Hasil analisa: " + pesan);
 
