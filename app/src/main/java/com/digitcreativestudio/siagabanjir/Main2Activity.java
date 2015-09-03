@@ -3,6 +3,7 @@ package com.digitcreativestudio.siagabanjir;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,11 +23,14 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digitcreativestudio.siagabanjir.sync.FloodSyncAdapter;
 import com.digitcreativestudio.siagabanjir.utils.Utility;
+
+import java.net.InetAddress;
 
 public class Main2Activity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -59,6 +63,8 @@ public class Main2Activity extends ActionBarActivity
 
         ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+        bar.setDisplayShowHomeEnabled(true);
+        bar.setIcon(R.mipmap.ic_launcher);
 
         Boolean notif = Utility.getPreferredNotification(this);
 
@@ -67,7 +73,7 @@ public class Main2Activity extends ActionBarActivity
         }
 
         FloodSyncAdapter.initializeSyncAdapter(this);
-
+        mTitle = getString(R.string.app_name);
 
         if(isNetworkConnected()){
             webView = (WebView) findViewById(R.id.news_feed);
@@ -83,7 +89,88 @@ public class Main2Activity extends ActionBarActivity
             text_info.setText("Anda tidak terhubung internet !");
         }
 
+        ;
+        findViewById(R.id.berita_but).setOnClickListener(new View.OnClickListener() {
+                                                                     @Override
+                                                                     public void onClick(View view) {
+                                                                         Intent i1 = new Intent(Main2Activity.this, Main2Activity.class);
+                                                                         startActivity(i1);
+                                                                     }
+                                                                 }
 
+                );
+        findViewById(R.id.cek_lokasi_but).setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                Intent i1 = new Intent(Main2Activity.this, CheckMyLocationActivity.class);
+                                                                startActivity(i1);
+                                                            }
+                                                        }
+
+       );
+        findViewById(R.id.lapor_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, ReportFloodActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.telp_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, TelephoneActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.tanggap_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, InfoTanggapActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.persebaran_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, PetaPersebaranActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.akun_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, LoginActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.pengaturan_but).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 Intent i1 = new Intent(Main2Activity.this, SettingActivity.class);
+                                                                 startActivity(i1);
+                                                             }
+                                                         }
+
+        );
+        findViewById(R.id.tentang_but).setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                Intent i1 = new Intent(Main2Activity.this, AboutActivity.class);
+                                                                startActivity(i1);
+                                                            }
+                                                        }
+
+       );
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -125,46 +212,6 @@ public class Main2Activity extends ActionBarActivity
                 .commit();
     }
 
-    public void onSectionAttached(int number) {
-        Class<?> classTarget = null;
-        switch (number) {
-            case 1:
-                break;
-            case 2:
-                classTarget = LoginActivity.class;
-                break;
-            case 3:
-                classTarget = ReportFloodActivity.class;
-                break;
-            case 4:
-                classTarget = CheckMyLocationActivity.class;
-                break;
-            case 5:
-                classTarget = FloodAreaActivity.class;
-                break;
-            case 6:
-                classTarget = InfoTanggapActivity.class;
-                break;
-            case 7:
-                classTarget = TelephoneActivity.class;
-                break;
-            case 8:
-                classTarget = SettingActivity.class;
-                break;
-            case 9:
-                classTarget = AboutActivity.class;
-                break;
-            case 10:
-                classTarget = PetaPersebaranActivity.class;
-        }
-
-        mTitle = getString(R.string.app_name);
-        if(classTarget != null){
-            Intent i = new Intent(Main2Activity.this, classTarget);
-            startActivity(i);
-        }
-
-    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -238,13 +285,6 @@ public class Main2Activity extends ActionBarActivity
             //munculin berita
 
             return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((Main2Activity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 

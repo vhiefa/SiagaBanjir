@@ -1,8 +1,275 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:choiceMode="singleChoice"
-    android:divider="#e0e0e0" android:dividerHeight="0.1dp"
-    android:background="#ffff"
-    android:id="@+id/list"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.digitcreativestudio.siagabanjir.NavigationDrawerFragment"
-    android:drawSelectorOnTop="true" />
+    android:background="@android:color/white">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+    <TextView
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
+        android:id="@+id/pra"
+        android:text="Pra Banjir"
+        android:paddingLeft="15dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/berita_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_info"
+            android:src="@drawable/ic_cungalow"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/info"
+            android:paddingLeft="15dp"
+            android:text="Info banjir"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/cek_lokasi_but"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_lokasi_laya"
+            android:src="@drawable/ic_glasses"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/lokasisaya"
+            android:paddingLeft="15dp"
+            android:text="Lokasi Saya"/>
+    </LinearLayout>
+    <TextView
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
+        android:id="@+id/saat"
+        android:paddingLeft="15dp"
+        android:text="Saat Banjir"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/lapor_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:clickable="true">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_lapor"
+            android:src="@drawable/ic_chart"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/laporbanjir"
+            android:paddingLeft="15dp"
+            android:text="Lapor Banjir"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/telp_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_nomor_penting"
+            android:src="@drawable/ic_phone"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/nomorpenting"
+            android:clickable="false"
+            android:paddingLeft="15dp"
+            android:text="Nomor Penting"/>
+    </LinearLayout>
+    <TextView
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
+        android:id="@+id/pasca"
+        android:paddingLeft="15dp"
+        android:text="Pasca banjir"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/tanggap_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_info_tanggap"
+            android:src="@drawable/ic_biking"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/infotanggap"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Info tanggap"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:showDividers="end"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/persebaran_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_persebaran"
+            android:src="@drawable/ic_hydroelectric"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/petapersebaran"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Peta persebaran"/>
+    </LinearLayout>
+    <View android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#b07e7e7e"
+        android:paddingTop="25dp" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:showDividers="end"
+        android:layout_marginTop="10dp"
+        android:id="@+id/akun_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_user"
+            android:src="@drawable/ic_user50"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/akun"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Akun"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:showDividers="end"
+        android:id="@+id/pengaturan_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_pengaturan"
+            android:src="@drawable/ic_engineering"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/pengaturan"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Pengaturan"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:showDividers="end"
+        android:id="@+id/tentang_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_tentang"
+            android:src="@drawable/ic_medal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/tentang"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Tentang"/>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
