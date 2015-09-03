@@ -164,7 +164,7 @@ public class FloodProvider extends ContentProvider {
                 return FloodContract.FloodEntry.CONTENT_TYPE;
             case FLOOD_AREA_BY_KELURAHAN :
               //  return FloodContract.FloodAreaEntry.CONTENT_ITEM_TYPE;
-                return FloodContract.FloodAreaEntry.CONTENT_TYPE;
+                return FloodContract.FloodAreaEntry.CONTENT_ITEM_TYPE;
             case FLOOD_AREA:
                 return FloodContract.FloodAreaEntry.CONTENT_TYPE;
 

@@ -30,6 +30,7 @@ public class FloodContract {
 
     public static final String PATH_FLOOD = "flood";
     public static final String PATH_FLOOD_AREA = "floodarea";
+    public static final String PATH_FLOOD_AREA_KELURAHAN = "kelurahan";
 
     /* Inner class that defines the table contents of the news table */
     public static final class FloodAreaEntry implements BaseColumns {
@@ -74,7 +75,10 @@ public class FloodContract {
         }
 
         public static Uri buildFloodAreaWithKelurahan(String kelurahan) {
-            return CONTENT_URI_2.buildUpon().appendPath(kelurahan).build();
+            return CONTENT_URI_2.buildUpon().appendPath(kelurahan).appendQueryParameter(COLUMN_KEL, kelurahan).build();
+        }
+        public static Uri buildFloodAreaWithKelurahan4(String kelurahan) {
+            return CONTENT_URI_2.buildUpon().appendQueryParameter(COLUMN_KEC, kelurahan).build();
         }
 
         public static String getKelurahan (Uri uri) {

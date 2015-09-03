@@ -1,8 +1,8 @@
 package com.digitcreativestudio.siagabanjir;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
@@ -30,13 +31,9 @@ import com.digitcreativestudio.siagabanjir.data.FloodContract;
 import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,6 +43,9 @@ import java.util.Locale;
  * Created by Afifatul on 8/8/2015.
  */
 public class CheckMyLocationActivity extends ActionBarActivity {
+
+    private static final String LOG_TAG = CheckMyLocationActivity.class.getSimpleName();
+
     private LocationManager locationManager;
     private String provider;
     private MyLocationListener mylistener;
@@ -54,12 +54,12 @@ public class CheckMyLocationActivity extends ActionBarActivity {
     TextView lokasisaya;
     private GoogleMap googleMap;
     String kelurahan;
+    String kelurahan2;
 
     Context context;
     Double latitude = -6.166894, longitude = 106.861803; //hanya untuk default (tes), nanti ini akan keganti dengan current lat long si user
 
     private static final String[] FLOOD_AREA_COLUMNS = {
-
             FloodContract.FloodAreaEntry.TABLE_NAME + "." + FloodContract.FloodAreaEntry._ID,
             FloodContract.FloodAreaEntry.COLUMN_FLOOD_AREA_ID,
             FloodContract.FloodAreaEntry.COLUMN_WIL,
@@ -216,6 +216,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                     String zipcode=address.getPostalCode();*/
 
                     kelurahan = address.getSubLocality();
+                    Log.v(LOG_TAG, "Kelurahan: " + kelurahan);
                     String kecamatan = address.getLocality();
                     String wilayah = address.getSubAdminArea();
 
@@ -250,22 +251,52 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                 lokasisaya.setText(address);
                 //PUT CODE TO FECTH FLOAD AREA FROM DATABASE HERE
 
-                Uri floodUri = FloodContract.FloodAreaEntry.buildFloodAreaWithKelurahan(kelurahan);
+                Uri floodUri = FloodContract.FloodAreaEntry.buildFloodAreaWithKelurahan4(kelurahan2);
+
+                Log.v(LOG_TAG, "Flood Uri: "+ floodUri);
 
                 // we'll query our contentProvider, as always
-                Cursor cursor = context.getContentResolver().query(floodUri, FLOOD_AREA_COLUMNS, null, null, null);
+                Cursor cursor = context.getContentResolver().query(floodUri, FLOOD_AREA_COLUMNS,null, null, "_ID ASC");
+                String hasil = "";
+                String pesan = "";
+                boolean rawan = false;
+                int index = 1;
 
-                if  (cursor.getCount() <= 0) { //jika di dalam database tidak ada kelurahan tsb maka
+                while (cursor.moveToNext()) {
+
+                    // Gets the value from the column.
+                    hasil = cursor.getString(cursor.getColumnIndex(FloodContract.FloodAreaEntry.COLUMN_KEL));
+                    //hasil = cursor.getColumnName(index);
+                    if (hasil.equals(kelurahan)) {
+                        rawan = true;
+                    }
+
+                    Log.v(LOG_TAG,"Isi "+cursor.getString(index)+": " + hasil);
+                }
+
+                if(rawan){
+                    pesan = "Anda berada di lokasi RAWAN BANJIR!";
+                    Toast.makeText(
+                            getApplicationContext(),pesan
+                            ,
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    pesan = "Anda TIDAK berada di lokasi rawan banjir";
                     Toast.makeText(
                             getApplicationContext(),
-                            "Anda tidak berada di lokasi rawan banjir",
+                            pesan,
                             Toast.LENGTH_LONG).show();
                 }
+                Log.v(LOG_TAG, "Hasil analisa: " + pesan);
+
+                Log.v(LOG_TAG, "Kursor: "+ cursor);
+                Log.v(LOG_TAG, "Jumlah kursor: "+ cursor.getCount());
+
+                if  (cursor.getCount() <= 0) { //jika di dalam database tidak ada kelurahan tsb maka
+
+                }
                 else {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "Anda berada di lokasi rawan banjir!",
-                            Toast.LENGTH_LONG).show();
+
                    // mFloodAreaAdapter.swapCursor((Cursor) cursor);
                 }
             }
@@ -275,6 +306,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
     /**
      * function to load map If map is not created it will create it for you
      * */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void initilizeMap() {
         if (googleMap == null) {
 
