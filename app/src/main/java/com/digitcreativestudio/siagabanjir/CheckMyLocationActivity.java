@@ -271,7 +271,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                         rawan = true;
                     }
 
-                    Log.v(LOG_TAG,"Isi "+cursor.getString(index)+": " + hasil);
+                    //Log.v(LOG_TAG,"Isi "+cursor.getString(index)+": " + hasil);
                 }
 
                 if(rawan){
