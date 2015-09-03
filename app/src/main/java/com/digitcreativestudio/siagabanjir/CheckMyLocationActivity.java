@@ -275,7 +275,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
 
                     Log.v(LOG_TAG,"Isi "+cursor.getString(index)+": " + hasil);
                 }
-                if (cursor.getCount() == 0){
+              if (cursor.getCount() == 0){
                     pesan = "Lokasi RAWAN belum tersedia! Silahkan masuk ke menu Wilayah Rawan untuk mengupdate lokasi RAWAN.";
                     Toast.makeText(
                             getApplicationContext(),pesan
