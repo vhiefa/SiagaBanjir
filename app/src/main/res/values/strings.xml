@@ -39,5 +39,6 @@
     <string name="title_activity_telepon1">TeleponActivity1</string>
 
     <string name="action_example">Example action</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
