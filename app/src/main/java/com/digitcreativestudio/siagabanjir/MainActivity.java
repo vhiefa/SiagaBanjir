@@ -88,7 +88,7 @@ public class MainActivity extends ActionBarActivity{
         telephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, InfoTanggapActivity.class);
+                Intent i = new Intent(MainActivity.this, TelephoneActivity.class);
                 startActivity(i);
             }
         });

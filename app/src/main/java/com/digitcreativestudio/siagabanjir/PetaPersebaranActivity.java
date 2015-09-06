@@ -2,8 +2,12 @@ package com.digitcreativestudio.siagabanjir;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
@@ -17,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by Afifatul on 9/2/2015.
  */
-public class PetaPersebaranActivity extends Activity {
+public class PetaPersebaranActivity extends ActionBarActivity {
 
     // Google Map
     private GoogleMap googleMap;
@@ -48,16 +52,15 @@ public class PetaPersebaranActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peta_persebaran_notification);
 
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+
         try {
             // Loading map
             initilizeMap();
 
             // Changing map type
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-            // googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
 
             // Showing / hiding your current location
             googleMap.setMyLocationEnabled(true);
@@ -84,6 +87,12 @@ public class PetaPersebaranActivity extends Activity {
 			Cursor cursor = getApplicationContext().getContentResolver().query(floodUri, NOTIFY_FLOOD_PROJECTION, null, null, null);
 
 			if  (cursor.getCount() <= 0) { //jika belum pernah mendapat notifikasi sama sekali
+
+                String pesan = "Peta perseberan kosong karena Anda belum pernah mendapatkan notifikasi banjir";
+                Toast.makeText(
+                        getApplicationContext(),
+                        pesan,
+                        Toast.LENGTH_LONG).show();
 
 			}
 

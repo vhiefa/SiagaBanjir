@@ -49,7 +49,7 @@ public class FloodSyncAdapter extends AbstractThreadedSyncAdapter{
 
     private final String LOG_TAG = FloodSyncAdapter.class.getSimpleName();
     public static final int SYNC_INTERVAL = 60* 60 * 1 / 2; //0.5 jam
-    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
+    public static final int SYNC_FLEXTIME = SYNC_INTERVAL/15;
     final int FLOOD_NOTIFICATION_ID = 3153;
 
     Context context;
