@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="fill_parent">
 
@@ -11,11 +15,12 @@
             android:id="@+id/map1"
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="fill_parent"
-            android:layout_height="200dp" />
+            android:layout_height="250dp" />
 
     </LinearLayout>
 
     <Button
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cek Kerawanan Lokasi Saya"
@@ -29,3 +34,4 @@
 
 
 </LinearLayout>
+</ScrollView>

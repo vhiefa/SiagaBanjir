@@ -71,8 +71,8 @@ public class CreateAccountActivity extends ActionBarActivity {
                 sNope = nope.getText().toString();
                 sAlamat = alamat.getText().toString();
                 if (sEmail.isEmpty() || sPwd1.isEmpty() || sPwd2.isEmpty() || sNama.isEmpty() || sAlamat.isEmpty() || sNope.isEmpty())
-                    alert.showAlertDialog(CreateAccountActivity.this, "Gagal", "Harap lengkapi semua kolom", false);
-                if (!Utility.isEmailValid(sEmail)){
+                {alert.showAlertDialog(CreateAccountActivity.this, "Gagal", "Harap lengkapi semua kolom", false);}
+                else if (!Utility.isEmailValid(sEmail)){
                     emailwarning.setText("Email tidak valid");
                 }else
                 if (!sPwd1.equals(sPwd2)){
