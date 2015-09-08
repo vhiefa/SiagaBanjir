@@ -14,7 +14,7 @@
 
         <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:layout_gravity="center">
 
             <LinearLayout
@@ -22,16 +22,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:weightSum="1"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp">
-
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp">
                 <ImageView
-                    android:layout_width="199dp"
-                    android:layout_height="94dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:id="@+id/imageView"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_gravity="center_horizontal|top"
+                    android:src="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -42,8 +40,20 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:gravity="center|center_vertical"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Version 2.0"
+                    android:id="@+id/versi"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center|center_vertical"
+                    android:layout_gravity="center_horizontal" />
             </LinearLayout>
+
+
         </FrameLayout>
 
         <FrameLayout
@@ -69,7 +79,9 @@
                             android:text="Siaga banjir adalah aplikasi yang digunakan untuk mengetahui wilayah DKI Jakarta yang rawan banjir. \nPengguna akan mendapatkan pemberitahuan jika terjadi bencana banjir di tempat mereka berada."
                             android:id="@+id/textView4"
                             android:textSize="16sp"
-                            android:gravity="center|center_vertical" />
+                            android:gravity="center|center_vertical"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -114,7 +126,8 @@
                                 android:text="contact@digitcreativestudio.com"
                                 android:id="@+id/textView5"
                                 android:gravity="center"
-                                android:autoLink="email" />
+                                android:autoLink="email"
+                                android:layout_marginBottom="15dp" />
                         </LinearLayout>
 
                     </FrameLayout>

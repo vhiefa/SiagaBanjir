@@ -1,5 +1,6 @@
 package com.digitcreativestudio.siagabanjir;
 
+import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -75,9 +76,15 @@ public class Main2Activity extends ActionBarActivity
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
 
+            //menampilkan progress bar
             progress = (ProgressBar) findViewById(R.id.progressBar);
             progress.setVisibility(View.GONE);
         }else{
+            //menampilkan dialoge
+            //ConnectionDialogeFragment newFragment = ConnectionDialogeFragment.newInstance();// call the static method
+            //newFragment.show(getFragmentManager(), "dialog");
+
+            //menampilkan pesan koneksi
             TextView text_info = (TextView) findViewById(R.id.connection_message);
             text_info.setText("Anda tidak terhubung internet !");
         }
@@ -167,8 +174,8 @@ public class Main2Activity extends ActionBarActivity
         findViewById(R.id.tentang_but).setOnClickListener(new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View view) {
-                                                                Intent i1 = new Intent(Main2Activity.this, AboutActivity.class);
-                                                                startActivity(i1);
+                                                                AboutDialogeFragment newFragment = AboutDialogeFragment.newInstance();// call the static method
+                                                                newFragment.show(getFragmentManager(), "dialog");
                                                             }
                                                         }
 
