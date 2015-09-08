@@ -400,6 +400,7 @@
                         android:textStyle="bold|italic"
                         android:autoLink="web" />
                 </LinearLayout>
+                <!-- edit ana-->
             </LinearLayout>
         </ScrollView>
 
