@@ -16,7 +16,7 @@ public class AboutDialogeFragment extends DialogFragment {
 
     public AboutDialogeFragment() {
         mContext = getActivity();}
-
+    //membuat dialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
