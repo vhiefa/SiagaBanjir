@@ -196,7 +196,7 @@ public class PetaPersebaranActivity extends ActionBarActivity {
 
         try {
             ShareActionProvider mShareActionProvider = null;
-            View theView = findViewById(R.id.content);
+            View theView = findViewById(R.id.mapPersebaran);
             theView.setDrawingCacheEnabled(true);
             theView.buildDrawingCache(true);
             Bitmap b = Bitmap.createBitmap(theView.getDrawingCache());
