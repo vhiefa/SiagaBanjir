@@ -174,8 +174,8 @@ public class Main2Activity extends ActionBarActivity
         findViewById(R.id.tentang_but).setOnClickListener(new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View view) {
-                                                                AboutDialogeFragment newFragment = AboutDialogeFragment.newInstance();// call the static method
-                                                                newFragment.show(getFragmentManager(), "dialog");
+                                                                Intent i1 = new Intent(Main2Activity.this, AboutActivity.class);
+                                                                startActivity(i1);
                                                             }
                                                         }
 
