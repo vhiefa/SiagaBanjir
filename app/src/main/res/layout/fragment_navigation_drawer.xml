@@ -40,7 +40,7 @@
             android:gravity="left|center_vertical"
             android:id="@+id/info"
             android:paddingLeft="15dp"
-            android:text="Info banjir"
+            android:text="Info Tinggi Muka Air"
             />
     </LinearLayout>
     <LinearLayout
