@@ -1,13 +1,19 @@
 package com.digitcreativestudio.siagabanjir;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
@@ -18,11 +24,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Afifatul on 9/2/2015.
  */
 public class PetaPersebaranActivity extends ActionBarActivity {
-
+    private String mPath = null;
     // Google Map
     private GoogleMap googleMap;
 
@@ -153,4 +165,133 @@ public class PetaPersebaranActivity extends ActionBarActivity {
                 longitude + ((Math.random() - 0.5) / 500),
                 150 + ((Math.random() - 0.5) * 10) };
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_petapersebaran, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if(id == R.id.action_share){
+            CaptureMapScreen();
+            //createShareNilaiIntent();
+            /*if(mPath != null){
+                File file = new File(mPath);
+                mPath = null;
+            }*/
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private Intent createShareNilaiIntent(){
+
+        try {
+            ShareActionProvider mShareActionProvider = null;
+            View theView = findViewById(R.id.mapPersebaran);
+            theView.setDrawingCacheEnabled(true);
+            theView.buildDrawingCache(true);
+            Bitmap b = Bitmap.createBitmap(theView.getDrawingCache());
+            theView.setDrawingCacheEnabled(false);
+
+            //Save bitmap
+            //String mPath = null;
+            String extr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() +   File.separator + "SiagaBanjir";
+            String fileName = new SimpleDateFormat("yyyy-MM-dd HHmmss").format(new Date()) + ".jpg";
+            File directory = new File(Environment.getExternalStorageDirectory(), "SiagaBanjir");
+
+            if(!directory.exists()){
+                directory.mkdir();
+            }
+
+            File file = new File(directory.getPath(), fileName);
+
+
+            FileOutputStream fos = new FileOutputStream(file);
+            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+
+            //MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+            //Log.e("------ PATH IMAGE -----", file.getAbsolutePath());
+
+            Uri uri = Uri.parse(file.getAbsolutePath());
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            sharingIntent.setType("image/png");
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(sharingIntent,
+                    "Share image using"));
+            if(mShareActionProvider != null){
+                mShareActionProvider.setShareIntent(createShareNilaiIntent());
+            }
+
+            return sharingIntent;
+        }catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+
+        return null;
+
+    }
+
+    public void CaptureMapScreen(){
+        GoogleMap.SnapshotReadyCallback callback = new GoogleMap.SnapshotReadyCallback() {
+            Bitmap bitmap;
+
+
+            @Override
+            public void onSnapshotReady(Bitmap snapshot) {
+                bitmap = snapshot;
+                try {
+                    ShareActionProvider shareActionProvider = null;
+                    String fileName = new SimpleDateFormat("yyyy-MM-dd HHmmss").format(new Date()) + ".jpg";
+                    File directory = new File(Environment.getExternalStorageDirectory(), "SiagaBanjir");
+
+                    if(!directory.exists()){
+                        directory.mkdir();
+                    }
+
+                    File file = new File(directory.getPath(), fileName);
+
+
+                    FileOutputStream fos = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    fos.flush();
+                    fos.close();
+
+                    Uri uri = Uri.parse(file.getAbsolutePath());
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                    sharingIntent.setType("image/png");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    startActivity(Intent.createChooser(sharingIntent,
+                            "Share image using"));
+                    if(shareActionProvider != null){
+                        shareActionProvider.setShareIntent(createShareNilaiIntent());
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        googleMap.snapshot(callback);
+    }
+
 }
+

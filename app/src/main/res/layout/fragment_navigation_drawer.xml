@@ -40,57 +40,7 @@
             android:gravity="left|center_vertical"
             android:id="@+id/info"
             android:paddingLeft="15dp"
-            android:text="Info Tinggi Muka Air"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/tanggap_but"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="false">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:id="@+id/ic_info_tanggap"
-            android:src="@drawable/ic_biking"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp" />
-        <TextView
-            android:layout_height="40dp"
-            android:layout_width="match_parent"
-            android:gravity="left|center_vertical"
-            android:id="@+id/infotanggap"
-            android:paddingLeft="15dp"
-            android:clickable="false"
-            android:text="Info tanggap"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:focusable="true"
-        android:id="@+id/wilayah_rawan_but"
-        android:background="?android:attr/selectableItemBackground"
-        android:focusableInTouchMode="false">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:id="@+id/icon_wilayah_rawan"
-            android:src="@drawable/ic_hydroelectric"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center" />
-        <TextView
-            android:layout_height="40dp"
-            android:layout_width="match_parent"
-            android:gravity="left|center_vertical"
-            android:id="@+id/ic_wilayah_rawan"
-            android:paddingLeft="15dp"
-            android:text="Wilayah Rawan"
+            android:text="Info banjir"
             />
     </LinearLayout>
     <LinearLayout
@@ -116,6 +66,30 @@
             android:id="@+id/lokasisaya"
             android:paddingLeft="15dp"
             android:text="Lokasi Saya"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/wilayah_rawan_but"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_wilayah_rawan"
+            android:src="@drawable/icon_map"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/wilayahrawan"
+            android:paddingLeft="15dp"
+            android:text="Wilayah Rawan"/>
     </LinearLayout>
     <TextView
         android:layout_height="40dp"
@@ -186,6 +160,31 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:id="@+id/tanggap_but"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/ic_info_tanggap"
+            android:src="@drawable/ic_biking"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:id="@+id/infotanggap"
+            android:paddingLeft="15dp"
+            android:clickable="false"
+            android:text="Info tanggap"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:baselineAligned="false"
         android:showDividers="end"
         android:layout_marginBottom="20dp"
@@ -198,7 +197,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:id="@+id/ic_persebaran"
-            android:src="@drawable/icon_map"
+            android:src="@drawable/ic_hydroelectric"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp" />
         <TextView
