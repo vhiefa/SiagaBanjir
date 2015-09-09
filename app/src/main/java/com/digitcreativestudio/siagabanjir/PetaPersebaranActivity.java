@@ -182,7 +182,8 @@ public class PetaPersebaranActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.action_share){
-            createShareNilaiIntent();
+            CaptureMapScreen();
+            //createShareNilaiIntent();
             /*if(mPath != null){
                 File file = new File(mPath);
                 mPath = null;
@@ -205,7 +206,7 @@ public class PetaPersebaranActivity extends ActionBarActivity {
             //Save bitmap
             //String mPath = null;
             String extr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() +   File.separator + "SiagaBanjir";
-            String fileName = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date()) + ".jpg";
+            String fileName = new SimpleDateFormat("yyyy-MM-dd HHmmss").format(new Date()) + ".jpg";
             File directory = new File(Environment.getExternalStorageDirectory(), "SiagaBanjir");
 
             if(!directory.exists()){
@@ -246,6 +247,50 @@ public class PetaPersebaranActivity extends ActionBarActivity {
 
         return null;
 
+    }
+
+    public void CaptureMapScreen(){
+        GoogleMap.SnapshotReadyCallback callback = new GoogleMap.SnapshotReadyCallback() {
+            Bitmap bitmap;
+
+
+            @Override
+            public void onSnapshotReady(Bitmap snapshot) {
+                bitmap = snapshot;
+                try {
+                    ShareActionProvider shareActionProvider = null;
+                    String fileName = new SimpleDateFormat("yyyy-MM-dd HHmmss").format(new Date()) + ".jpg";
+                    File directory = new File(Environment.getExternalStorageDirectory(), "SiagaBanjir");
+
+                    if(!directory.exists()){
+                        directory.mkdir();
+                    }
+
+                    File file = new File(directory.getPath(), fileName);
+
+
+                    FileOutputStream fos = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    fos.flush();
+                    fos.close();
+
+                    Uri uri = Uri.parse(file.getAbsolutePath());
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                    sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                    sharingIntent.setType("image/png");
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    startActivity(Intent.createChooser(sharingIntent,
+                            "Share image using"));
+                    if(shareActionProvider != null){
+                        shareActionProvider.setShareIntent(createShareNilaiIntent());
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        googleMap.snapshot(callback);
     }
 
 }
