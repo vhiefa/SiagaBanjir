@@ -548,6 +548,8 @@ public class ReportFloodActivity extends ActionBarActivity{
             }
             else if (result.equalsIgnoreCase("sukses")){
                 Toast.makeText(ReportFloodActivity.this, "Sukses!",  Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), MyFloodReportActivity.class);
+                startActivity(i);
             }
         }
     }
