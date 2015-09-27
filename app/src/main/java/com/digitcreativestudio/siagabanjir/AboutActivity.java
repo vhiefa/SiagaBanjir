@@ -17,8 +17,7 @@ public class AboutActivity extends ActionBarActivity {
         setContentView(R.layout.activity_about);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-    }
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));    }
 
 
     @Override

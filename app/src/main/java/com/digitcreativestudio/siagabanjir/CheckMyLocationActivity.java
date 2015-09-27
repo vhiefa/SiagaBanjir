@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Criteria;
@@ -28,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
+import com.digitcreativestudio.siagabanjir.utils.AlertDialogManager;
+import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.MyLocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,7 +46,7 @@ import java.util.Locale;
 public class CheckMyLocationActivity extends ActionBarActivity {
 
     private static final String LOG_TAG = CheckMyLocationActivity.class.getSimpleName();
-
+    AlertDialogManager alert = new AlertDialogManager();
     private LocationManager locationManager;
     private String provider;
     private MyLocationListener mylistener;
@@ -80,8 +81,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_check_my_location);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         try {
             // Loading map
             initilizeMap();
@@ -126,6 +126,10 @@ public class CheckMyLocationActivity extends ActionBarActivity {
 
         mylistener = new MyLocationListener(CheckMyLocationActivity.this);
 
+        boolean isProviderEnable = locationManager.isProviderEnabled(provider);
+        //boolean isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        //boolean isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         if (location != null) {
             mylistener.onLocationChanged(location);
             latitude = mylistener.getLatitude();
@@ -137,14 +141,21 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                     Toast.LENGTH_LONG).show();*/
 
             CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(latitude, longitude)).zoom(16).build();
+                    .target(new LatLng(latitude, longitude)).zoom(12).build();
 
             googleMap.animateCamera(CameraUpdateFactory
                     .newCameraPosition(cameraPosition));
 
         } else {
+            if (!isProviderEnable){
             // leads to the settings because there is no last known location
-            showSettingsAlert(provider);
+            showSettingsAlert(provider);}
+            else{
+                /*Toast.makeText(
+                        getApplicationContext(),
+                        "Sedang mendapatkan lokasi Anda... Mohon tunggu...",
+                        Toast.LENGTH_LONG).show();*/
+            }
         }
         // location updates: at least 10 meter and 3 minutes change
         locationManager.requestLocationUpdates(provider, 1000*60*3, 10, mylistener);
@@ -192,7 +203,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             dialog = new ProgressDialog(CheckMyLocationActivity.this);
-            dialog.setMessage("Loading address. Please wait...");
+            dialog.setMessage("Sedang memuat alamat...Mohon Tunggu...");
             dialog.setIndeterminate(false);
             dialog.setCancelable(false);
             dialog.show();
@@ -256,7 +267,7 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                         Toast.LENGTH_LONG).show();
             }
             else if (flag==0){
-                lokasisaya.setText(address);
+                //lokasisaya.setText(address);
                 //PUT CODE TO FECTH FLOAD AREA FROM DATABASE HERE
 
                 Uri floodUri = FloodContract.FloodAreaEntry.buildFloodAreaWithKelurahan4(kelurahan2);
@@ -289,17 +300,19 @@ public class CheckMyLocationActivity extends ActionBarActivity {
                             Toast.LENGTH_LONG).show();
                 }else{
                     if(rawan){
-                        pesan = "Anda berada di lokasi RAWAN BANJIR!";
+                        /*pesan = "Anda berada di lokasi RAWAN BANJIR!" + address;
                         Toast.makeText(
                                 getApplicationContext(),pesan
                                 ,
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
+                        alert.showAlertDialog(CheckMyLocationActivity.this, "Anda berada di lokasi RAWAN BANJIR!",  address, false);
                     }else{
-                        pesan = "Anda TIDAK berada di lokasi rawan banjir";
+                        /*pesan = "Anda TIDAK berada di lokasi rawan banjir"+ address;
                         Toast.makeText(
                                 getApplicationContext(),
                                 pesan,
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
+                        alert.showAlertDialog(CheckMyLocationActivity.this, "Anda TIDAK berada di lokasi rawan banjir", address, false);
                     }
                 }
                 Log.v(LOG_TAG, "Hasil analisa: " + pesan);

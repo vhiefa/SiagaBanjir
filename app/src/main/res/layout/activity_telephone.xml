@@ -4,6 +4,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView2"
+            android:background="@color/blue_light"
             tools:context="com.digitcreativestudio.siagabanjir.TelephoneActivity">
 
 
@@ -13,16 +14,17 @@
                 android:layout_height="match_parent">
 
                 <TableLayout
+                    android:background="@drawable/rounded_edittext"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:padding="16dp">
+                    android:layout_margin="16dp">
 
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -31,7 +33,8 @@
                             android:layout_column="0"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
+                            
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -42,12 +45,13 @@
                             android:paddingLeft="15dp" />
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
+                       
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -56,7 +60,7 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -67,12 +71,12 @@
                             android:paddingLeft="15dp"/>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -81,7 +85,7 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -92,12 +96,12 @@
                             android:paddingLeft="15dp"/>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -106,7 +110,7 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -117,12 +121,12 @@
                             android:paddingLeft="15dp"/>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -139,14 +143,14 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp">
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="382-2212 /"
                                 android:layout_column="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -155,12 +159,12 @@
                         </LinearLayout>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -178,7 +182,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp">
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -186,7 +190,7 @@
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -197,12 +201,12 @@
 
                     </TableRow>
 
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -219,14 +223,14 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp">
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="727-86646 /"
                                 android:layout_column="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -236,12 +240,12 @@
 
                     </TableRow>
 
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -258,7 +262,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp">
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -266,7 +270,7 @@
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -276,12 +280,12 @@
                         </LinearLayout>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -290,7 +294,7 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -301,12 +305,12 @@
                             android:paddingLeft="15dp"/>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -315,7 +319,7 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical" />
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -326,12 +330,12 @@
                             android:paddingLeft="15dp"/>
 
                     </TableRow>
-                    <TableRow
+                    <TableRow                                                   android:padding="7dp"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="10dp">
 
-                        <TextView
+                        <TextView                             android:textIsSelectable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -347,7 +351,7 @@
                             android:layout_weight="1"
                             android:paddingLeft="15dp">
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -355,7 +359,7 @@
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -363,7 +367,7 @@
                                 android:layout_column="1"
                                 android:layout_weight="1" />
 
-                            <TextView
+                            <TextView                             android:textIsSelectable="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -383,7 +387,7 @@
                     android:layout_weight="1"
                     android:gravity="right">
 
-                    <TextView
+                    <TextView                             android:textIsSelectable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -391,7 +395,7 @@
                         android:padding="16dp"
                         android:textStyle="bold|italic" />
 
-                    <TextView
+                    <TextView                             android:textIsSelectable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"

@@ -5,7 +5,6 @@ package com.digitcreativestudio.siagabanjir;
  */
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -15,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.digitcreativestudio.siagabanjir.utils.AlertDialogManager;
+import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class AccountActivity extends ActionBarActivity {
         setContentView(R.layout.activity_account);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
 
         // Session class instance
         session = new SessionManager(getApplicationContext());
@@ -73,8 +74,8 @@ public class AccountActivity extends ActionBarActivity {
 
 
         // displaying user data
-        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
-        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
+        lblName.setText(Html.fromHtml("<b>" + name + "</b>"));
+        lblEmail.setText(Html.fromHtml("" + email + ""));
 
 
         /**

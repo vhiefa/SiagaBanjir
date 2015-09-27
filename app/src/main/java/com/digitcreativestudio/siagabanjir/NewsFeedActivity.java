@@ -23,8 +23,7 @@ public class NewsFeedActivity extends ActionBarActivity {
         setContentView(R.layout.activity_news_feed);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
 
 
         webView =(WebView) findViewById(R.id.news_feed);

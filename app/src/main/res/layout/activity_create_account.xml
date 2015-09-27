@@ -19,7 +19,7 @@
         android:layout_marginBottom="5dip"/>
 
     <!-- Password input text -->
-    <EditText android:id="@+id/txtNama"
+    <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtNama"
         android:layout_width="fill_parent"
          
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtTglLahir"
+        <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtTglLahir"
             android:layout_width="fill_parent"
              
             android:layout_height="wrap_content"
@@ -44,12 +44,18 @@
             android:text="Jenis Kelamin"
             android:layout_marginBottom="5dip"/>
 
-        <!-- Password input text -->
-        <EditText android:id="@+id/txtJenKel"
+        <Spinner
+            android:id="@+id/jenKelSpinner"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+
+        <!-- Password input text
+        <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtJenKel"
              
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dip"/>
+            android:layout_marginBottom="20dip"/>-->
         <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -57,7 +63,7 @@
         android:layout_marginBottom="5dip"/>
 
     <!-- Password input text -->
-    <EditText android:id="@+id/txtNope"
+    <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtNope"
         android:layout_width="fill_parent"
          
         android:layout_height="wrap_content"
@@ -70,10 +76,10 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtAlamat"
+        <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtAlamat"
             android:layout_width="fill_parent"
-             
-            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:layout_height="70dp"
             android:layout_marginBottom="20dip"/>
 
         <!-- Email Label -->
@@ -85,7 +91,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Email input text -->
-        <EditText android:id="@+id/txtEmail"
+        <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtEmail"
             android:layout_width="fill_parent"
              
             android:layout_height="wrap_content"
@@ -109,7 +115,7 @@
 
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtPassword"
+        <EditText             android:padding="5dp"         android:background="@drawable/rounded_edittext" android:id="@+id/txtPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
@@ -126,7 +132,9 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtPassword2"
+        <EditText             android:padding="5dp"
+            
+            android:background="@drawable/rounded_edittext" android:id="@+id/txtPassword2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dip"
@@ -142,7 +150,7 @@
             android:id="@+id/pwdwarning"
             android:layout_marginBottom="10dip"/>
 
-    <Button android:id="@+id/btnCreateAccount"
+    <Button         android:background="@drawable/color_btn" style="@style/ButtonText" android:id="@+id/btnCreateAccount"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Create Account"/>

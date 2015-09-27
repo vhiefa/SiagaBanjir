@@ -36,8 +36,7 @@ public class InfoTanggapActivity extends ActionBarActivity {
 
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         /* Initialize main's flippers and buttons */
 
         viewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
@@ -156,16 +155,20 @@ public class InfoTanggapActivity extends ActionBarActivity {
             viewFlipper.showNext();
 
             prev.setEnabled(true);
+            prev.setVisibility(View.VISIBLE);
             if(viewFlipper.getChildCount()-1 == viewFlipper.getDisplayedChild()){
                 next.setEnabled(false);
+                next.setVisibility(View.GONE);
             }
         }else{
             titleFlipper.showPrevious();
             viewFlipper.showPrevious();
 
             next.setEnabled(true);
+            next.setVisibility(View.VISIBLE);
             if(viewFlipper.getDisplayedChild() == 0){
                 prev.setEnabled(false);
+                prev.setVisibility(View.GONE);
             }
         }
 
@@ -174,7 +177,9 @@ public class InfoTanggapActivity extends ActionBarActivity {
         if(position == 3){
             //reset banjir's flippers and buttons state
             banjirPrev.setEnabled(false);
+            banjirPrev.setVisibility(View.GONE);
             banjirNext.setEnabled(true);
+            banjirNext.setVisibility(View.VISIBLE);
 
             titleBanjirFlipper.setInAnimation(null);
             titleBanjirFlipper.setOutAnimation(null);
@@ -188,7 +193,9 @@ public class InfoTanggapActivity extends ActionBarActivity {
         }else if(position == 4){
             //reset reda's flippers and buttons state
             redaPrev.setEnabled(false);
+            redaPrev.setVisibility(View.GONE);
             redaNext.setEnabled(true);
+            redaNext.setVisibility(View.VISIBLE);
 
             titleRedaFlipper.setInAnimation(null);
             titleRedaFlipper.setOutAnimation(null);

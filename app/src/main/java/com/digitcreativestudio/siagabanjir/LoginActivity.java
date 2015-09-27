@@ -2,7 +2,6 @@ package com.digitcreativestudio.siagabanjir;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.digitcreativestudio.siagabanjir.utils.AlertDialogManager;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
@@ -51,8 +51,7 @@ public class LoginActivity extends ActionBarActivity{
         setContentView(R.layout.activity_login);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         // Session Manager
         session = new SessionManager(getApplicationContext());
 
@@ -78,7 +77,6 @@ public class LoginActivity extends ActionBarActivity{
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), LupaPasswordAcivity.class);
                 startActivity(i);
-                finish();
             }
         });
 
@@ -87,7 +85,6 @@ public class LoginActivity extends ActionBarActivity{
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CreateAccountActivity.class);
                 startActivity(i);
-                finish();
             }
         });
 

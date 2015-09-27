@@ -130,6 +130,10 @@ public class ReportFloodActivity extends ActionBarActivity{
 
         mylistener = new MyLocationListener(ReportFloodActivity.this);
 
+        boolean isProviderEnable = locationManager.isProviderEnabled(provider);
+        //boolean isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        //boolean isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         if (location != null) {
             mylistener.onLocationChanged(location);
             latitude = String.valueOf(mylistener.getLatitude());
@@ -140,8 +144,15 @@ public class ReportFloodActivity extends ActionBarActivity{
                             "Long : "+longitude,
                     Toast.LENGTH_LONG).show(); */
         } else {
-            // leads to the settings because there is no last known location
-            showSettingsAlert(provider);
+            if (!isProviderEnable){
+                // leads to the settings because there is no last known location
+                showSettingsAlert(provider);}
+            else{
+                /*Toast.makeText(
+                        getApplicationContext(),
+                        "Sedang mendapatkan lokasi Anda... Mohon tunggu...",
+                        Toast.LENGTH_LONG).show();*/
+            }
         }
         // location updates: at least 10 meter and 3 minutes change
         locationManager.requestLocationUpdates(provider, 1000*60*3, 10, mylistener);
@@ -188,8 +199,7 @@ public class ReportFloodActivity extends ActionBarActivity{
         });
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
     }
 
 

@@ -33,9 +33,9 @@ public class Utility {
         return koordintChar[1];
     }
 
-   /* public static String getShorterVenue(String venue) {
+    public static String getShorterString(String venue) {
         String[] titleChar = venue.split("");
-        int maxTitleChar = 30;
+        int maxTitleChar = 100;
         if (titleChar.length > maxTitleChar) {
             int i;
             venue = titleChar[1];
@@ -47,7 +47,7 @@ public class Utility {
             venue = venue + "...";
         }
         return venue;
-    } */
+    }
 
     public static Boolean getPreferredNotification(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

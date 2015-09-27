@@ -19,7 +19,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtNama"
+        <EditText             android:padding="5dp"        android:background="@drawable/rounded_edittext" android:id="@+id/txtNama"
             android:layout_width="fill_parent"
 
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtTglLahir"
+        <EditText             android:padding="5dp"        android:background="@drawable/rounded_edittext" android:id="@+id/txtTglLahir"
             android:layout_width="fill_parent"
 
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtJenKel"
+        <EditText             android:padding="5dp"        android:background="@drawable/rounded_edittext" android:id="@+id/txtJenKel"
 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtNope"
+        <EditText             android:padding="5dp"        android:background="@drawable/rounded_edittext" android:id="@+id/txtNope"
             android:layout_width="fill_parent"
 
             android:layout_height="wrap_content"
@@ -70,14 +70,14 @@
             android:layout_marginBottom="5dip"/>
 
         <!-- Password input text -->
-        <EditText android:id="@+id/txtAlamat"
+        <EditText             android:padding="5dp"        android:background="@drawable/rounded_edittext" android:id="@+id/txtAlamat"
             android:layout_width="fill_parent"
 
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dip"/>
 
 
-        <Button android:id="@+id/btnUpdateProfil"
+        <Button         android:background="@drawable/color_btn" style="@style/ButtonText" android:id="@+id/btnUpdateProfil"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Update Profil"/>

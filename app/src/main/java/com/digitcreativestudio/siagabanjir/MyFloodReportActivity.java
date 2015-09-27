@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.SessionManager;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -64,8 +65,7 @@ ListAdapter adapter;
         LoadMySentReport m = (LoadMySentReport) new LoadMySentReport().execute();
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
 
     }
 
@@ -142,7 +142,7 @@ ListAdapter adapter;
             {
                ListAdapter adapter = new SimpleAdapter(
                         MyFloodReportActivity.this, postsList,
-                        R.layout.flood_list_item, new String[]{TAG_ID, TAG_DATE, TAG_DESC},
+                        R.layout.flood_list_item, new String[]{TAG_ID, TAG_DATE, Utility.getShorterString(TAG_DESC)},
                         new int[]{R.id.id, R.id.date, R.id.desc});
                 list.setAdapter(adapter);
             }

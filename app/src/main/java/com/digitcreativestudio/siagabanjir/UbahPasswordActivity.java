@@ -1,7 +1,6 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digitcreativestudio.siagabanjir.utils.AlertDialogManager;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.SessionManager;
 
@@ -64,25 +64,24 @@ public class UbahPasswordActivity extends ActionBarActivity {
             public void onClick(View v) {
                 sPwdlama = pwd0.getText().toString();
                 sPwd1 = pwd1.getText().toString();
-                sPwd2= pwd2.getText().toString();
+                sPwd2 = pwd2.getText().toString();
 
-                if (sPwdlama.isEmpty() || sPwd1.isEmpty() || sPwd2.isEmpty() )
+                if (sPwdlama.isEmpty() || sPwd1.isEmpty() || sPwd2.isEmpty())
                     alert.showAlertDialog(UbahPasswordActivity.this, "Gagal", "Harap lengkapi semua kolom", false);
-                else
-                if (!sPwd1.equals(sPwd2)){
+                else if (!sPwd1.equals(sPwd2)) {
                     pwdwarning.setText("Password tidak sama");
-                }
-                else {
+                } else {
                     pwdwarning.setText("");
-                    UbahPassword m= (UbahPassword) new UbahPassword().execute();
+                    UbahPassword m = (UbahPassword) new UbahPassword().execute();
                 }
 
             }
         });
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-    
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
+
+
     }
 
 

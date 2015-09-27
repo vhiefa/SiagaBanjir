@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrollView"
+    android:padding="16dp"
+    android:background="@color/blue_dark"
     tools:context="com.digitcreativestudio.siagabanjir.AboutActivity">
 
     <LinearLayout
-
+android:background="@drawable/rounded_edittext"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -45,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Version 2.1"
+                    android:text="Version 2.2"
                     android:id="@+id/versi"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -76,7 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Siaga banjir adalah aplikasi yang digunakan untuk mengetahui wilayah DKI Jakarta yang rawan banjir. \nPengguna akan mendapatkan pemberitahuan jika terjadi bencana banjir di tempat mereka berada."
+                            android:text="Siaga banjir adalah aplikasi yang ditujukan untuk warga DKI Jakarta sebagai penunjang dalam mitigasi banjir.\n\nAplikasi ini diharapkan dapat membantu warga dalam mengurangi dampak-dampak buruk dari banjir dengan menyajikan fitur-fitur lengkap mulai dari sebelum banjir, saat banjir, sampai sesudah banjir.\n\nAplikasi ini menggunakan open data dari data.jakarta.go.id mengenai wilayah rawan banjir di DKI Jakarta, dan setiap laporan banjir dari aplikasi ini akan dikirim ke email BPBD DKI Jakarta."
                             android:id="@+id/textView4"
                             android:textSize="16sp"
                             android:gravity="center|center_vertical"

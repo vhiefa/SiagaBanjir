@@ -58,8 +58,7 @@ public class Main2Activity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         Boolean notif = Utility.getPreferredNotification(this);
 
         if(notif){

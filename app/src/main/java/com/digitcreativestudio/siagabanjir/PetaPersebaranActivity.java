@@ -17,6 +17,7 @@ import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.digitcreativestudio.siagabanjir.data.FloodContract;
+import com.digitcreativestudio.siagabanjir.utils.Utility;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -65,8 +66,7 @@ public class PetaPersebaranActivity extends ActionBarActivity {
         setContentView(R.layout.activity_peta_persebaran_notification);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         try {
             // Loading map
             initilizeMap();
@@ -114,7 +114,7 @@ public class PetaPersebaranActivity extends ActionBarActivity {
 
                 while(!cursor.isAfterLast()){
                     LatLng point = new LatLng(new Double(cursor.getDouble(INDEX_LAT)), new Double(cursor.getDouble(INDEX_LONG)));
-                    googleMap.addMarker(new MarkerOptions().position(point).title(cursor.getString(INDEX_CAPTION)));
+                    googleMap.addMarker(new MarkerOptions().position(point).title(Utility.getShorterString(cursor.getString(INDEX_CAPTION))));
                     CameraPosition cameraPosition = new CameraPosition.Builder()
                             .target(point).zoom(13).build();
                     googleMap.animateCamera(CameraUpdateFactory

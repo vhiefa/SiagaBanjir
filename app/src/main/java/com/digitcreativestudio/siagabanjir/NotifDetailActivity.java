@@ -31,8 +31,7 @@ public class NotifDetailActivity extends ActionBarActivity {
 
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         imageLoader = new ImageLoader(getApplicationContext());
 
         Bundle b = getIntent().getExtras();

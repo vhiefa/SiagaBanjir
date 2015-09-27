@@ -1,18 +1,21 @@
 package com.digitcreativestudio.siagabanjir;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digitcreativestudio.siagabanjir.utils.AlertDialogManager;
 import com.digitcreativestudio.siagabanjir.utils.JSONParser;
 import com.digitcreativestudio.siagabanjir.utils.Utility;
 
@@ -29,6 +32,7 @@ import java.util.List;
  */
 public class CreateAccountActivity extends ActionBarActivity {
 
+   // private String[] isi_spinner_jk ={"perempuan","laki-laki"};
     Button create;
     TextView emailwarning, pwdwarning;
     EditText email, pwd1, pwd2, nama, tgllahir, jenkel, nope, alamat;
@@ -42,8 +46,9 @@ public class CreateAccountActivity extends ActionBarActivity {
         setContentView(R.layout.activity_create_account);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
 
+        Spinner spinner_jenkel = (Spinner) findViewById(R.id.jenKelSpinner);
         create = (Button) findViewById(R.id.btnCreateAccount);
         emailwarning = (TextView) findViewById(R.id.emailwarning);
         pwdwarning = (TextView) findViewById(R.id.pwdwarning);
@@ -56,7 +61,25 @@ public class CreateAccountActivity extends ActionBarActivity {
         nope = (EditText) findViewById(R.id.txtNope);
         alamat=(EditText) findViewById(R.id.txtAlamat);
 
+        ArrayAdapter<CharSequence> adapter_jenkel = ArrayAdapter.createFromResource(
+                this, R.array.spinner_jk,
+                android.R.layout.simple_spinner_dropdown_item);
 
+        spinner_jenkel.setAdapter(adapter_jenkel);
+
+        spinner_jenkel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v,
+                                       int position, long id) {
+                sJenKel = position + "";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
         
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +90,7 @@ public class CreateAccountActivity extends ActionBarActivity {
                 sPwd2= pwd2.getText().toString();
                 sNama = nama.getText().toString();
                 sTglLahir = tgllahir.getText().toString();
-                sJenKel = jenkel.getText().toString();
+                //sJenKel = jenkel.getText().toString();
                 sNope = nope.getText().toString();
                 sAlamat = alamat.getText().toString();
                 if (sEmail.isEmpty() || sPwd1.isEmpty() || sPwd2.isEmpty() || sNama.isEmpty() || sAlamat.isEmpty() || sNope.isEmpty())

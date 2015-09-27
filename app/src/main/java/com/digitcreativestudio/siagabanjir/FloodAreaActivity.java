@@ -17,8 +17,7 @@ public class FloodAreaActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         setContentView(R.layout.activity_flood_area);
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()

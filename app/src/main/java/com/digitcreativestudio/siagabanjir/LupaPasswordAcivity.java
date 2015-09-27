@@ -34,8 +34,7 @@ public class LupaPasswordAcivity extends ActionBarActivity {
         setContentView(R.layout.activity_lupa_password);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
         final EditText email = (EditText) findViewById(R.id.emailText);
         Button lupaPwd = (Button) findViewById(R.id.btnLupaPwd);
 

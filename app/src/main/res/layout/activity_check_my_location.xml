@@ -7,6 +7,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="fill_parent">
 
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_glasses"/>
+
+    <TextView
+        android:padding="30dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/blue_dark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Anda bisa mengetahui apakah lokasi Anda berada saat ini termasuk dalam lokasi rawan banjir atau bukan dengan menekan 'Cek Lokasi'\n\nJika Anda berada dalam lokasi rawan banjir, silahkan  masuk ke Pengaturan dan aktifkan notifikasi banjir"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -19,16 +34,17 @@
 
     </LinearLayout>
 
-    <Button
+    <Button         android:background="@drawable/color_btn" style="@style/ButtonText"
         android:layout_margin="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Cek Kerawanan Lokasi Saya"
+        android:text="Cek Lokasi"
         android:id="@+id/checkmylocation"
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center"
         android:id="@+id/lokasisaya"
         android:layout_height="wrap_content" />
 

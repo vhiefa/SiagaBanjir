@@ -76,6 +76,10 @@ public class SetHomeActivity extends ActionBarActivity implements GoogleMap.OnMa
 
         mylistener = new MyLocationListener(SetHomeActivity.this);
 
+        boolean isProviderEnable = locationManager.isProviderEnabled(provider);
+        //boolean isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        //boolean isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         if (location != null) {
             mylistener.onLocationChanged(location);
             latitude = mylistener.getLatitude();
@@ -87,15 +91,21 @@ public class SetHomeActivity extends ActionBarActivity implements GoogleMap.OnMa
                     .newCameraPosition(cameraPosition));
 
         } else {
-            // leads to the settings because there is no last known location
-            showSettingsAlert(provider);
+            if (!isProviderEnable){
+                // leads to the settings because there is no last known location
+                showSettingsAlert(provider);}
+            else{
+                /*Toast.makeText(
+                        getApplicationContext(),
+                        "Sedang mendapatkan lokasi Anda... Mohon tunggu...",
+                        Toast.LENGTH_LONG).show();*/
+            }
         }
         // location updates: at least 10 meter and 3 minutes change
         locationManager.requestLocationUpdates(provider, 1000*60*3, 10, mylistener);
 
         ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#C62828")));
-
+bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionbar_color)));
     }
 
     public void showSettingsAlert(String provider) {

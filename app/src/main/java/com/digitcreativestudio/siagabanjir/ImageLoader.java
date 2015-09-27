@@ -24,6 +24,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
+import com.digitcreativestudio.siagabanjir.utils.Utils;
+
 public class ImageLoader {
     
     MemoryCache memoryCache=new MemoryCache();

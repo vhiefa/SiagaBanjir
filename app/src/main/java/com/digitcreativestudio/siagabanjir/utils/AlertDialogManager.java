@@ -1,11 +1,10 @@
-package com.digitcreativestudio.siagabanjir;
+package com.digitcreativestudio.siagabanjir.utils;
 
-/**
- * Created by Afifatul on 8/10/2015.
- */
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+
+import com.digitcreativestudio.siagabanjir.R;
 
 public class AlertDialogManager {
     /**

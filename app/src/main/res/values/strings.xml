@@ -10,8 +10,28 @@
     <string name="content_authority">com.digitcreativestudio.siagabanjir</string>
     <string name="sync_account_type">digitcreativestudio.com</string>
 
+    <string name="blmpunyakun">Belum punya akun? <u>CREATE ACCOUNT</u></string>
+    <string name="lupapwd"><u>Lupa Password?</u></string>
+
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
+
+    <string-array name="spinner_jk">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <style name="ButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
 
     <!-- Strings related to Notification Enabled preference -->
     <string name="pref_enable_current_notifications_key" translatable="false">current_notification</string>

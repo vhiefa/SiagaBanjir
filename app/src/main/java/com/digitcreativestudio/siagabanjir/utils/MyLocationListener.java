@@ -28,18 +28,18 @@ public class MyLocationListener implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        Toast.makeText(context, provider + "'s status changed to " + status + "!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, provider + "'s status changed to " + status + "!", Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(context, "Provider " + provider + " enabled!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "Provider " + provider + " enabled!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Toast.makeText(context, "Provider " + provider + " disabled!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "Provider " + provider + " disabled!", Toast.LENGTH_SHORT).show();
     }
 
     public double getLongitude() {
