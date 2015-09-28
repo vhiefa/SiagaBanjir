@@ -76,7 +76,7 @@ public class FloodAreaActivityFragment extends Fragment implements LoaderManager
     public void updateFloodArea() {
         FetchFloodAreaTask fetchFloodAreaTask = new FetchFloodAreaTask(getActivity());
         fetchFloodAreaTask.execute();
-        Log.v(LOG_TAG, "Update flood area :-)");
+        Log.v(LOG_TAG, "Update flood area :-)"); //kenapa dikasih emot senyum segala sih Ko?
     }
 
     @Override
