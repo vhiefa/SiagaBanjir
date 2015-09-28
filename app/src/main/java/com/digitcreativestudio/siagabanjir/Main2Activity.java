@@ -250,9 +250,31 @@ public class Main2Activity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent (this,SettingActivity.class);
-            startActivity(intent);
+        if (id == R.id.action_refresh) {
+            if(isNetworkConnected()){
+                webView = (WebView) findViewById(R.id.news_feed);
+                webView.loadUrl("http://www.demo.edusarana.com/sis/ws/twitter_feed.php");
+                webView.setWebViewClient(new MyWebViewClient());
+                WebSettings webSettings = webView.getSettings();
+                webSettings.setJavaScriptEnabled(true);
+
+                //menampilkan progress bar
+                progress = (ProgressBar) findViewById(R.id.progressBar);
+                progress.setVisibility(View.GONE);
+
+
+                //menampilkan pesan koneksi
+                TextView text_info = (TextView) findViewById(R.id.connection_message);
+                text_info.setText(" Memuat...");
+            }else{
+                //menampilkan dialoge
+                ConnectionDialogeFragment newFragment = ConnectionDialogeFragment.newInstance();// call the static method
+                newFragment.show(getFragmentManager(), "dialog");
+
+                //menampilkan pesan koneksi
+                //TextView text_info = (TextView) findViewById(R.id.connection_message);
+                //text_info.setText("Anda tidak terhubung internet !");
+            }
             return true;
         }
 

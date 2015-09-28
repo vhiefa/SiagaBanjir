@@ -23,7 +23,7 @@ public class ConnectionDialogeFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(R.layout.connection_dialog).setNegativeButton(R.string.dialog_con_true, new DialogInterface.OnClickListener() {
+        builder.setMessage("      Anda tidak terhubung internet !").setIcon(R.mipmap.ic_launcher).setNegativeButton(R.string.dialog_con_false, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
             }

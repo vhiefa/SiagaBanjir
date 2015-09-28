@@ -58,6 +58,7 @@
     <string name="title_activity_flood_area">Wilayah Rawan</string>
     <string name="title_activity_telepon1">TeleponActivity1</string>
     <string name="dialog_con_true">Lanjutkan</string>
+    <string name="dialog_con_false">Tutup</string>
     <string name="action_example">Example action</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
 
